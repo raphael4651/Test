@@ -1,0 +1,11 @@
+INDEX VERSION 1.131+C:\Users\KTE001\Documents\workspace-sts-3.9.12.RELEASE\.metadata\.plugins\org.eclipse.jdt.core
+79245976.index
+2487545169.index
+3828226526.index
+1827958544.index
+2099726436.index
+223198443.index
+1136456112.index
+3812875719.index
+2468948296.index
+2051705981.index

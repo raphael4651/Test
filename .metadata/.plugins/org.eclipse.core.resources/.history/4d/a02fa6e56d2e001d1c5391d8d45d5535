@@ -1,0 +1,6 @@
+package org.zerock.mapper;
+
+public interface BoardAttachMapper {
+	public void insert(BoardAttachVO vo);
+	public void delete(String uuid);
+}

@@ -1,0 +1,30 @@
+package org.zerock.task;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.stereotype.Component;
+import org.zerock.mapper.BoardAttachMapper;
+
+@Component
+public class FileCheckTask {
+	
+		@Autowired
+		BoardAttachMapper attachMapper;
+		
+		private String getFolderYesterDay() {
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			
+			Calendar cal = Calendar.getInstance();
+			
+			cal.add(Calendar.DATE, -1);
+		}
+		
+		@Scheduled(cron="0 * * * * *")
+		public void checkFiles() throws Exception{
+			System.out.println("파일 체크 작업 시작 ....");
+			System.out.println("==================");
+		}
+}

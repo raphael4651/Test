@@ -1,0 +1,99 @@
+
+8월 29, 2022 14:43:52.72 NEW SESSION
+8월 29, 2022 14:43:52.72 [4040:4172:0829/144352.723:ERROR:device_event_log_impl.cc(214)] [14:43:52.723] Bluetooth: bluetooth_adapter_winrt.cc:1074 Getting Default Adapter failed.
+8월 29, 2022 14:44:50.48 [4040:11028:0829/144450.487:ERROR:util.cc(127)] Can't create base directory: C:\Program Files\Google\GoogleUpdater
+8월 29, 2022 14:54:16.08 [10548:8148:0829/145416.087:ERROR:device_event_log_impl.cc(214)] [14:54:16.088] Bluetooth: bluetooth_adapter_winrt.cc:1074 Getting Default Adapter failed.
+8월 29, 2022 14:55:13.75 [10548:10704:0829/145513.755:ERROR:util.cc(127)] Can't create base directory: C:\Program Files\Google\GoogleUpdater
+
+8월 29, 2022 15:19:51.74 NEW SESSION
+8월 29, 2022 15:19:51.74 [10500:3644:0829/151951.738:ERROR:device_event_log_impl.cc(214)] [15:19:51.738] Bluetooth: bluetooth_adapter_winrt.cc:1074 Getting Default Adapter failed.
+8월 29, 2022 15:20:48.54 [10500:10592:0829/152048.542:ERROR:util.cc(127)] Can't create base directory: C:\Program Files\Google\GoogleUpdater
+8월 29, 2022 15:32:23.60 [10500:3644:0829/153223.603:ERROR:CONSOLE(1)] "Session is unregistering, can't dispatch pending call to DOM.getDocument", source: devtools://devtools/bundled/devtools-frontend/front_end/core/sdk/sdk.js (1)
+8월 29, 2022 15:57:45.43 [10500:3644:0829/155745.433:ERROR:CONSOLE(1)] "Session is unregistering, can't dispatch pending call to DOM.getDocument", source: devtools://devtools/bundled/devtools-frontend/front_end/core/sdk/sdk.js (1)
+
+9월 01, 2022 13:40:34.56 NEW SESSION
+9월 01, 2022 13:40:34.56 [8592:8860:0901/134034.563:ERROR:device_event_log_impl.cc(214)] [13:40:34.563] Bluetooth: bluetooth_adapter_winrt.cc:1074 Getting Default Adapter failed.
+9월 01, 2022 13:41:31.35 [8592:7324:0901/134131.351:ERROR:util.cc(127)] Can't create base directory: C:\Program Files\Google\GoogleUpdater
+9월 01, 2022 15:04:12.21 [8592:8860:0901/150412.209:ERROR:CONSOLE(1)] "Session is unregistering, can't dispatch pending call to DOM.getDocument", source: devtools://devtools/bundled/devtools-frontend/front_end/core/sdk/sdk.js (1)
+9월 01, 2022 15:04:13.57 [8592:8860:0901/150413.575:ERROR:CONSOLE(1)] "Session is unregistering, can't dispatch pending call to DOM.getDocument", source: devtools://devtools/bundled/devtools-frontend/front_end/core/sdk/sdk.js (1)
+9월 01, 2022 15:09:32.62 [8592:8860:0901/150932.628:ERROR:CONSOLE(1)] "Session is unregistering, can't dispatch pending call to DOM.getDocument", source: devtools://devtools/bundled/devtools-frontend/front_end/core/sdk/sdk.js (1)
+9월 01, 2022 16:29:09.17 [8592:8860:0901/162909.171:ERROR:CONSOLE(1)] "Session is unregistering, can't dispatch pending call to DOM.getDocument", source: devtools://devtools/bundled/devtools-frontend/front_end/core/sdk/sdk.js (1)
+
+9월 02, 2022 09:12:40.04 NEW SESSION
+9월 02, 2022 09:12:40.04 [6852:8828:0902/091240.041:ERROR:device_event_log_impl.cc(214)] [09:12:40.041] Bluetooth: bluetooth_adapter_winrt.cc:1074 Getting Default Adapter failed.
+9월 02, 2022 09:13:37.90 [6852:9340:0902/091337.903:ERROR:util.cc(127)] Can't create base directory: C:\Program Files\Google\GoogleUpdater
+9월 02, 2022 09:50:41.97 [6852:8828:0902/095041.974:ERROR:CONSOLE(1)] "Session is unregistering, can't dispatch pending call to DOM.getDocument", source: devtools://devtools/bundled/devtools-frontend/front_end/core/sdk/sdk.js (1)
+9월 02, 2022 10:20:47.87 [6852:8828:0902/102047.878:ERROR:CONSOLE(1)] "Session is unregistering, can't dispatch pending call to DOM.getDocument", source: devtools://devtools/bundled/devtools-frontend/front_end/core/sdk/sdk.js (1)
+9월 02, 2022 10:20:58.53 [6852:8828:0902/102058.533:ERROR:CONSOLE(1)] "Session is unregistering, can't dispatch pending call to DOM.getDocument", source: devtools://devtools/bundled/devtools-frontend/front_end/core/sdk/sdk.js (1)
+9월 02, 2022 10:20:59.40 [6852:8828:0902/102059.403:ERROR:CONSOLE(1)] "Session is unregistering, can't dispatch pending call to DOM.getDocument", source: devtools://devtools/bundled/devtools-frontend/front_end/core/sdk/sdk.js (1)
+9월 02, 2022 10:21:00.07 [6852:8828:0902/102100.072:ERROR:CONSOLE(1)] "Session is unregistering, can't dispatch pending call to DOM.getDocument", source: devtools://devtools/bundled/devtools-frontend/front_end/core/sdk/sdk.js (1)
+9월 02, 2022 10:21:05.86 [6852:8828:0902/102105.864:ERROR:CONSOLE(1)] "Session is unregistering, can't dispatch pending call to DOM.getDocument", source: devtools://devtools/bundled/devtools-frontend/front_end/core/sdk/sdk.js (1)
+9월 02, 2022 10:21:10.32 [6852:8828:0902/102110.328:ERROR:CONSOLE(1)] "Session is unregistering, can't dispatch pending call to DOM.getDocument", source: devtools://devtools/bundled/devtools-frontend/front_end/core/sdk/sdk.js (1)
+9월 02, 2022 10:21:11.62 [6852:8828:0902/102111.628:ERROR:CONSOLE(1)] "Session is unregistering, can't dispatch pending call to DOM.getDocument", source: devtools://devtools/bundled/devtools-frontend/front_end/core/sdk/sdk.js (1)
+9월 02, 2022 10:39:47.90 [6852:8828:0902/103947.901:ERROR:CONSOLE(1)] "Session is unregistering, can't dispatch pending call to DOM.getDocument", source: devtools://devtools/bundled/devtools-frontend/front_end/core/sdk/sdk.js (1)
+9월 02, 2022 10:43:44.65 [6852:8828:0902/104344.658:ERROR:CONSOLE(1)] "Session is unregistering, can't dispatch pending call to DOM.getDocument", source: devtools://devtools/bundled/devtools-frontend/front_end/core/sdk/sdk.js (1)
+9월 02, 2022 10:43:45.12 [6852:8828:0902/104345.126:ERROR:CONSOLE(1)] "Session is unregistering, can't dispatch pending call to DOM.getDocument", source: devtools://devtools/bundled/devtools-frontend/front_end/core/sdk/sdk.js (1)
+9월 02, 2022 10:47:19.79 [6852:8828:0902/104719.795:ERROR:CONSOLE(1)] "Session is unregistering, can't dispatch pending call to DOM.getDocument", source: devtools://devtools/bundled/devtools-frontend/front_end/core/sdk/sdk.js (1)
+9월 02, 2022 10:47:20.52 [6852:8828:0902/104720.525:ERROR:CONSOLE(1)] "Session is unregistering, can't dispatch pending call to DOM.getDocument", source: devtools://devtools/bundled/devtools-frontend/front_end/core/sdk/sdk.js (1)
+9월 02, 2022 10:47:20.81 [6852:8828:0902/104720.812:ERROR:CONSOLE(1)] "Session is unregistering, can't dispatch pending call to DOM.getDocument", source: devtools://devtools/bundled/devtools-frontend/front_end/core/sdk/sdk.js (1)
+9월 02, 2022 10:47:21.01 [6852:8828:0902/104721.017:ERROR:CONSOLE(1)] "Session is unregistering, can't dispatch pending call to DOM.getDocument", source: devtools://devtools/bundled/devtools-frontend/front_end/core/sdk/sdk.js (1)
+9월 02, 2022 10:47:21.29 [6852:8828:0902/104721.299:ERROR:CONSOLE(1)] "Session is unregistering, can't dispatch pending call to DOM.getDocument", source: devtools://devtools/bundled/devtools-frontend/front_end/core/sdk/sdk.js (1)
+9월 02, 2022 11:10:02.57 [6852:8828:0902/111002.561:ERROR:CONSOLE(1)] "Session is unregistering, can't dispatch pending call to DOM.getDocument", source: devtools://devtools/bundled/devtools-frontend/front_end/core/sdk/sdk.js (1)
+9월 02, 2022 11:10:03.40 [6852:8828:0902/111003.402:ERROR:CONSOLE(1)] "Session is unregistering, can't dispatch pending call to DOM.getDocument", source: devtools://devtools/bundled/devtools-frontend/front_end/core/sdk/sdk.js (1)
+9월 02, 2022 11:33:52.06 [6852:8828:0902/113352.064:ERROR:CONSOLE(1)] "Session is unregistering, can't dispatch pending call to DOM.getDocument", source: devtools://devtools/bundled/devtools-frontend/front_end/core/sdk/sdk.js (1)
+9월 02, 2022 11:34:20.70 [6852:8828:0902/113420.709:ERROR:CONSOLE(1)] "Session is unregistering, can't dispatch pending call to DOM.getDocument", source: devtools://devtools/bundled/devtools-frontend/front_end/core/sdk/sdk.js (1)
+9월 02, 2022 11:34:21.18 [6852:8828:0902/113421.182:ERROR:CONSOLE(1)] "Session is unregistering, can't dispatch pending call to DOM.getDocument", source: devtools://devtools/bundled/devtools-frontend/front_end/core/sdk/sdk.js (1)
+9월 02, 2022 11:35:09.17 [6852:8828:0902/113509.175:ERROR:CONSOLE(1)] "Session is unregistering, can't dispatch pending call to DOM.getDocument", source: devtools://devtools/bundled/devtools-frontend/front_end/core/sdk/sdk.js (1)
+9월 02, 2022 12:10:37.72 [6852:8828:0902/121037.724:ERROR:sharing_service.cc(252)] Device un-registration failed with fatal error
+9월 02, 2022 12:15:12.63 [1196:1224:0902/121512.638:ERROR:usb_descriptors.cc(114)] Failed to parse configuration descriptor.
+9월 02, 2022 12:15:12.64 [1196:1224:0902/121512.647:ERROR:device_event_log_impl.cc(214)] [12:15:12.647] Bluetooth: bluetooth_adapter_winrt.cc:1074 Getting Default Adapter failed.
+9월 02, 2022 12:16:10.03 [1196:6196:0902/121610.030:ERROR:util.cc(127)] Can't create base directory: C:\Program Files\Google\GoogleUpdater
+9월 02, 2022 12:18:24.08 [9052:868:0902/121824.088:ERROR:device_event_log_impl.cc(214)] [12:18:24.088] Bluetooth: bluetooth_adapter_winrt.cc:1074 Getting Default Adapter failed.
+9월 02, 2022 12:19:21.81 [9052:7236:0902/121921.819:ERROR:util.cc(127)] Can't create base directory: C:\Program Files\Google\GoogleUpdater
+9월 02, 2022 12:20:52.62 [9052:868:0902/122052.628:ERROR:CONSOLE(1)] "Session is unregistering, can't dispatch pending call to DOM.getDocument", source: devtools://devtools/bundled/devtools-frontend/front_end/core/sdk/sdk.js (1)
+9월 02, 2022 12:20:53.66 [9052:868:0902/122053.662:ERROR:CONSOLE(1)] "Session is unregistering, can't dispatch pending call to DOM.getDocument", source: devtools://devtools/bundled/devtools-frontend/front_end/core/sdk/sdk.js (1)
+9월 02, 2022 12:21:08.03 [9052:868:0902/122108.037:ERROR:CONSOLE(1)] "Session is unregistering, can't dispatch pending call to DOM.getDocument", source: devtools://devtools/bundled/devtools-frontend/front_end/core/sdk/sdk.js (1)
+
+9월 05, 2022 09:05:53.55 NEW SESSION
+9월 05, 2022 09:05:53.55 [10184:10548:0905/090553.557:ERROR:device_event_log_impl.cc(214)] [09:05:53.545] Bluetooth: bluetooth_adapter_winrt.cc:1074 Getting Default Adapter failed.
+9월 05, 2022 09:06:51.26 [10184:8916:0905/090651.266:ERROR:util.cc(127)] Can't create base directory: C:\Program Files\Google\GoogleUpdater
+9월 05, 2022 09:27:06.18 [7696:10596:0905/092706.182:ERROR:device_event_log_impl.cc(214)] [09:27:06.177] Bluetooth: bluetooth_adapter_winrt.cc:1074 Getting Default Adapter failed.
+9월 05, 2022 09:28:03.16 [7696:9200:0905/092803.164:ERROR:util.cc(127)] Can't create base directory: C:\Program Files\Google\GoogleUpdater
+9월 05, 2022 09:56:50.53 [7696:10596:0905/095650.532:ERROR:device_event_log_impl.cc(214)] [09:56:50.533] Bluetooth: bluetooth_adapter_winrt.cc:1074 Getting Default Adapter failed.
+
+9월 08, 2022 09:17:39.37 NEW SESSION
+9월 08, 2022 09:17:39.37 [6164:8312:0908/091739.371:ERROR:device_event_log_impl.cc(214)] [09:17:39.371] Bluetooth: bluetooth_adapter_winrt.cc:1074 Getting Default Adapter failed.
+9월 08, 2022 09:18:36.24 [6164:11472:0908/091836.247:ERROR:util.cc(129)] Can't create base directory: C:\Program Files\Google\GoogleUpdater
+9월 08, 2022 09:28:15.15 [6164:8312:0908/092815.155:ERROR:CONSOLE(1)] "Session is unregistering, can't dispatch pending call to DOM.getDocument", source: devtools://devtools/bundled/devtools-frontend/front_end/core/sdk/sdk.js (1)
+9월 08, 2022 09:33:38.59 [6164:8312:0908/093338.592:ERROR:CONSOLE(1)] "Session is unregistering, can't dispatch pending call to DOM.getDocument", source: devtools://devtools/bundled/devtools-frontend/front_end/core/sdk/sdk.js (1)
+9월 08, 2022 09:38:43.90 [6164:8312:0908/093843.907:ERROR:CONSOLE(1)] "Session is unregistering, can't dispatch pending call to DOM.getDocument", source: devtools://devtools/bundled/devtools-frontend/front_end/core/sdk/sdk.js (1)
+9월 08, 2022 09:44:42.75 [6164:8312:0908/094442.758:ERROR:CONSOLE(1)] "Session is unregistering, can't dispatch pending call to DOM.getDocument", source: devtools://devtools/bundled/devtools-frontend/front_end/core/sdk/sdk.js (1)
+9월 08, 2022 10:08:19.83 [6164:8312:0908/100819.836:ERROR:CONSOLE(1)] "Session is unregistering, can't dispatch pending call to DOM.getDocument", source: devtools://devtools/bundled/devtools-frontend/front_end/core/sdk/sdk.js (1)
+9월 08, 2022 10:08:20.52 [6164:8312:0908/100820.520:ERROR:CONSOLE(1)] "Session is unregistering, can't dispatch pending call to DOM.getDocument", source: devtools://devtools/bundled/devtools-frontend/front_end/core/sdk/sdk.js (1)
+9월 08, 2022 10:36:57.54 [6164:8312:0908/103657.544:ERROR:CONSOLE(1)] "Session is unregistering, can't dispatch pending call to DOM.getDocument", source: devtools://devtools/bundled/devtools-frontend/front_end/core/sdk/sdk.js (1)
+9월 08, 2022 10:40:24.47 [6164:8312:0908/104024.470:ERROR:CONSOLE(1)] "Session is unregistering, can't dispatch pending call to DOM.getDocument", source: devtools://devtools/bundled/devtools-frontend/front_end/core/sdk/sdk.js (1)
+9월 08, 2022 10:40:29.62 [6164:8312:0908/104029.626:ERROR:CONSOLE(1)] "Session is unregistering, can't dispatch pending call to DOM.getDocument", source: devtools://devtools/bundled/devtools-frontend/front_end/core/sdk/sdk.js (1)
+9월 08, 2022 10:49:21.25 [6164:8312:0908/104921.253:ERROR:CONSOLE(1)] "Session is unregistering, can't dispatch pending call to DOM.getDocument", source: devtools://devtools/bundled/devtools-frontend/front_end/core/sdk/sdk.js (1)
+9월 08, 2022 10:49:43.07 [6164:8312:0908/104943.070:ERROR:CONSOLE(1)] "Session is unregistering, can't dispatch pending call to DOM.getDocument", source: devtools://devtools/bundled/devtools-frontend/front_end/core/sdk/sdk.js (1)
+9월 08, 2022 10:49:48.49 [6164:8312:0908/104948.497:ERROR:CONSOLE(1)] "Session is unregistering, can't dispatch pending call to DOM.getDocument", source: devtools://devtools/bundled/devtools-frontend/front_end/core/sdk/sdk.js (1)
+9월 08, 2022 10:52:21.71 [6164:8312:0908/105221.717:ERROR:CONSOLE(1)] "Session is unregistering, can't dispatch pending call to DOM.getDocument", source: devtools://devtools/bundled/devtools-frontend/front_end/core/sdk/sdk.js (1)
+9월 08, 2022 10:52:59.88 [6164:8312:0908/105259.885:ERROR:CONSOLE(1)] "Session is unregistering, can't dispatch pending call to DOM.getDocument", source: devtools://devtools/bundled/devtools-frontend/front_end/core/sdk/sdk.js (1)
+9월 08, 2022 10:53:05.36 [6164:8312:0908/105305.369:ERROR:CONSOLE(1)] "Session is unregistering, can't dispatch pending call to DOM.getDocument", source: devtools://devtools/bundled/devtools-frontend/front_end/core/sdk/sdk.js (1)
+9월 08, 2022 11:20:09.70 [6164:8312:0908/112009.707:ERROR:CONSOLE(1)] "Session is unregistering, can't dispatch pending call to DOM.getDocument", source: devtools://devtools/bundled/devtools-frontend/front_end/core/sdk/sdk.js (1)
+9월 08, 2022 11:20:10.27 [6164:8312:0908/112010.279:ERROR:CONSOLE(1)] "Session is unregistering, can't dispatch pending call to DOM.getDocument", source: devtools://devtools/bundled/devtools-frontend/front_end/core/sdk/sdk.js (1)
+9월 08, 2022 11:20:12.53 [6164:8312:0908/112012.536:ERROR:CONSOLE(1)] "Session is unregistering, can't dispatch pending call to DOM.getDocument", source: devtools://devtools/bundled/devtools-frontend/front_end/core/sdk/sdk.js (1)
+9월 08, 2022 11:21:16.29 [6164:8312:0908/112116.296:ERROR:CONSOLE(1)] "Session is unregistering, can't dispatch pending call to DOM.getDocument", source: devtools://devtools/bundled/devtools-frontend/front_end/core/sdk/sdk.js (1)
+9월 08, 2022 11:21:18.38 [6164:8312:0908/112118.389:ERROR:CONSOLE(1)] "Session is unregistering, can't dispatch pending call to DOM.getDocument", source: devtools://devtools/bundled/devtools-frontend/front_end/core/sdk/sdk.js (1)
+9월 08, 2022 11:21:46.04 [6164:8312:0908/112146.047:ERROR:CONSOLE(1)] "Session is unregistering, can't dispatch pending call to DOM.getDocument", source: devtools://devtools/bundled/devtools-frontend/front_end/core/sdk/sdk.js (1)
+9월 08, 2022 11:22:12.20 [6164:8312:0908/112212.203:ERROR:CONSOLE(1)] "Session is unregistering, can't dispatch pending call to DOM.getDocument", source: devtools://devtools/bundled/devtools-frontend/front_end/core/sdk/sdk.js (1)
+9월 08, 2022 11:22:13.71 [6164:8312:0908/112213.709:ERROR:CONSOLE(1)] "Session is unregistering, can't dispatch pending call to DOM.getDocument", source: devtools://devtools/bundled/devtools-frontend/front_end/core/sdk/sdk.js (1)
+9월 08, 2022 11:31:16.71 [6164:8312:0908/113116.718:ERROR:CONSOLE(1)] "Session is unregistering, can't dispatch pending call to DOM.getDocument", source: devtools://devtools/bundled/devtools-frontend/front_end/core/sdk/sdk.js (1)
+9월 08, 2022 11:31:18.73 [6164:8312:0908/113118.736:ERROR:CONSOLE(1)] "Session is unregistering, can't dispatch pending call to DOM.getDocument", source: devtools://devtools/bundled/devtools-frontend/front_end/core/sdk/sdk.js (1)
+9월 08, 2022 11:35:17.13 [6164:8312:0908/113517.138:ERROR:CONSOLE(1)] "Session is unregistering, can't dispatch pending call to DOM.getDocument", source: devtools://devtools/bundled/devtools-frontend/front_end/core/sdk/sdk.js (1)
+9월 08, 2022 11:39:30.56 [6164:8312:0908/113930.563:ERROR:CONSOLE(1)] "Session is unregistering, can't dispatch pending call to DOM.getDocument", source: devtools://devtools/bundled/devtools-frontend/front_end/core/sdk/sdk.js (1)
+9월 08, 2022 11:39:44.18 [6164:8312:0908/113944.184:ERROR:CONSOLE(1)] "Session is unregistering, can't dispatch pending call to DOM.getDocument", source: devtools://devtools/bundled/devtools-frontend/front_end/core/sdk/sdk.js (1)
+9월 08, 2022 11:40:34.08 [6164:8312:0908/114034.085:ERROR:CONSOLE(1)] "Session is unregistering, can't dispatch pending call to DOM.getDocument", source: devtools://devtools/bundled/devtools-frontend/front_end/core/sdk/sdk.js (1)
+9월 08, 2022 11:42:24.23 [6164:8312:0908/114224.230:ERROR:CONSOLE(1)] "Session is unregistering, can't dispatch pending call to DOM.getDocument", source: devtools://devtools/bundled/devtools-frontend/front_end/core/sdk/sdk.js (1)
+9월 08, 2022 12:38:14.45 [6164:8312:0908/123814.457:ERROR:CONSOLE(1)] "Session is unregistering, can't dispatch pending call to DOM.getDocument", source: devtools://devtools/bundled/devtools-frontend/front_end/core/sdk/sdk.js (1)
+9월 08, 2022 12:43:41.96 [7680:11948:0908/124341.969:ERROR:device_event_log_impl.cc(214)] [12:43:41.970] Bluetooth: bluetooth_adapter_winrt.cc:1074 Getting Default Adapter failed.
+9월 08, 2022 12:44:38.63 [7680:4176:0908/124438.632:ERROR:util.cc(129)] Can't create base directory: C:\Program Files\Google\GoogleUpdater

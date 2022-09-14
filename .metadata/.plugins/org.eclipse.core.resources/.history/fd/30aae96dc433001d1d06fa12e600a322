@@ -1,0 +1,17 @@
+package org.zerock.task;
+
+import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.stereotype.Component;
+
+@Component
+public class FileCheckTask {
+	
+		@Autowired
+		BoardAttachMapper attachMapper;
+		
+		@Scheduled(cron="0 * * * * *")
+		public void checkFiles() throws Exception{
+			System.out.println("파일 체크 작업 시작 ....");
+			System.out.println("==================");
+		}
+}
