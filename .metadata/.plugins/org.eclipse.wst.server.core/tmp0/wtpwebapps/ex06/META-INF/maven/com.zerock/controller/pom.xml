@@ -25,31 +25,31 @@
 		
 	<dependencies>
 	
-		<!-- Security-web -->
+		<!-- security-web -->
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-web</artifactId>
-			<version>5.0.6.RELEASE</version>
+			<version>${org.springframework-version}</version>
 		</dependency>
 		
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-config</artifactId>
-			<version>5.0.6.RELEASE</version>
+			<version>${org.springframework-version}</version>
 		</dependency>
 		
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-core</artifactId>
-			<version>5.0.6.RELEASE</version>
+			<version>${org.springframework-version}</version>
 		</dependency>
 		
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-taglibs</artifactId>
-			<version>5.0.6.RELEASE</version>
+			<version>${org.springframework-version}</version>
 		</dependency>
-		
+	
 		<!-- Quartz -->
 		<dependency>
 			<groupId>org.quartz-scheduler</groupId>
