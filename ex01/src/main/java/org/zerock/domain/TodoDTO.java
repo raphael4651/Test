@@ -9,8 +9,8 @@ import lombok.Data;
 @Data
 public class TodoDTO {
 	
-	private String title;
+	String title;
 	
-	@DateTimeFormat(pattern = "yyyy/MM/dd")
-	private Date dueDate;
+	@DateTimeFormat(pattern="yyyy/MM/dd")
+	Date dueDate;
 }

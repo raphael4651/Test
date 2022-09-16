@@ -2,6 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@include file="../includes/header.jsp" %>
+
 <style>
 	.uploadResult{
 		width:100%;
@@ -48,7 +49,6 @@
 	}
 </style>
 
-
 <div class="row">
     <div class="col-lg-12">
         <h1 class="page-header">게시판</h1>
@@ -94,33 +94,34 @@
 
 <!-- 첨부파일 -->
 <div class="row">
-	<div class="col-lg-12">
+	<div class="col-lg-12">	
 		<div class="panel panel-default">
-		
+			
 			<div class="panel-heading">첨부 파일</div>
 			<div class="panel-body">
 				<div class="form-group uploadDiv">
-					<input type="file" name="uploadFile" multiple>
+					<input type="file" name='uploadFile' multiple>
 				</div>
+				
+				<div class='uploadResult'>
+					<ul>
+						<!-- 자바스크립트 추가될 li 자리-->
+					</ul>
+				</div>
+			</div>
 			
-			
-			<div class="uploadResult">
-				<ul>				
-				</ul>
-			</div>
-			</div>
-			</div>
+		</div>
 	</div>
 </div>
 
 <script>
 $(document).ready(function(){
-	
+		
 	//파일 크기, 확장자 체크
 	var regex=new RegExp("(.*?)\.(exe|sh|alz)$");
 	var maxSize=5242880;	//5MB 제한
 	
-	function checkExtension(fileName, fileSize){
+	function checkExtension(fileName,fileSize){
 		
 		if(fileSize>=maxSize){
 			alert("파일 사이즈 초과");
@@ -133,17 +134,15 @@ $(document).ready(function(){
 		return true;
 	}
 	
-	//파일 초기화 복제
-	var cloneObj=$(".uploadDiv").clone();
-
-	var formObj = $("form[role='form']");
+	//게시물 등록버튼
+	var formObj=$("form[role='form']");
 	
-	$("button[type='submit']").on("click", function(e){
+	$("button[type='submit']").on('click',function(e){
 		e.preventDefault();
 		
-		console.log("submit click");
-	
-		var str = "";
+		console.log("submit clicked");
+		
+		var str="";
 		
 		$(".uploadResult ul li").each(function(i,obj){
 			var jobj=$(obj);
@@ -157,16 +156,21 @@ $(document).ready(function(){
 			str+="<input type='hidden' name='attachList["+i+"].uploadPath'"
 				+" value='"+jobj.data("path")+"'>";
 			str+="<input type='hidden' name='attachList["+i+"].fileType'"
-				+" value='"+jobj.data("type")+"'>";				
+				+" value='"+jobj.data("type")+"'>";
 		});
-			formObj.append(str).submit();
+		
+		formObj.append(str).submit();
 	});
 	
+	//파일 초기화 복제
+	var cloneObj=$(".uploadDiv").clone();
 	
 	$("input[type='file']").change(function(e){
 		var formData=new FormData();
 		var inputFile=$("input[name='uploadFile']");
 		var files=inputFile[0].files;
+		
+		console.log(files);
 		
 		for(var i=0;i<files.length;i++){
 			//파일 크기, 확장자 체크
@@ -187,23 +191,20 @@ $(document).ready(function(){
 				console.log(result);
 				
 				//input file 입력창 초기화
-				//$(".uploadDiv").html(cloneObj.html());
+				$(".uploadDiv").html(cloneObj.html());
 				
-				//업로드 결과 처리 함수
 				showUploadedFile(result);
 			}
 		});
 	});
 	
-	var uploadResult=$(".uploadResult ul");
-	
-	
 	function showUploadedFile(uploadResultArr){
 		
-		if(!uploadResultArr || uploadResultArr.length == 0){ return; }
+		if(!uploadResultArr || uploadResultArr.length==0){
+			return;
+		}
 		
-		var uploadUL = $(".uploadResult ul");
-		
+		var uploadUL=$(".uploadResult ul");
 		var str="";
 		
 		$(uploadResultArr).each(function(i,obj){
@@ -212,30 +213,28 @@ $(document).ready(function(){
 				var fileCallPath=encodeURIComponent(
 						obj.uploadPath+"/s_"+obj.uuid+"_"+obj.fileName);
 				
-				str+="<li data-path='"+obj.uploadPath+"'";
-				str+="data-uuid='"+obj.uuid+"' data-filename='"+obj.fileName+"' data-type='"+obj.image+"'"
-				str+=" ><div>";
-				str+="<span>" +obj.fileName+ "</span>";
-				str+="<button type='button' data-file=\'"+fileCallPath+"\' data-type='file' "
-				str+="class='btn btn-warning btn-circle'><i class='fa fa-times'></i></button><br>";
-				str+="<img src='/display?fileName="+fileCallPath+"'>";
-				str+="</div>";
-				str +"</li>";
+				str+="<li data-path='"+obj.uploadPath+"' data-uuid='"
+							+obj.uuid+"' data-filename='"+obj.fileName
+							+"' data-type='"+obj.image+"'><div>"
+						+"<span>"+obj.fileName+" </span>"
+						+"<button type='button' data-file=\'"+fileCallPath+"\' data-type='image' class='btn btn-warning btn-circle'>"
+						+"<i class='fa fa-times'></i></button><br>"
+						+"<img src='/display?fileName="+fileCallPath+"'>"
+						+"</div></li>";
+					
 			}else{
 				var fileCallPath=encodeURIComponent(
 						obj.uploadPath+"/"+obj.uuid+"_"+obj.fileName);
+				var fileLink=fileCallPath.replace(new RegExp(/\\/g),"/");
 				
-				var fileLink = fileCallPath.replace(new RegExp(/\\/g),"/");
-				
-				str+="<li "
-				str+="data-path='"+obj.uploadPath+"' data-uuid='"+obj.uuid+"' data-filename='"+obj.fileName+"' data-type='"+obj.image+"' ><div>";
-				str+="<span>" +obj.fileName+ " </span>";
-				str+="<button type='button' data-file=\'"+fileCallPath+"\' data-type='file' "
-				str+="class='btn btn-warning btn-circle'><i class='fa fa-times'></i></button><br>";
-				str+="<img src='/resources/img/attach.png'>";
-				str+="</div>";
-				str +"</li>";
-					
+				str+="<li data-path='"+obj.uploadPath+"' data-uuid='"
+							+obj.uuid+"' data-filename='"+obj.fileName
+							+"' data-type='"+obj.image+"'><div>"
+						+"<span>"+obj.fileName+" </span>"
+						+"<button type='button' data-file=\'"+fileCallPath+"\' data-type='file' class='btn btn-warning btn-circle'>"
+						+"<i class='fa fa-times'></i></button><br>"
+						+"<img src='/resources/img/attach.png'>"
+						+"</div></li>";
 			}			
 		});
 		
@@ -243,11 +242,11 @@ $(document).ready(function(){
 	}
 	
 	$(".uploadResult").on("click","button",function(e){
-		
-		console.log("delete file")
+		console.log("delete file");
 		
 		var targetFile=$(this).data("file");
 		var type=$(this).data("type");
+		console.log(targetFile);
 		
 		var targetLi=$(this).closest("li");
 		
@@ -257,8 +256,9 @@ $(document).ready(function(){
 			dataType:'text',
 			type:'POST',
 			success:function(result){
-				alert(result);
-			targetLi.remove();
+				//alert(result);
+				
+				targetLi.remove();
 			}
 		});
 	});
@@ -276,12 +276,11 @@ function showImage(fileCallPath){
 	
 	$(".bigPictureWrapper").on("click",function(e){
 		$(".bigPicture").animate({width:'0%',height:'0%'},1000);
-		setTimeout(()=> {
+		setTimeout(()=>{
 			$(this).hide();
 		},1000);
 	});
 }
 </script>
-
 
 <%@include file="../includes/footer.jsp" %>

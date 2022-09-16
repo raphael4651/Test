@@ -32,14 +32,7 @@ public class BoardController {
 	
 	@Autowired
 	BoardService service;
-	
-//	@GetMapping("/list")
-//	public void list(Model model) {
-//		System.out.println("list");
-//		
-//		model.addAttribute("list",service.getList());
-//	}
-	
+		
 	@GetMapping("/list")
 	public void list(Criteria cri,Model model) {	
 		
@@ -66,16 +59,15 @@ public class BoardController {
 	}
 	
 	@PostMapping("/register")
-	public String register(BoardVO board, RedirectAttributes rttr) {
-		System.out.println("----------");
-		System.out.println("register: " + board);
-		if(board.getAttachList() != null) {
-			board.getAttachList().forEach(attach -> System.out.println(attach));
+	public String register(BoardVO board,RedirectAttributes rttr) {
+		System.out.println("register");
+		
+		if(board.getAttachList()!=null) {
+			board.getAttachList().forEach(attach->log.info(attach));
 		}
-		System.out.println("----------");
 		
 		service.register(board);
-		rttr.addFlashAttribute("result", board.getBno());
+		rttr.addFlashAttribute("result",board.getBno());
 		
 		return "redirect:/board/list";
 	}
@@ -89,7 +81,7 @@ public class BoardController {
 	
 	@PostMapping("/modify")
 	public String modify(BoardVO board,@ModelAttribute("cri") Criteria cri,RedirectAttributes rttr) {
-		System.out.println("modify");
+		System.out.println("controller modify:"+board);
 		
 		if(service.modify(board)) {
 			rttr.addFlashAttribute("result","success");
@@ -104,9 +96,9 @@ public class BoardController {
 	
 	@PostMapping("/remove")
 	public String remove(Long bno,@ModelAttribute("cri") Criteria cri,RedirectAttributes rttr) {
-		System.out.println("remove");
+		System.out.println("삭제 번호:"+bno);
 		
-		List<BoardAttachVO> attachList = service.getAttachList(bno);
+		List<BoardAttachVO> attachList=service.getAttachList(bno);
 		
 		if(service.remove(bno)) {
 			//첨부파일 삭제
@@ -119,63 +111,43 @@ public class BoardController {
 		rttr.addAttribute("type",cri.getType());
 		rttr.addAttribute("keyword",cri.getKeyword());
 		
-		return "redirect:/board/list" + cri.getListLink();
+		return "redirect:/board/list";
 	}	
 	
-	@GetMapping(value = "/getAttachList", 
-			produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	@GetMapping(value="/getAttachList",
+			produces=MediaType.APPLICATION_JSON_UTF8_VALUE)
 	@ResponseBody
 	public ResponseEntity<List<BoardAttachVO>> getAttachList(Long bno){
-		System.out.println("첨부파일 리스트: " + bno);
-		return new ResponseEntity<>(service.getAttachList(bno), HttpStatus.OK);
+		System.out.println("getAttachList:"+bno);
+		
+		return new ResponseEntity<>(service.getAttachList(bno),HttpStatus.OK);
 	}
 	
 	private void deleteFiles(List<BoardAttachVO> attachList) {
-		if(attachList == null || attachList.size() == 0) {
+		
+		if(attachList==null || attachList.size()==0) {
 			return;
 		}
 		
 		System.out.println("첨부 파일 삭제.....");
 		System.out.println(attachList);
 		
-		attachList.forEach(attach ->{
+		attachList.forEach(attach->{
 			try {
-				Path file = Paths.get("C:\\upload\\"+attach.getUploadPath()+"\\"+attach.getUuid()+"_"+attach.getFileName());
+				Path file=Paths.get("c:\\upload\\"+attach.getUploadPath()+"\\"
+					+attach.getUuid()+"_"+attach.getFileName());
 				
 				Files.deleteIfExists(file);
 				
 				if(Files.probeContentType(file).startsWith("image")) {
-					Path thumbNail = Paths.get("C:\\upload\\"+attach.getUploadPath()+"\\s_"+attach.getUuid()+"_"+attach.getFileName());
+					Path thumbNail=Paths.get("c:\\upload\\"+attach.getUploadPath()+"\\s_"
+							+attach.getUuid()+"_"+attach.getFileName());
+					
 					Files.delete(thumbNail);
-				}
+				}				
 			}catch(Exception e) {
-				log.error("첨부파일 삭제 에러: " + e.getMessage());
+				System.out.println("파일 삭제 에러:"+e.getMessage());
 			}
 		});
 	}
-	
-
-	
-//	@PostMapping("/modify")
-//	public String modify(BoardVO board,@ModelAttribute("cri") Criteria cri,RedirectAttributes rttr) {
-//		System.out.println("modify");
-//		
-//		if(service.modify(board)) {
-//			rttr.addFlashAttribute("result","success");
-//		}
-//		
-//		return "redirect:/board/list"+cri.getListLink();
-//	}
-//	
-//	@PostMapping("/remove")
-//	public String remove(Long bno,@ModelAttribute("cri") Criteria cri,RedirectAttributes rttr) {
-//		System.out.println("remove");
-//		
-//		if(service.remove(bno)) {
-//			rttr.addFlashAttribute("result","success");
-//		}
-//				
-//		return "redirect:/board/list"+cri.getListLink();
-//	}
-		
 }

@@ -45,18 +45,26 @@ public class ReplyController {
 	
 	//전체 조회
 	@GetMapping(value="pages/{bno}/{page}",
-			produces= {
+			produces= {					
 					MediaType.APPLICATION_JSON_UTF8_VALUE,
-					MediaType.APPLICATION_XML_VALUE})
+					MediaType.APPLICATION_XML_VALUE
+					})
 	public ResponseEntity<ReplyPageDTO> getList(
 			@PathVariable("page") int page,
 			@PathVariable("bno") Long bno){
 		
 		System.out.println("getList................");
+		System.out.println("page:"+page);
+		System.out.println("bno:"+bno);
+		
 		Criteria cri=new Criteria(page,10);
 		System.out.println(cri);
 		
-		return new ResponseEntity<>(service.getListPage(cri,bno), HttpStatus.OK);
+		ReplyPageDTO dto=service.getListPage(cri,bno);
+		System.out.println("controller 전체갯수:"+dto.getReplyCnt());
+		System.out.println("controller 리스트:"+dto.getList());
+		
+		return new ResponseEntity<>(dto,HttpStatus.OK);
 	}
 	
 	//조회

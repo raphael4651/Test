@@ -13,6 +13,5 @@ public interface ReplyService {
 	int modify(ReplyVO vo);
 	int remove(Long rno);
 	List<ReplyVO> getList(Criteria cri,Long bno);
-	
-	public ReplyPageDTO getListPage(Criteria cri, Long bno);
+	ReplyPageDTO getListPage(Criteria cri,Long bno);
 }

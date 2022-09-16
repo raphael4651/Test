@@ -1,5 +1,6 @@
 package org.zerock.sample;
 
+import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Component;
 
 import lombok.AllArgsConstructor;
@@ -9,15 +10,14 @@ import lombok.ToString;
 @Component
 @ToString
 @Getter
-@AllArgsConstructor 
-//모든 생성자를 만든다
+@AllArgsConstructor
+//@RequiredArgsConstructor
 public class SampleHotel {
 	
+	@NonNull
 	private Chef chef;
 
-	/*
-	 * public SampleHotel(Chef chef) { super(); this.chef = chef; }
-	 */
-	
-	
+//	public SampleHotel(Chef chef) {
+//		this.chef = chef;
+//	}
 }

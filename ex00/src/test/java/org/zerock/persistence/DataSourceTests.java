@@ -14,27 +14,22 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import lombok.extern.log4j.Log4j;
 
-
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root-context.xml")
 @Log4j
 public class DataSourceTests {
-	
+
 	@Autowired
 	private DataSource dataSource;
-	//dataSoucre 는 root-context.xml에 지정한 hikariCP의 이름
 	
 	@Test
-	public void testConnection(){
+	public void testConnection() {
 		try {
-			Connection con = dataSource.getConnection();
+			Connection con=dataSource.getConnection();
 			
 			log.info(con);
-			
 		}catch(Exception e) {
 			fail(e.getMessage());
 		}
 	}
-
 }
-

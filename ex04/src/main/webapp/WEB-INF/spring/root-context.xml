@@ -3,8 +3,8 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:aop="http://www.springframework.org/schema/aop"
 	xmlns:context="http://www.springframework.org/schema/context"
-	xmlns:tx="http://www.springframework.org/schema/tx"
 	xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
+	xmlns:tx="http://www.springframework.org/schema/tx"
 	xsi:schemaLocation="http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
 		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
@@ -12,15 +12,7 @@
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
-	<context:annotation-config/>
-	
-	<!-- 
-	<bean id="sampleService" class="org.zerock.service.SampleServiceImpl"></bean> 
-		파일 하나당 bean을 만들어서 찾아와야 하나
-		context:component-scan으로 폴더를 지정해서 @Service, @Component 를 불러온다.
-	-->
-	
-	<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
+		<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
 		<property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy"/>
 		<property name="jdbcUrl" value="jdbc:log4jdbc:oracle:thin:@localhost:1521:iot"/>
 		<property name="username" value="book_ex"/>
@@ -36,13 +28,15 @@
 	</bean>
 	
 	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-		<property name="dataSource" ref="dataSource"></property> 
+		<property name="dataSource" ref="dataSource"/>
 	</bean>
 	
 	<tx:annotation-driven/>
-		
-	<mybatis-spring:scan base-package="org.zerock.mapper"/>	
-		
+	
+	<mybatis-spring:scan base-package="org.zerock.mapper"/>
+	
+	<context:annotation-config/>
+	
 	<context:component-scan base-package="org.zerock.service"/>
 	<context:component-scan base-package="org.zerock.aop"/>
 	

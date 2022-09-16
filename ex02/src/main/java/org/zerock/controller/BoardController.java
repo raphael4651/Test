@@ -31,14 +31,19 @@ public class BoardController {
 //	}
 	
 	@GetMapping("/list")
-	public void list(Criteria cri,Model model) {
-		System.out.println("list:"+cri);
+	public void list(Criteria cri,Model model) {	
 		
 		model.addAttribute("list",service.getList(cri));
 		
 		int total=service.getTotal(cri);
 		
 		PageDTO page=new PageDTO(cri,total);
+		
+		System.out.println("pageNum:"+cri.getPageNum());
+		System.out.println("amount:"+cri.getAmount());
+		System.out.println("type:"+cri.getType());
+		System.out.println("keyword:"+cri.getKeyword());
+		
 		System.out.println("startPage:"+page.getStartPage());
 		System.out.println("endPage:"+page.getEndPage());
 		
@@ -47,7 +52,7 @@ public class BoardController {
 	
 	@GetMapping("/register")
 	public void register() {
-		
+		System.out.println("register get");
 	}
 	
 	@PostMapping("/register")
@@ -69,16 +74,14 @@ public class BoardController {
 	}
 	
 	@PostMapping("/modify")
-	public String modify(BoardVO board,Criteria cri,RedirectAttributes rttr) {
+	public String modify(BoardVO board,@ModelAttribute("cri") Criteria cri,RedirectAttributes rttr) {
 		System.out.println("modify");
 		
 		if(service.modify(board)) {
 			rttr.addFlashAttribute("result","success");
 		}
-		rttr.addAttribute("pageNum",cri.getPageNum());
-		rttr.addAttribute("amount",cri.getAmount());
-		
-		return "redirect:/board/list";
+				
+		return "redirect:/board/list"+cri.getListLink();
 	}
 	
 	@PostMapping("/remove")
@@ -88,11 +91,8 @@ public class BoardController {
 		if(service.remove(bno)) {
 			rttr.addFlashAttribute("result","success");
 		}
-		rttr.addFlashAttribute("pageNum",cri.getPageNum());
-		rttr.addFlashAttribute("amount",cri.getAmount());
-		
-		return "redirect:/board/list";
-	}
-	
+				
+		return "redirect:/board/list"+cri.getListLink();
+	}	
 		
 }

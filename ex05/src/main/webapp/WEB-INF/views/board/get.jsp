@@ -48,7 +48,8 @@
 		width:600px;
 	}
 </style>
-<!-- 첨부파일 이미지 확대 보기 -->
+
+<!-- 이미지 확대 보기 -->
 <div class='bigPictureWrapper'>
 	<div class='bigPicture'></div>
 </div>
@@ -111,16 +112,19 @@
 
 <!-- 첨부파일 -->
 <div class="row">
-	<div class="col-lg-12">
+	<div class="col-lg-12">	
 		<div class="panel panel-default">
-		
+			
 			<div class="panel-heading">첨부 파일</div>
-			<div class="panel-body">
-			<div class="uploadResult">		
-				<ul>				
-				</ul>
+			<div class="panel-body">				
+				
+				<div class='uploadResult'>
+					<ul>
+						<!-- 자바스크립트 추가될 li 자리-->
+					</ul>
+				</div>
 			</div>
-			</div>
+			
 		</div>
 	</div>
 </div>
@@ -133,8 +137,7 @@
 			<div class="panel-heading">
 				<i class="fa fa-comments fa-fw"></i> Reply
 				<button id='addReplyBtn' class='btn btn-primary btn-xs pull-right'>새 댓글</button>
-			</div>
-		
+			</div>		
 		
 			<div class="panel-body">
 				<ul class="chat">
@@ -191,7 +194,7 @@
 		</div>
 	</div>
 </div>
-                
+
 <script src="/resources/js/reply.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
@@ -391,6 +394,7 @@ $(document).ready(function(){
 			showList(pageNum);	//댓글 갱신
 		});
 	});	
+	
 });
 </script>
 
@@ -411,78 +415,78 @@ $(document).ready(function(){
 });
 </script>
 
-
 <script>
-//첨부파일 처리
+//첨부파일처리
 $(document).ready(function(){
-	(function(){		
-		var bno = '${board.bno}';
+	(function(){
+		var bno='${board.bno}';
 		
-		$.getJSON("/board/getAttachList", {bno: bno}, function(arr){
+		$.getJSON("/board/getAttachList",{bno:bno},function(arr){
 			console.log(arr);
 			
-			var str ="";
+			var uploadUL=$(".uploadResult ul");
+			var str="";
 			
-			$(arr).each(function(i, attach){
-				if(attach.fileType){
+			$(arr).each(function(i,obj){
+				
+				if(obj.fileType){
 					var fileCallPath=encodeURIComponent(
-							attach.uploadPath+"/s_"+attach.uuid+"_"+attach.fileName);
+							obj.uploadPath+"/s_"+obj.uuid+"_"+obj.fileName);
 					
-					str+="<li data-path='"+attach.uploadPath+"'";
-					str+="data-uuid='"+attach.uuid+"' data-filename='"+attach.fileName+"' data-type='"+attach.fileType+"'><div>";								
-					str+="<img src='/display?fileName="+fileCallPath+"'>";
-					str+="</div>";
-					str +"</li>";
+					str+="<li data-path='"+obj.uploadPath+"' data-uuid='"
+								+obj.uuid+"' data-filename='"+obj.fileName
+								+"' data-type='"+obj.fileType+"'><div>"							
+							+"<img src='/display?fileName="+fileCallPath+"'>"
+							+"</div></li>";
+						
 				}else{
 					var fileCallPath=encodeURIComponent(
-							attach.uploadPath+"/"+attach.uuid+"_"+attach.fileName);
+							obj.uploadPath+"/"+obj.uuid+"_"+obj.fileName);
+					var fileLink=fileCallPath.replace(new RegExp(/\\/g),"/");
 					
-					var fileLink = fileCallPath.replace(new RegExp(/\\/g),"/");
-					
-					str+="<li "
-					str+="data-path='"+attach.uploadPath+"' data-uuid='"+attach.uuid+"' data-filename='"+attach.fileName+"' data-type='"+attach.fileType+"' ><div>";
-					str+="<span>" +attach.fileName+ " </span>";
-					str+="<img src='/resources/img/attach.png'>";
-					str+="</div>";
-					str +"</li>";						
-				}		
+					str+="<li data-path='"+obj.uploadPath+"' data-uuid='"
+								+obj.uuid+"' data-filename='"+obj.fileName
+								+"' data-type='"+obj.fileType+"'><div>"
+							+"<span>"+obj.fileName+"</span><br>"							
+							+"<img src='/resources/img/attach.png'>"
+							+"</div></li>";
+				}
 			});
 			
-			$(".uploadResult ul").html(str);
+			uploadUL.append(str);
 		});
 	})();
 	
-	//첨부파일 클릭시 이벤트
 	$(".uploadResult").on("click","li",function(e){
 		console.log("view image");
 		
-		var liObj = $(this);
-		var path = encodeURIComponent(liObj.data("path")+"/"+liObj.data("uuid")+"_"+liObj.data("filename"));
+		var liObj=$(this);
+		
+		var path=encodeURIComponent(liObj.data("path")+"/"+liObj.data("uuid")+"_"+liObj.data("filename"));
 		
 		if(liObj.data("type")){
 			showImage(path.replace(new RegExp(/\\/g),"/"));
 		}else{
-			//download
-			self.location = "/download?fileName="+path
+			self.location="/download?fileName="+path;
 		}
-	});	//end ".uploadResult"
+	});
 	
-		function showImage(fileCallPath){
-			//alert(fileCallPath);
-			
-			$(".bigPictureWrapper").css("display","flex").show();
-			
-			$(".bigPicture")
-			.html("<img src='/display?fileName="+fileCallPath+"'>")
-			.animate({width:'100%',height:'100%'},1000);
-			
-			$(".bigPictureWrapper").on("click",function(e){
-				$(".bigPicture").animate({width:'0%',height:'0%'},1000);
-				setTimeout(function(){
-					$('.bigPictureWrapper').hide();
-				},1000);
-			});
-		} //end showImage
+	function showImage(fileCallPath){
+		//alert(fileCallPath);
+		
+		$(".bigPictureWrapper").css("display","flex").show();
+		
+		$(".bigPicture")
+		.html("<img src='/display?fileName="+fileCallPath+"'>")
+		.animate({width:'100%',height:'100%'},1000);
+		
+		$(".bigPictureWrapper").on("click",function(e){
+			$(".bigPicture").animate({width:'0%',height:'0%'},1000);
+			setTimeout(()=>{
+				$(this).hide();
+			},1000);
+		});
+	}
 });
 </script>
 

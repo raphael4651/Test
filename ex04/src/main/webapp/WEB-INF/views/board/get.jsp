@@ -66,7 +66,8 @@
 			<div class="panel-heading">
 				<i class="fa fa-comments fa-fw"></i> Reply
 				<button id='addReplyBtn' class='btn btn-primary btn-xs pull-right'>새 댓글</button>
-			</div>		
+			</div>
+		
 		
 			<div class="panel-body">
 				<ul class="chat">
@@ -82,10 +83,10 @@
 				</ul>
 			</div>
 			
-			<!-- 댓글 페이지 번호 -->
-			<div class="panel-footer">
-			
+			<!-- 페이지 번호 -->
+			<div class="panel-footer">								
 			</div>
+		
 		</div>
 	</div>
 </div>
@@ -127,6 +128,8 @@
 <script src="/resources/js/reply.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
+	history.replaceState({},null,null);
+	
 	//댓글 페이지 처리
 	var pageNum=1;
 	var replyPageFooter=$(".panel-footer");
@@ -138,33 +141,32 @@ $(document).ready(function(){
 		var prev=startNum!=1;
 		var next=false;
 		
-		if(endNum*10 >= replyCnt){
+		if(endNum*10>=replyCnt){
 			endNum=Math.ceil(replyCnt/10.0);
 		}
-		if(endNum*10 < replyCnt){
-			next=true;			
+		if(endNum*10<replyCnt){
+			next=true;
 		}
 		var str="<ul class='pagination pull-right'>";
 		
 		if(prev){
-			str+= "<li class='page-item'><a class='page-link' href='"+(startNum-1)+"'>Previous</a></li>";			
+			str+="<li class='page-item'><a class='page-link' href='"+(startNum-1)+"'>이전</a></li>";
 		}
 		
-		for(var i=startNum; i<=endNum; i++){
-			var active = pageNum == i? "active":"";
-
-			str += "<li class='page-item "+active+" '><a class='page-link' href='"+i+"'>"+i+"</a></li>";
+		for(var i=startNum;i<=endNum;i++){
+			var active=pageNum==i?"active":"";
+			
+			str+="<li class='page-item "+active+"'><a class='page-link' href='"+i+"'>"+i+"</a></li>";
 		}
 		
 		if(next){
-			str += "<li class='page-item'><a class='page-link' href='"+(endNum+1)+"'>Next</a></li>";
+			str+="<li class='page-item'><a class='page-link' href='"+(endNum+1)+"'>다음</a></li>";
 		}
 		
-		str += "</ul>";
+		str+="</ul>";
 		
-		console.log(str);
-		
-		replyPageFooter.html(str); 
+		//replyPageFooter.append(str);
+		replyPageFooter.html(str);
 	}
 	
 	//댓글 페이지 번호 클릭시
@@ -172,65 +174,61 @@ $(document).ready(function(){
 		e.preventDefault();
 		console.log("page click");
 		
-		var targetPageNum = $(this).attr("href");
+		var targetPageNum=$(this).attr("href");
+		console.log("targetPageNum:"+targetPageNum);
 		
-		console.log("targetPageNum: " + targetPageNum);
+		pageNum=targetPageNum;
 		
-		pageNum = targetPageNum;
-		
-		showList(pageNum);
-	})
+		showList(pageNum);		
+	});
 	
-	//댓글 조회, 추가, 수정, 삭제
+	//댓글 조회,추가,수정,삭제
 	var bnoValue='${board.bno}';
 	var replyUL=$(".chat");
 	
 	showList(1);
 	
-	//전체 조회
+	//댓글 전체 조회
 	function showList(page){
 		
-		console.log("show list"+page);
-		
-		replyService.getList({bno:bnoValue,page:page},
-		//json 객체값 전달
-		//reply.jsp에 getList()함수
-		//함수값 전달
-		function(replyCnt, list){
-			console.log("댓글 전체 갯수:"+replyCnt);
-			console.log("list:"+list);			
-						
-			if(page == -1){
-				pageNum = Math.ceil(replyCnt/10.0);
-				showList(pageNum);
-				return;
-			}
-			
-			if(list==null || list.length==0){							
-				return;
-			}
-			
-			var str="";			
-			var len=list.length || 0;
-			
-			for(var i=0;i<len;i++){
-				console.log(list[i]);
+		replyService.getList({bno:bnoValue,page:page},				
+			function(replyCnt,list){
+				console.log("댓글 전체 갯수:"+replyCnt);
+				console.log("댓글 목록:"+list);
 				
-				str+="<li class='left clearfix' data-rno='"+list[i].rno+"'>";
-				str+="	<div>";
-				str+="		<div class='header'>";
-				str+="			<strong class='primary-font'>["+list[i].rno+"] "+list[i].replyer+"</strong>";
-				str+="			<small class='pull-right text-muted'>"+replyService.displayTime(list[i].replyDate)+"</small>";
-				str+="		</div>";
-				str+="		<p>"+list[i].reply+"</p>";
-				str+="	</div>";
-				str+="</li>";
+				if(page==-1){
+					pageNum=Math.ceil(replyCnt/10.0);
+					showList(pageNum);
+					return;
+				}
+							
+				if(list==null || list.length==0){
+					replyUL.html("");
+					
+					return;
+				}
 				
-			}
-			replyUL.html(str);	//기존 내용 덮어쉬우기
-			
-			showReplyPage(replyCnt); //페이징 호출
-		}); 
+				var str="";			
+				var len=list.length || 0;
+				
+				for(var i=0;i<len;i++){
+					console.log(list[i]);
+					
+					str+="<li class='left clearfix' data-rno='"+list[i].rno+"'>";
+					str+="	<div>";
+					str+="		<div class='header'>";
+					str+="			<strong class='primary-font'>"+list[i].replyer+"</strong>";
+					str+="			<small class='pull-right text-muted'>"+replyService.displayTime(list[i].replyDate)+"</small>";
+					str+="		</div>";
+					str+="		<p>"+list[i].reply+"</p>";
+					str+="	</div>";
+					str+="</li>";
+					
+				}
+				replyUL.html(str);	//기존 내용 덮어쉬우기
+				
+				showReplyPage(replyCnt); //페이징 호출
+			}); 
 	}
 	
 	//댓글 모달창
@@ -251,13 +249,9 @@ $(document).ready(function(){
 		//댓글 등록에서 보일 버튼		
 		modal.find("button[id!='modalCloseBtn']").hide();		
 		modalRegisterBtn.show();
-		//CloseBtn을 제외하고 모두 숨긴다.
-		//RegisterBtn을 보여준다.
-		
 		
 		//modal.find("button[id='modalModBtn']").hide();
 		//modal.find("button[id='modalRemoveBtn']").hide();
-		//Close를 숨기고 다른걸 보이는 식으로 작동하지않으면 다른 동작을 하고 오면 숨겨져서 버튼이 보이지않는다.
 		
 		$(".modal").modal("show");
 	});
@@ -276,8 +270,7 @@ $(document).ready(function(){
 			modal.find('input').val('');
 			modal.modal('hide');
 			
-			//showList(1);	//댓글 등록 후 리스트 갱신
-			showList(-1);   //댓글 등록 후 등록된 페이지로 이동
+			showList(-1);	//댓글 등록후 1페이지로 이동
 		});
 	});
 	
@@ -296,7 +289,8 @@ $(document).ready(function(){
 					replyService.displayTime(reply.replyDate)).attr("readonly","readonly");
 			
 			modal.data("rno",reply.rno);
-			modal.find("button[id='!modalCloseBtn']").hide();
+			
+			modal.find("button[id!='modalCloseBtn']").hide();		
 			modalModBtn.show();
 			modalRemoveBtn.show();
 			
@@ -333,7 +327,7 @@ $(document).ready(function(){
 	
 });
 
-//댓글 테스트
+//댓글 테스트 
 var bnoValue='${board.bno}';
 
 //추가
@@ -386,7 +380,6 @@ replyService.update(
 	console.log(data);
 }); */
 </script>
-
 
 <script type="text/javascript">
 $(document).ready(function(){

@@ -28,22 +28,19 @@ var replyService=(function(){
 		});
 	}
 	
-	//get.jsp의 showList(page)함수에서
-	//param: replyService.getList의 Json값 
-	//callback: function(replyCnt, list)의 함수값이 전달되어온다. 
-	//js파일로 따로 두지않고 get.jsp의 스크립트에 모아놓아도 된다.
 	function getList(param,callback,error){
-		var bno=param.bno;
-		
+		var bno=param.bno;		
 		console.log("bno:"+bno);
 		
 		var page=param.page || 1;
 		
 		$.getJSON("/replies/pages/"+bno+"/"+page+".json",
 			function(data){
-				if(callback){
-					//callback(data); //댓글 목록만 가져오는 경우
-					callback(data.replyCnt, data.list); //댓글 숫자와 목록을 가져오는 경우
+				console.log("replyCnt:"+data.replyCnt);
+				console.log("list:"+data.list);
+			
+				if(callback){				
+					callback(data.replyCnt,data.list);
 				}
 			}).fail(function(xhr,status,err){
 				if(error){
@@ -108,15 +105,15 @@ var replyService=(function(){
 	
 	function displayTime(timeValue){
 		
-		var today=new Date();				//오늘날짜
-		var dateObj=new Date(timeValue);	//등록날짜
+		var today=new Date();
+		var dateObj=new Date(timeValue);
 		var str="";
-		
-		var yy=dateObj.getFullYear();		//오늘날짜
+				
+		var yy=dateObj.getFullYear();
 		var mm=dateObj.getMonth()+1;
 		var dd=dateObj.getDate();
 		
-		var yy2=today.getFullYear();		//등록날짜
+		var yy2=today.getFullYear();
 		var mm2=today.getMonth()+1;
 		var dd2=today.getDate();
 		
@@ -128,17 +125,10 @@ var replyService=(function(){
 			return [(hh>9?'':'0')+hh,':',
 					(mi>9?'':'0')+mi,':',
 					(ss>9?'':'0')+ss].join('');
-			//	9보다 클 경우 두자리수이므로 바로 적히고 9보다 작을 경우 앞에 0을 붙여서 두자리수로 만든다.
-			// []배열 ex) 15:14:05초인경우 ['15',':','14',':','05',':'] 배열로 만들어진다
-			// .join('') 배열로 되어있는 문자열을 하나로 만든다. split은 ':'등 을 기준으로 문자열을 쪼개서 배열로 만든다.
-			// join('') '15:14:05' 로 만든다.
 		}else{
-
+						
 			return [yy,'/',(mm>9?'':'0')+mm,'/',
 						   (dd>9?'':'0')+dd].join('');
-			// yy는 getFullYear 로 불러왔으므로 두자리수로 나온다.
-			// ['yy','/','mm','/','dd','/']를 join해서
-			// 'yy/mm/dd' 로 만든다.
 		}
 	}
 	

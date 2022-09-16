@@ -42,27 +42,32 @@
                 </table>
                 
                 <!-- 검색 처리 -->
-                <div class="row">
-                	<div class="col-1g-12">
-                		<form id="searchForm" action="/board/list" method="get">
-                			<select name="type">
-                				<option value="">---</option>
-                				<option value="T">제목</option>
-                				<option value="C">내용</option>
-                				<option value="W">작성자</option>
-                				<option value="TC">제목 or 내용</option>
-                				<option value="TW">제목 or 작성자</option>
-                				<option value="TWC">제목 or 내용 or 작성자</option>
-                			</select>
-                			<input type="text" name="keyword"/>
-                			<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum}">
-                			<input type="hidden" name="amount" value="${pageMaker.cri.amount}">
-                			<button class="btn btn-default">search</button>
-                		</form>
+                
+                <div class='row'>
+                	<div class="col-lg-12">
+                	
+                	<form id='searchForm' action="/board/list" method="get">
+                		<select name='type'>
+                			<option value="" ${pageMaker.cri.type==null?'selected':'' }>--</option>
+                			<option value="T" ${pageMaker.cri.type eq 'T'?'selected':'' }>제목</option>
+                			<option value="C" ${pageMaker.cri.type eq 'C'?'selected':'' }>내용</option>
+                			<option value="W" ${pageMaker.cri.type eq 'W'?'selected':'' }>작성자</option>
+                			<option value="TC" ${pageMaker.cri.type eq 'TC'?'selected':'' }>제목 or 내용</option>
+                			<option value="TW" ${pageMaker.cri.type eq 'TW'?'selected':'' }>제목 or 작성자</option>
+                			<option value="TWC" ${pageMaker.cri.type eq 'TWC'?'selected':'' }>제목 or 내용 or 작성자</option>
+                		</select>
+                		
+                		<input type='text' name='keyword' value="${pageMaker.cri.keyword }">
+                		<input type='hidden' name='pageNum' value='${pageMaker.cri.pageNum }'>
+                		<input type='hidden' name='amount' value='${pageMaker.cri.amount }'>
+                		<button class='btn btn-default'>검색</button>
+                	</form>
+                	
                 	</div>
                 </div>
                 
-                <!-- 페이징 처리 -->               
+                <!-- 페이징 처리 -->
+                
                 <div class="pull-right">
                 
                 	<ul class="pagination">
@@ -84,6 +89,8 @@
                 <form id='actionForm' action="/board/list" method='get'>
                 	<input type='hidden' name='pageNum' value='${pageMaker.cri.pageNum }'>
                 	<input type='hidden' name='amount' value='${pageMaker.cri.amount }'>
+                	<input type='hidden' name='type' value='${pageMaker.cri.type }'>
+                	<input type='hidden' name='keyword' value='${pageMaker.cri.keyword }'>
                 </form>
                 
                 <!-- Modal 추가 -->
@@ -136,7 +143,8 @@ $(document).ready(function(){
 	}
 	
 	$('#regBtn').on('click',function(){
-		self.location='/board/register';
+		
+		self.location='/board/register';		
 	});
 	
 	var actionForm=$("#actionForm");
@@ -158,6 +166,26 @@ $(document).ready(function(){
 				"<input type='hidden' name='bno' value='"+$(this).attr("href")+"'>");
 		actionForm.attr("action","/board/get");
 		actionForm.submit();
+	});
+	
+	
+	//검색
+	var searchForm=$('#searchForm');
+	
+	$('#searchForm button').on('click',function(e){
+		e.preventDefault();
+		
+		if(!searchForm.find('option:selected').val()){
+			alert('검색종류를 선택하세요');
+			return false;
+		}
+		if(!searchForm.find("input[name='keyword']").val()){
+			alert('키워드를 입력하세요');
+			return false;
+		}
+		
+		searchForm.find("input[name='pageNum']").val("1");		
+		searchForm.submit();
 	});
 	
 });

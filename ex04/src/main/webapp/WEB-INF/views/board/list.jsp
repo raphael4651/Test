@@ -32,7 +32,7 @@
                     <c:forEach items="${list }" var="board">
                     <tr>
                     	<td>${board.bno }</td>
-                    	<td><a class='move' href="${board.bno}">${board.title } <b>[ ${board.replyCnt } ]</b></a></td>
+                    	<td><a class='move' href="${board.bno}">${board.title } <b>[${board.replyCnt }]</b></a></td>
                     	<td>${board.writer }</td>
                     	<td><fmt:formatDate pattern="yyyy-MM-dd" value="${board.regdate }"/></td>
                     	<td><fmt:formatDate pattern="yyyy-MM-dd" value="${board.updateDate }"/></td>
@@ -103,7 +103,7 @@
 	                		</div>
 	                		<div class="modal-body">처리가 완료되었습니다.</div>
 	                		<div class="modal-footer">
-	                			<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	                			<buuton type="button" class="btn btn-default" data-dismiss="modal">Close</buuton>
 	                			<button type="button" class="btn btn-primary">Save changes</button>
 	                		</div>
                 		</div>

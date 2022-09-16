@@ -6,35 +6,35 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import lombok.extern.log4j.Log4j;
 
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root-context.xml")
 @Log4j
 public class JDBCTests {
-	
-	static { 
+
+	static {
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
-		}catch(Exception e){
-			e.printStackTrace(); 
-		} 
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
 	}
-	 
-	//Class.forName 을 높은 버전에선 안해도 작동한다. 낮은버전에선 적어주어야한다
-	
 	@Test
-	public void testConnection(){
+	public void testConnection() {
 		try {
 			String url="jdbc:oracle:thin:@localhost:1521:iot";
 			String id="book_ex";
 			String pw="book_ex";
-			Connection con = DriverManager.getConnection(url,id,pw);
+			Connection con=DriverManager.getConnection(url,id,pw);
 			
 			log.info(con);
 		}catch(Exception e) {
 			fail(e.getMessage());
 		}
 	}
-
 }
-

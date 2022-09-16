@@ -9,33 +9,22 @@
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
 	<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
-		<!-- <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
-		<property name="jdbcUrl" value="jdbc:oracle:thin:@localhost:1521:iot"/> -->
-		
 		<property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy"/>
 		<property name="jdbcUrl" value="jdbc:log4jdbc:oracle:thin:@localhost:1521:iot"/>
-		
 		<property name="username" value="book_ex"/>
 		<property name="password" value="book_ex"/>
 	</bean>
-	<!-- 
-		HikariConfig hikariConfig = new HicariConfig();
-		hikariConfig.setDriver.ClassforName("oracle.jdbc.driver.OracleDriver");
-	 -->	
-	<!-- HikariCP configuration -->
+	
 	<bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource" destroy-method="close">
 		<constructor-arg ref="hikariConfig"/>
 	</bean>
-	<!-- destroy-method="close"는 
-		java에서 close pstmt.close(), conn.close()와 동일한 역할을 한다.
-	 -->
-	 
-	 <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-	 	<property name="dataSource" ref="dataSource"/>
-	 </bean>
+	
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"/>
+	</bean>
 	
 	<mybatis-spring:scan base-package="org.zerock.mapper"/>
 	
 	<context:component-scan base-package="org.zerock.sample"/>
-		
+	
 </beans>

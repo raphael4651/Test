@@ -50,9 +50,9 @@
 </style>
 
 <!-- 이미지 확대 보기 -->
-<div class='bigPictureWrapper'>
+<!-- <div class='bigPictureWrapper'>
 	<div class='bigPicture'></div>
-</div>
+</div> -->
 
 <div class="row">
     <div class="col-lg-12">
@@ -139,20 +139,24 @@ $(document).ready(function(){
 	$("button[data-oper='modify']").on('click',function(e){
 		e.preventDefault();
 		
+		console.log("submit clicked");
 		var str="";
 		
 		$(".uploadResult ul li").each(function(i,obj){
-			var jobj=$(obj);
 			
-			console.dir(jobj);
-			
+			var jobj=$(obj);			
+			console.log(jobj.data("filename"));
+			console.log(jobj.data("uuid"));
+			console.log(jobj.data("path"));
+			console.log(jobj.data("type"));
+									
 			str+="<input type='hidden' name='attachList["+i+"].fileName'"
 				+" value='"+jobj.data("filename")+"'>";
-				+"<input type='hidden' name='attachList["+i+"].uuid'"
+			str+="<input type='hidden' name='attachList["+i+"].uuid'"
 				+" value='"+jobj.data("uuid")+"'>";
-				+"<input type='hidden' name='attachList["+i+"].uploadPath'"
+			str+="<input type='hidden' name='attachList["+i+"].uploadPath'"
 				+" value='"+jobj.data("path")+"'>";
-				+"<input type='hidden' name='attachList["+i+"].fileType'"
+			str+="<input type='hidden' name='attachList["+i+"].fileType'"
 				+" value='"+jobj.data("type")+"'>";
 		});
 		
@@ -203,7 +207,7 @@ $(document).ready(function(){
 			
 			$(arr).each(function(i,obj){
 				
-				if(obj.image){
+				if(obj.fileType){
 					var fileCallPath=encodeURIComponent(
 							obj.uploadPath+"/s_"+obj.uuid+"_"+obj.fileName);
 					
@@ -247,7 +251,7 @@ $(document).ready(function(){
 		targetLi.remove();
 	});
 	
-	$(".uploadResult").on("click","li",function(e){
+	/* $(".uploadResult").on("click","li",function(e){
 		console.log("view image");
 		
 		var liObj=$(this);
@@ -259,8 +263,9 @@ $(document).ready(function(){
 		}else{
 			self.location="/download?fileName="+path;
 		}
-	});
+	}); */
 	
+	/* 
 	function showImage(fileCallPath){
 		//alert(fileCallPath);
 		
@@ -276,7 +281,7 @@ $(document).ready(function(){
 				$(this).hide();
 			},1000);
 		});
-	}
+	} */
 	
 	//파일 크기, 확장자 체크
 	var regex=new RegExp("(.*?)\.(exe|sh|alz)$");

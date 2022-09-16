@@ -22,6 +22,8 @@
                 <form role="form" action="/board/modify" method="post">
                 	<input type='hidden' name='pageNum' value='${cri.pageNum }'>
                 	<input type='hidden' name='amount' value='${cri.amount }'>
+                	<input type='hidden' name='type' value='${cri.type }'>
+                	<input type='hidden' name='keyword' value='${cri.keyword }'>
                 	
 	                <div class="form-group">
 	               		<label>번호</label>
@@ -73,11 +75,15 @@ $(document).ready(function(){
 		
 		var pageNumTag=$("input[name='pageNum']").clone();
 		var amountTag=$("input[name='amount']").clone();
+		var typeTag=$("input[name='type']").clone();
+		var keywordTag=$("input[name='keyword']").clone();
 		
 		formObj.empty();
 		
 		formObj.append(pageNumTag);
 		formObj.append(amountTag);
+		formObj.append(typeTag);
+		formObj.append(keywordTag);
 		formObj.submit();
 	});
 	

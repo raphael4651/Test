@@ -8,9 +8,9 @@ import lombok.Data;
 @Data
 public class SampleDTOList {
 	
-	private List<SampleDTO> list;
+	List<SampleDTO> list;
 	
 	public SampleDTOList() {
-		list = new ArrayList<>();
+		list=new ArrayList<>();
 	}
 }
