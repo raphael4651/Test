@@ -25,4 +25,9 @@
 	<update id="modify">
 		update trade_board set tradeTitle = #{tradeTitle}, tradeContent = #{tradeContent}, tradeUpdatedate = now() where tradeBno = #{tradeBno}
 	</update>
+	
+	<!-- 게시판 삭제 -->
+	<delete id="delete">
+		delete from trade_board where tradeBno = #{tradeBno}
+	</delete>
 </mapper>

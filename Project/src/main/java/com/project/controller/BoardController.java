@@ -39,7 +39,7 @@ public class BoardController {
 		
 		boardService.insert(board);
 		
-		rttr.addFlashAttribute("result", "게시글 등록 성공");
+		rttr.addFlashAttribute("result", "등록 성공");
 		
 		return "redirect:/board/list";
 	}
@@ -62,6 +62,16 @@ public class BoardController {
 		boardService.modify(board);
 		
 		rttr.addFlashAttribute("result", "수정 성공");
+		
+		return "redirect:/board/list";
+	}
+	
+	//게시판 삭제
+	@PostMapping("/delete")
+	public String boardDeletePOST(int tradeBno, RedirectAttributes rttr) {
+		boardService.delete(tradeBno);
+		
+		rttr.addFlashAttribute("result", "삭제 성공");
 		
 		return "redirect:/board/list";
 	}

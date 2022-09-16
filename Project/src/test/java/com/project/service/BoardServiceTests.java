@@ -52,4 +52,11 @@ public class BoardServiceTests {
 		int result = service.modify(board);
 		System.out.println("결과 : " + result);
 	}
+	
+	//게시판 삭제 테스트
+	@Test
+	public void testDelete() {
+		int result = service.delete(5);
+		System.out.println(result);
+	}
 }

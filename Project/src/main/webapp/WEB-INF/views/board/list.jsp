@@ -86,23 +86,31 @@
 
 	
 	<!-- insert에서 값이 제대로 넘어 오는지 Test -->
-	<script>
-		$(document).ready(function(){
-			
-			var result = '${result}'
-			
-			checkAlert(result);
-			
-			function checkAlert(result){
-				if(result === ''){
-					return;
-				}
-				
-				if(result == "게시글 등록 성공"){
-					alert("등록 완료")
-				}
+<script>
+	$(document).ready(function(){
+		
+		var result = '${result}'
+		
+		checkAlert(result);
+		
+		function checkAlert(result){
+			if(result === ''){
+				return;
 			}
-		});
-	</script>
+			
+			if(result == "등록 성공"){
+				alert("등록 완료")
+			}
+			
+			if(result == "수정 성공"){
+				alert("수정 완료")
+			}
+			
+			if(result == "삭제 성공"){
+				alert("삭제 완료")
+			}
+		}
+	});
+</script>
 </body>
 </html>

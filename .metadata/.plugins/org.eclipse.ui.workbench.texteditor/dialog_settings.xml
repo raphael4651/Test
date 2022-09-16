@@ -5,13 +5,20 @@
 		<item key="DIALOG_Y_ORIGIN" value="403"/>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value=""/>
+		<item key="selection" value="container"/>
 		<item key="wrap" value="true"/>
 		<item key="casesensitive" value="false"/>
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
+			<item value="row"/>
+			<item value="container"/>
+			<item value="fow"/>
+			<item value="../"/>
+			<item value="dropdown-user"/>
+			<item value="../dist"/>
+			<item value="../vendor"/>
 			<item value="no bean"/>
 			<item value="security"/>
 			<item value="spring"/>
@@ -19,6 +26,11 @@
 			<item value="spring-test"/>
 		</list>
 		<list key="replacehistory">
+			<item value="container"/>
+			<item value="row"/>
+			<item value="/resources/"/>
+			<item value="/resources/dist"/>
+			<item value="/resources/vendor"/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">

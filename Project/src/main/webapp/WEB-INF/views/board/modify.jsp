@@ -13,7 +13,7 @@
             <!-- /.panel-heading -->
             
             <div class="panel-body">                
-                <form>
+                <form id="modifyForm" action="/board/modify" method="post">
                 <div class="form-group">
                		<label>번호</label>
                		<input class="form-control" name="tradeBno" value="${pageInfo.tradeBno }" readonly>
@@ -34,6 +34,7 @@
                	<button class="btn btn-primary" id="list_btn">목록</button>
                	<button class="btn btn-success" id="modify_btn">수정 완료</button>
                	<button class="btn btn-warning" id="cancel_btn">수정 취소</button>
+               	<button class="btn btn-danger" id="delete_btn">삭제</button>
                	                	 
             	</form>
             	
@@ -62,7 +63,7 @@
 	    form.submit();
 	});
 	
-	/* 수정 하기 버튼 */
+	/* 수정 버튼 */
 	$("#modify_btn").on("click", function(e){
 	    mForm.submit();
 	});
@@ -70,6 +71,13 @@
 	/* 취소 버튼 */
 	$("#cancel_btn").on("click", function(e){
 	    form.attr("action", "/board/get");
+	    form.submit();
+	});   
+	
+	/* 삭제 버튼 */
+	$("#delete_btn").on("click", function(e){
+	    form.attr("action", "/board/delete");
+	    form.attr("method", "post");
 	    form.submit();
 	});    
 

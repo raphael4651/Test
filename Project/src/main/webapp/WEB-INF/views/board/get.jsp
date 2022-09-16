@@ -31,7 +31,7 @@
                		<input class="form-control" name="tradeWriter" value="${pageInfo.tradeWriter}" readonly>
                	</div>
                	               	
-          		<button class="btn btn-secondary" id="modify_btn">수정</button>
+          		<button class="btn btn-success" id="modify_btn">수정</button>
                	<button class="btn btn-primary" id="list_btn">목록</button> 
                	 
                	 <form id="infoForm" action="/board/modify" method="get">
@@ -49,7 +49,7 @@
 </div>
 
 <script>
-	var form = $("infoForm");
+	var form = $("#infoForm");
 	
 	$("#list_btn").on("click", function(e){
 		form.find("#tradeBno").remove();
@@ -76,12 +76,16 @@
 				return;
 			}
 			
-			if(result == "게시글 등록 성공"){
-				alert("등록이 완료되었습니다.")
+			if(result == "등록 성공"){
+				alert("등록 완료")
 			}
 			
-			if(result == "수정 완료"){
-				alert("수정이 완료되었습니다.")
+			if(result == "수정 성공"){
+				alert("수정 완료")
+			}
+			
+			if(result == "삭제 성공"){
+				alert("삭제 완료")
 			}
 		}
 	});
