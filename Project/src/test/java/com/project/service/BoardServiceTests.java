@@ -1,5 +1,7 @@
 package com.project.service;
 
+import java.util.List;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +9,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.project.model.BoardVO;
+import com.project.model.Criteria;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root-context.xml")
@@ -41,6 +44,14 @@ public class BoardServiceTests {
 		System.out.println("" + service.getPage(bno));
 	}
 	
+	//게시판 조회(페이징) 테스트
+	@Test
+	public void testGetListPaging() {
+		Criteria cri = new Criteria();
+		List list = service.getListPaging(cri);
+		list.forEach(board -> System.out.println(""+board));
+	}
+	
 	//게시판 수정 테스트
 	@Test
 	public void testModify() {
@@ -56,7 +67,7 @@ public class BoardServiceTests {
 	//게시판 삭제 테스트
 	@Test
 	public void testDelete() {
-		int result = service.delete(5);
+		int result = service.delete(3);
 		System.out.println(result);
 	}
 }

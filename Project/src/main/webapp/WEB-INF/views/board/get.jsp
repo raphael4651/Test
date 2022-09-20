@@ -36,6 +36,10 @@
                	 
                	 <form id="infoForm" action="/board/modify" method="get">
                	 	<input type="hidden" id="tradeBno" name="tradeBno" value="${pageInfo.tradeBno}">
+               	 	<input type="hidden" name="pageNum" value='<c:out value="${cri.pageNum }"/>' >
+               	 	<input type="hidden" name="amount" value='<c:out value="${cri.amount }"/>' >
+               	 	<input type="hidden" name="keyword" value="${pageMaker.cri.keyword }">
+               	 	<input type="hidden" name="type" value="${pageMaker.cri.type }">
                	 </form>                             
                                 
             </div>

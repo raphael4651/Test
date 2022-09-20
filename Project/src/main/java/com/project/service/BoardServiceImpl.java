@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.project.mapper.BoardMapper;
 import com.project.model.BoardVO;
+import com.project.model.Criteria;
 
 @Service
 public class BoardServiceImpl implements BoardService{
@@ -37,6 +38,16 @@ public class BoardServiceImpl implements BoardService{
 	@Override
 	public int delete(int tradeBno) {
 		return mapper.delete(tradeBno);
+	}
+
+	@Override
+	public List<BoardVO> getListPaging(Criteria cri) {
+		return mapper.getListPaging(cri);
+	}
+
+	@Override
+	public int getTotal(Criteria cri) {
+		return mapper.getTotal(cri);
 	}
 	
 	

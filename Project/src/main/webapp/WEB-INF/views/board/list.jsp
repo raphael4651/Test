@@ -12,6 +12,17 @@
   integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
   crossorigin="anonymous">
 </script>
+<style>
+	.pagination{
+		margin: 5px;
+	}
+	.pagination li{
+		padding: 3px;
+	}
+	.active{		
+		font-weight: bold; 
+	}
+</style>
 </head>
 <body>
 
@@ -55,7 +66,53 @@
                     </c:forEach>                    
                 </table>
                 
+                <!-- 검색처리 -->
+                <div class='row'>
+                	<div class="col-lg-12">
+                	
+                	<form id='searchForm' action="/board/list" method="get">
+                		<select name='type'>
+                			<option value="" ${pageMaker.cri.type==null?'selected':'' }>--</option>
+                			<option value="T" ${pageMaker.cri.type eq 'T'?'selected':'' }>제목</option>
+                			<option value="C" ${pageMaker.cri.type eq 'C'?'selected':'' }>내용</option>
+                			<option value="W" ${pageMaker.cri.type eq 'W'?'selected':'' }>작성자</option>
+                			<option value="TC" ${pageMaker.cri.type eq 'TC'?'selected':'' }>제목 or 내용</option>
+                			<option value="TW" ${pageMaker.cri.type eq 'TW'?'selected':'' }>제목 or 작성자</option>
+                			<option value="TWC" ${pageMaker.cri.type eq 'TWC'?'selected':'' }>제목 or 내용 or 작성자</option>
+                		</select>
+                		
+                		<input type='text' name='keyword' value="${pageMaker.cri.keyword }">
+                		<input type='hidden' name='pageNum' value='${pageMaker.cri.pageNum }'>
+                		<input type='hidden' name='amount' value='${pageMaker.cri.amount }'>
+                		<input type='hidden' name='type' value='${pageMaker.cri.type }'>
+                		<button class='btn btn-default'>검색</button>
+                	</form>
+                	
+                	</div>
+                </div>
+                
+                <!-- 페이징 처리 -->
+                <div class="pull-right">                	                	
+                	<ul class="pagination">
+                		<c:if test="${pageMaker.prev }">
+                			<li class="paginate_button previous"><a href="${pageMaker.startPage-1 }">이전</a></li>
+                		</c:if>
+                		
+	                	<c:forEach var="num" begin="${pageMaker.startPage }" end="${pageMaker.endPage }">
+	                		<li class="paginate_button ${pageMaker.cri.pageNum==num?'active':'' }"><a href="${num }">${num }</a></li>
+	                	</c:forEach>
+	                		                	
+	               		<c:if test="${pageMaker.next }">
+	               			<li class="paginate_button next"><a href="${pageMaker.endPage+1 }">다음</a></li>
+	               		</c:if>
+               		</ul>                	                	
+                </div>
+                
                 <form id="moveForm" method="get">
+                	<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum }">
+                	<input type="hidden" name="amount" value="${pageMaker.cri.amount }">
+                	<input type="hidden" name="keyword" value="${pageMaker.cri.keyword }">
+                	<input type='hidden' name='type' value='${pageMaker.cri.type }'>
                 </form>               
             <!-- /.panel-body -->
         </div>
@@ -69,48 +126,70 @@
 </div>
 
 <script>
-	var moveForm = $("#moveForm");
+$(document).ready(function(){
 	
-	$(".move").on("click", function(e){
-	    e.preventDefault();
-	    
-	    moveForm.append("<input type='hidden' name='tradeBno' value='"+ $(this).attr("href")+ "'>");
-	    moveForm.attr("action", "/board/get");
-	    moveForm.submit();
-	});
-</script>
-
-
-
-
-
+	let result = '<c:out value="${result}"/>';
 	
-	<!-- insert에서 값이 제대로 넘어 오는지 Test -->
-<script>
-	$(document).ready(function(){
+	checkAlert(result);
+	console.log(result);
+	
+	function checkAlert(result){
 		
-		var result = '${result}'
-		
-		checkAlert(result);
-		
-		function checkAlert(result){
-			if(result === ''){
-				return;
-			}
-			
-			if(result == "등록 성공"){
-				alert("등록 완료")
-			}
-			
-			if(result == "수정 성공"){
-				alert("수정 완료")
-			}
-			
-			if(result == "삭제 성공"){
-				alert("삭제 완료")
-			}
+		if(result === ''){
+			return;
 		}
+		
+		if(result === "등록 성공"){
+			alert("등록이 완료되었습니다.");
+		}
+		
+		if(result === "수정 성공"){
+			alert("수정이 완료되었습니다.");
+		}
+		
+		if(result === "삭제 성공"){
+			alert("삭제가 완료되었습니다.");
+		}		
+	}	
+	
+});
+	let moveForm = $("#moveForm");
+	$(".move").on("click", function(e){
+		e.preventDefault();
+		
+		moveForm.append("<input type='hidden' name='tradeBno' value='"+ $(this).attr("href")+ "'>");
+		moveForm.attr("action", "/board/get");
+		moveForm.submit();
 	});
+	
+    $(".paginate_button a").on("click", function(e){
+		e.preventDefault();
+		moveForm.find("input[name='pageNum']").val($(this).attr("href"));
+		moveForm.attr("action", "/board/list");
+		moveForm.submit();
+		
+	});	 
+	
+	
+  //검색
+	var searchForm=$('#searchForm');
+	
+	$('#searchForm button').on('click',function(e){
+		e.preventDefault();
+		
+		if(!searchForm.find('option:selected').val()){
+			alert('검색종류를 선택하세요');
+			return false;
+		}
+		if(!searchForm.find("input[name='keyword']").val()){
+			alert('키워드를 입력하세요');
+			return false;
+		}
+		
+		searchForm.find("input[name='pageNum']").val("1");		
+		searchForm.submit();
+	});
+	
 </script>
 </body>
 </html>

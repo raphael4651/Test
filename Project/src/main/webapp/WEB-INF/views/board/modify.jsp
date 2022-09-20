@@ -30,16 +30,18 @@
                		<label>작성자</label>
                		<input class="form-control" name="tradeWriter" value="${pageInfo.tradeWriter}" readonly>
                	</div>
-               	               	          		
-               	<button class="btn btn-primary" id="list_btn">목록</button>
-               	<button class="btn btn-success" id="modify_btn">수정 완료</button>
-               	<button class="btn btn-warning" id="cancel_btn">수정 취소</button>
-               	<button class="btn btn-danger" id="delete_btn">삭제</button>
-               	                	 
+               	
+               		<a class="btn btn-primary" id="list_btn">목록</a> 
+					<a class="btn btn-success" id="modify_btn">수정 완료</a>
+					<a class="btn btn-danger" id="delete_btn">삭제</a>          	 
             	</form>
             	
                	 <form id="infoForm" action="/board/modify" method="get">
                	 	<input type="hidden" id="tradeBno" name="tradeBno" value="${pageInfo.tradeBno}">
+               	 	<input type="hidden" name="pageNum" value='<c:out value="${cri.pageNum }"/>' >
+               	 	<input type="hidden" name="amount" value='<c:out value="${cri.amount }"/>' >
+               	 	<input type="hidden" name="keyword" value="${pageMaker.cri.keyword }">
+               	 	<input type="hidden" name="type" value="${pageMaker.cri.type }">
                	 </form>                             
                                 
             </div>
@@ -53,32 +55,32 @@
 </div>
 
 <script>
-	var form = $("#infoForm");        // 페이지 이동 form(리스트 페이지 이동, 조회 페이지 이동)
-	var mForm = $("#modifyForm");    // 페이지 데이터 수정 from
+	var form = $("#infoForm");		// 페이지 이동 form(리스트 페이지 이동, 조회 페이지 이동)
+	var mForm = $("#modifyForm");	// 페이지 데이터 수정 from
 	
 	/* 목록 페이지 이동 버튼 */
 	$("#list_btn").on("click", function(e){
-	    form.find("#tradeBno").remove();
-	    form.attr("action", "/board/list");
-	    form.submit();
+		form.find("#bno").remove();
+		form.attr("action", "/board/list");
+		form.submit();
 	});
 	
-	/* 수정 버튼 */
+	/* 수정 하기 버튼 */
 	$("#modify_btn").on("click", function(e){
-	    mForm.submit();
+		mForm.submit();
 	});
 	
 	/* 취소 버튼 */
 	$("#cancel_btn").on("click", function(e){
-	    form.attr("action", "/board/get");
-	    form.submit();
-	});   
+		form.attr("action", "/board/get");
+		form.submit();
+	});	
 	
 	/* 삭제 버튼 */
 	$("#delete_btn").on("click", function(e){
-	    form.attr("action", "/board/delete");
-	    form.attr("method", "post");
-	    form.submit();
-	});    
-
+		form.attr("action", "/board/delete");
+		form.attr("method", "post");
+		form.submit();
+	});	
+	
 </script>

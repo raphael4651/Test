@@ -9,6 +9,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.project.model.BoardVO;
+import com.project.model.Criteria;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root-context.xml")
@@ -35,6 +36,18 @@ public class BoardMapperTests {
 		List list = mapper.getList();
 		
 		list.forEach(board -> System.out.println("" + board));
+	}
+	
+	//게시판 목록 페이징 테스트
+	@Test
+	public void testGetListPaging() {
+		Criteria cri = new Criteria();
+		
+		cri.setPageNum(5);
+		
+		List list = mapper.getListPaging(cri);
+		
+		list.forEach(board -> System.out.println(""+board));
 	}
 	
 	//게시판 조회 테스트
