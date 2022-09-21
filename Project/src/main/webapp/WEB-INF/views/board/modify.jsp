@@ -4,7 +4,12 @@
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <%@ include file="../includes/header.jsp" %>
 
-<div class="jumbotron">
+<div class="container-lg">
+    <div class="col-lg-12">
+            <h1 class="page-header">수정</h1>	            	      
+    </div>
+</div>
+
 <!-- /.container -->
 <div class="container">
     <div class="col-lg-12">
@@ -52,7 +57,7 @@
     <!-- /.col-lg-12 -->
 </div>
 <!-- /.container -->
-</div>
+
 
 <script>
 	var form = $("#infoForm");		// 페이지 이동 form(리스트 페이지 이동, 조회 페이지 이동)
