@@ -7,11 +7,6 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script
-  src="https://code.jquery.com/jquery-3.4.1.js"
-  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
-  crossorigin="anonymous">
-</script>
 <style>
 	#paging{
 		padding: 15px;
@@ -116,6 +111,23 @@
                 	<input type='hidden' name='type' value='${pageMaker.cri.type }'>
                 </form>      
             <!-- /.panel-body -->
+            
+            <!-- Modal 추가 -->
+                <div class="modal" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                	<div class="modal-dialog">
+                		<div class="modal-content">
+	                		<div class="modal-header">
+	                			<h4 class="modal-title" id="myModalLabel">Modal title</h4>
+	                			<button type="button" class="close" data-dismiss="modal" aria-hidden="close">&times;</button>
+	                		</div>
+	                		<div class="modal-body">처리가 완료되었습니다.</div>
+	                		<div class="modal-footer">
+	                			<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	                			<button type="button" class="btn btn-primary">Save changes</button>
+	                		</div>
+                		</div>
+                	</div>
+                </div>    
         </div>
         <!-- /.panel -->                
     </div>
@@ -126,33 +138,30 @@
 <!-- ./jumbotron -->
 </div>
 
-<script>
+<script type="text/javascript">
 $(document).ready(function(){
 	
-	let result = '<c:out value="${result}"/>';
+	var result='${result}';
 	
-	checkAlert(result);
-	console.log(result);
+	checkModal(result);
+		
+	history.replaceState({},null,null);
 	
-	function checkAlert(result){
-		
-		if(result === ''){
-			return;
-		}
-		
-		if(result === "등록 성공"){
-			alert("등록이 완료되었습니다.");
-		}
-		
-		if(result === "수정 성공"){
-			alert("수정이 완료되었습니다.");
-		}
-		
-		if(result === "삭제 성공"){
-			alert("삭제가 완료되었습니다.");
-		}		
-	}	
+		function checkModal(result){
+			if(result==='' || history.state){
+				return;
+			}
+			
+			if(parseInt(result)>0){
+				$(".modal-body").html("게시글 "+parseInt(result)+" 번이 등록되었습니다.");
+			}
+			
+			$("#myModal").modal("show");
+	}
 	
+	$('#regBtn').on('click',function(){		
+		self.location='/board/insert';		
+	});
 });
 	var moveForm = $("#moveForm");
 	$(".move").on("click", function(e){
@@ -191,9 +200,7 @@ $(document).ready(function(){
 		searchForm.submit();
 	});
 	
-	$('#regBtn').on('click',function(){		
-		self.location='/board/insert';		
-	});
+	
 </script>
 </body>
 </html>

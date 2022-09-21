@@ -52,8 +52,7 @@
                     <include refid="criteria"></include>
                 </if>
                 order by tradeBno desc) as T1
-        limit #{skip},#{amount}
-    
+        limit #{skip},#{amount}    
     </select>
 	
 	<!-- 게시판 수정 -->
@@ -67,13 +66,12 @@
 	</delete>
 	
 	<!-- 게시물 총 갯수 -->
-	<select id="getTotal" resultType="int">
-    
+	<select id="getTotal" resultType="int">    
         select count(*) from trade_board
         
         <if test="keyword != null">
             <include refid="criteria"></include>
-        </if>    
-    
+        </if>        
     </select> 
+    
 </mapper>

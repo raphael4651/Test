@@ -56,7 +56,7 @@ public class BoardController {
 		
 		boardService.insert(board);
 		
-		rttr.addFlashAttribute("result", "등록 성공");
+		rttr.addFlashAttribute("result",board.getTradeBno());
 		
 		return "redirect:/board/list";
 	}
