@@ -32,6 +32,15 @@
 		values (#{tradeTitle}, #{tradeContent}, #{tradeWriter}) 
 	</insert>
 	
+	<insert id="insertSelectKey">		
+		insert into trade_board(tradeTitle, tradeContent, tradeWriter)
+		values (#{tradeTitle}, #{tradeContent}, #{tradeWriter})
+		
+		<selectKey keyProperty="tradeBno" order="AFTER" resultType="int">
+			select LAST_INSERT_ID()
+		</selectKey>
+	</insert>
+	
 	<!-- 게시판 목록 -->
 	<select id="getList" resultType="com.project.model.BoardVO">
 		select * from trade_board
@@ -46,7 +55,7 @@
 	<select id="getListPaging" resultType="com.project.model.BoardVO">
     
         select * from (
-                select tradeBno, tradeTitle, tradeWriter, tradeRegdate, tradeUpdatedate  
+                select tradeBno, tradeTitle, tradeWriter, tradeRegdate, tradeUpdatedate, tradeReplyCnt  
                 from trade_board 
                 <if test="keyword != null">
                     <include refid="criteria"></include>
@@ -74,4 +83,8 @@
         </if>        
     </select> 
     
+    <!-- 게시물의 댓글 -->
+    <select id="updateReplyCnt">
+    	update trade_board set tradeReplyCnt = tradeReplyCnt + #{amount} where tradeBno = #{tradeBno}
+    </select>
 </mapper>

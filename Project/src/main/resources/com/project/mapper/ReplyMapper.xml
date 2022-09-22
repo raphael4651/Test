@@ -26,7 +26,25 @@
     	</update>
     	
     	<!-- 특정 게시물의 댓글 조회 -->
-    	<select id="getListPaging" resultType="com.project.model.ReplyVO">
+    	<!-- <select id="getListWithPaging" resultType="com.project.model.ReplyVO">
     		select * from trade_reply where bno = #{bno} order by rno asc
+    	</select> -->
+    	
+    	<!-- 댓글 페이징 처리 -->
+    	<select id="getListWithPaging" resultType="com.project.model.ReplyVO">
+    	<![CDATA[
+    		select * from (
+                select bno, rno, reply, replyer, replyDate, updateDate  
+                from trade_reply
+                where bno = #{bno}
+                 and rno > 0
+                order by rno desc) as T1
+        	limit #{cri.skip}, #{cri.amount}
+        ]]>
+    	</select>
+    	
+    	<!-- 댓글 총 갯수 -->
+    	<select id="getCountByBno"  resultType="int">
+    		select count(rno) from trade_reply where bno = #{bno}
     	</select>
 </mapper>

@@ -2,6 +2,7 @@ package com.project.service;
 
 import java.util.List;
 
+import com.project.model.BoardAttachVO;
 import com.project.model.BoardVO;
 import com.project.model.Criteria;
 
@@ -15,6 +16,9 @@ public interface BoardService {
 	
 	//게시판 목록(페이징)
 	public List<BoardVO> getListPaging(Criteria cri);
+	
+	//첨부파일 목록
+	public List<BoardAttachVO> getAttachList(Long bno);
 	
 	//게시판 조회
 	public BoardVO getPage(int tradeBno);

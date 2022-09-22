@@ -1,7 +1,5 @@
 package com.project.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -16,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.project.model.Criteria;
+import com.project.model.ReplyPageDTO;
 import com.project.model.ReplyVO;
 import com.project.service.ReplyService;
 
@@ -47,11 +46,12 @@ public class ReplyController {
 	
 	//특정 게시물의 댓글 목록 확인
 	@GetMapping(value = "/pages/{bno}/{page}", produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_UTF8_VALUE})
-	public ResponseEntity<List<ReplyVO>> getList(@PathVariable("page") int page, @PathVariable("bno") Long bno){
+	public ResponseEntity<ReplyPageDTO> getList(@PathVariable("page") int page, @PathVariable("bno") Long bno){
 		System.out.println("getList................");
 		Criteria cri = new Criteria(page, 10);
-		System.out.println(cri);
-		return new ResponseEntity<>(service.getList(cri, bno), HttpStatus.OK);		
+		System.out.println(bno);
+		System.out.println("controller cri" + cri);
+		return new ResponseEntity<>(service.getListPage(cri, bno),HttpStatus.OK);	
 	}
 	
 	@GetMapping(value = "/{rno}", produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_UTF8_VALUE})

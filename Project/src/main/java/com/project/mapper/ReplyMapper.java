@@ -22,7 +22,10 @@ public interface ReplyMapper {
 	public int update(ReplyVO reply);
 	
 	//댓글 페이징
-	public List<ReplyVO> getListPaging(
+	public List<ReplyVO> getListWithPaging(
 			@Param("cri") Criteria cri,
 			@Param("bno") Long bno);
+	
+	//댓글 총 갯수
+	public int getCountByBno(Long bno);
 }

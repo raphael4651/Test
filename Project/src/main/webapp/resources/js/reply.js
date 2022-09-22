@@ -6,7 +6,10 @@ var replyService = (function(){
 	
 	//댓글 등록
 	function add(reply, callback, error){
-		console.log("add reply..............")
+		console.log("add 댓글........");
+		console.log("reply:"+reply.reply);
+		console.log("replyer:"+reply.replyer);
+		console.log("bno:"+reply.bno);
 		
 		$.ajax({
 			type:'post',
@@ -15,28 +18,27 @@ var replyService = (function(){
 			contentType:"application/json;charset=utf-8",
 			success:function(result,status,xhr){
 				if(callback){
-					callback(result);
-					console.log("if")
+					callback(result);					
 				}
 			},
 			error:function(xhr,status,er){
 				if(error){
-					error(er);
-					console.log("er")
+					error(er);					
 				}
 			}
-		})
+		});
 	}
 	
 	//댓글 목록
 	function getList(param, callback, error){
+		
 		var tradeBno = param.tradeBno;
 		var page = param.page || 1;
 		
 		$.getJSON("/replies/pages/"+tradeBno+"/"+page+".json",
 			function(data){
 				if(callback){
-					callback(data);
+					callback(data.replyCnt, data.list);
 				}
 			}).fail(function(xhr, status, err){
 				if(error){

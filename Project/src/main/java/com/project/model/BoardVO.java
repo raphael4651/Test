@@ -1,6 +1,7 @@
 package com.project.model;
 
 import java.util.Date;
+import java.util.List;
 
 import lombok.Data;
 
@@ -21,5 +22,7 @@ public class BoardVO {
 	//게시글 댓글 수
 	private int tradeReplyCnt;
 	
+	//파일업로드
+	private List<BoardAttachVO> attachList;
 	
 }

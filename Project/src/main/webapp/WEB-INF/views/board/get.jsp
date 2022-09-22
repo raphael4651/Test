@@ -81,7 +81,8 @@
 			</div>
 			
 			<!-- 페이지 번호 -->
-			<div class="panel-footer">								
+			<div class="panel-footer">		
+									
 			</div>
 		
 		</div>
@@ -121,10 +122,12 @@
 		</div>
 	</div>
 </div>
+
 <!-- 댓글 처리 스크립트 -->
 <script type="text/javascript" src="/resources/js/reply.js"></script>
 <script>
 $(document).ready(function(){
+	history.replaceState({},null,null);
 	
 	var bnoValue='<c:out value="${pageInfo.tradeBno}"/>';
 	var replyUL = $(".chat");
@@ -139,25 +142,30 @@ $(document).ready(function(){
 	
 	//댓글 전체 조회
 	function showList(page){		
-		replyService.getList({tradeBno:bnoValue,page:page},				
-		function(list){			
+		replyService.getList({tradeBno:bnoValue, page:page || 1},				
+		function(replyCnt, list){			
 			console.log("댓글 목록:"+list);
-						
-			if(list==null || list.length==0){
+			console.log("댓글 수:" + replyCnt)
+
+			if(page == -1){
+				pageNum = Math.ceil(replyCnt/10.0);
+				showList(pageNum);
+				return;
+			}
+			
+			if(list==null || list.length==0){	
 				replyUL.html("");
-				
 				return;
 			}
 			
 			var str="";			
-			var len=list.length || 0;
 			
-			for(var i=0;i<len;i++){
+			for(var i=0, len = list.length || 0; i<len; i++){
 				
 				str+="<li class='list-group-item' data-rno='"+list[i].rno+"'>";
 				str+="	<div>";
 				str+="		<div class='header'>";
-				str+="			<strong class='primary-font'>"+list[i].replyer+"</strong>";
+				str+="			<strong class='primary-font'>["+list[i].rno+"] "+list[i].replyer+"</strong>";
 				str+="			<small class='pull-right text-muted'>"+replyService.displayTime(list[i].replyDate)+"</small>";
 				str+="		</div>";
 				str+="		<p>"+list[i].reply+"</p>";
@@ -166,9 +174,54 @@ $(document).ready(function(){
 				
 			}
 			replyUL.html(str);	//기존 내용 덮어쉬우기
+			
+			showReplyPage(replyCnt);
 					
-		});  
+		});  			
 	}
+	
+	//댓글 페이징
+	//댓글 페이지 처리
+	var pageNum=1;
+	var replyPageFooter=$(".panel-footer");
+	
+	function showReplyPage(replyCnt){
+		var endNum=Math.ceil(pageNum/10.0)*10;
+		var startNum=endNum-9;
+		
+		var prev=startNum!=1;
+		var next=false;
+		
+		if(endNum*10>=replyCnt){
+			endNum=Math.ceil(replyCnt/10.0);
+		}
+		if(endNum*10<replyCnt){
+			next=true;
+		}
+		var str="<ul class='pagination pull-right'>";
+		
+		if(prev){
+			str+="<li class='page-item'><a class='page-link' href='"+(startNum-1)+"'>이전</a></li>";
+		}
+		
+		for(var i=startNum;i<=endNum;i++){
+			var active=pageNum==i?"active":"";
+			
+			str+="<li class='page-item "+active+"'><a class='page-link' href='"+i+"'>"+i+"</a></li>";
+		}
+		
+		if(next){
+			str+="<li class='page-item'><a class='page-link' href='"+(endNum+1)+"'>다음</a></li>";
+		}
+		
+		str+="</ul>";
+		
+		//replyPageFooter.append(str);
+		replyPageFooter.html(str);
+	}
+	
+	
+	
 	
 	//댓글 모달창
 	var modal=$('.modal');
@@ -224,13 +277,23 @@ $(document).ready(function(){
 		})
 	});
 	
+	//댓글 페이지 이동
+	replyPageFooter.on("click", "li a", function(e){
+		e.preventDefault();
+		console.log("page click");
+		var targetPageNum = $(this).attr("href");
+		console.log("타겟 페이지:" + targetPageNum);
+		pageNum = targetPageNum;
+		showList(pageNum);
+	});
+	
 	//댓글 수정
 	modalModBtn.on("click", function(e){
 		var reply = {rno:modal.data("rno"), reply: modalInputReply.val()};
 		replyService.update(reply, function(result){
 			alert(result);
 			modal.modal("hide");
-			showList(1);
+			showList(pageNum);
 		})
 	})
 	
@@ -242,7 +305,7 @@ $(document).ready(function(){
 			alert("삭제 완료..."+result);		
 			modal.modal("hide");
 			
-			showList(1);	//댓글 갱신
+			showList(pageNum);	//댓글 갱신
 		});
 	});
 })	
@@ -266,3 +329,13 @@ $(document).ready(function(){
 
 </script>
 
+<!-- 첨부파일 목록 조회 -->
+<script>
+$(document).ready(function(){
+	var bno = ${pageInfo.tradeBno};
+	$.getJSON("/board/getAttachList", {tradeBno: tradeBno}, function(arr){
+		console.log(arr);
+	})
+})
+
+</script>
