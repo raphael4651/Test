@@ -13,4 +13,7 @@ public interface BoardAttachMapper {
 	
 	//첨부파일 조회
 	public List<BoardAttachVO> findByBno(Long bno);
+	
+	//게시글과 첨부파일 삭제
+	public void deleteAll(Long tradeBno);
 }

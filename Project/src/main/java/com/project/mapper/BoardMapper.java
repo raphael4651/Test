@@ -27,7 +27,7 @@ public interface BoardMapper {
 	public int modify(BoardVO board);
 	
 	//게시판 삭제
-	public int delete(int tradeBno);
+	public int delete(Long tradeBno);
 	
 	//게시판 총 갯수
 	public int getTotal(Criteria cri);

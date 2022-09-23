@@ -1,5 +1,7 @@
 package com.project.model;
 
+import org.springframework.web.util.UriComponentsBuilder;
+
 import lombok.ToString;
 
 @ToString
@@ -22,6 +24,18 @@ public class Criteria {
 	
 	//스킵할 게시물 수( (pageNum-1)*amount)
 	private int skip;
+	
+	//getListLink
+	public String getListLink() {
+		UriComponentsBuilder builder=UriComponentsBuilder.fromPath("")
+				.queryParam("pageNum", this.pageNum)
+				.queryParam("amount",this.amount)
+				.queryParam("type", this.type)
+				.queryParam("keyword", this.keyword);
+				
+		return builder.toUriString();
+	}
+	
 	
 	//기본 생성자 -> 기본세팅 : pageNum = 1, amount = 10
 	public Criteria() {

@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.project.mapper.BoardAttachMapper;
 import com.project.mapper.BoardMapper;
+import com.project.mapper.ReplyMapper;
 import com.project.model.BoardAttachVO;
 import com.project.model.BoardVO;
 import com.project.model.Criteria;
@@ -21,9 +22,13 @@ public class BoardServiceImpl implements BoardService{
 	@Autowired
 	private BoardAttachMapper attachMapper;
 	
+	@Autowired
+	private ReplyMapper replyMapper;
+	
 	@Transactional
 	@Override
 	public void insert(BoardVO board) {
+		System.out.println("등록: " + board);
 		mapper.insertSelectKey(board);
 		
 		if(board.getAttachList() == null || board.getAttachList().size() <= 0) {
@@ -44,15 +49,28 @@ public class BoardServiceImpl implements BoardService{
 	public BoardVO getPage(int tradeBno) {
 		return mapper.getPage(tradeBno);
 	}
-
+	
+	@Transactional
 	@Override
-	public int modify(BoardVO board) {
-		return mapper.modify(board);
+	public boolean modify(BoardVO board) {
+		System.out.println("수정......" + board);
+		
+		attachMapper.deleteAll((long) board.getTradeBno());
+		
+		boolean modifyResult = mapper.modify(board) == 1;
+		
+		if(modifyResult && board.getAttachList() != null && board.getAttachList().size() > 0) {
+			board.getAttachList().forEach(attach -> {
+				attach.setBno((long) board.getTradeBno());
+				attachMapper.insert(attach);
+			});
+		}
+		return modifyResult;		
 	}
-
+	
 	@Override
 	public int delete(int tradeBno) {
-		return mapper.delete(tradeBno);
+		return mapper.delete((long) tradeBno);
 	}
 
 	@Override
@@ -72,6 +90,15 @@ public class BoardServiceImpl implements BoardService{
 		return attachMapper.findByBno(bno);
 	}
 	
-	
-	
+	@Transactional
+	@Override
+	public boolean remove(Long tradeBno) {
+		attachMapper.deleteAll(tradeBno);
+		System.out.println("remove....." + tradeBno);		
+		replyMapper.deleteAll(tradeBno);
+		System.out.println("댓글 삭제 ");
+		System.out.println("remove attach");
+		return mapper.delete(tradeBno)==1;
+		
+	}
 }

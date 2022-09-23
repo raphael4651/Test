@@ -142,7 +142,7 @@ $(document).ready(function(e){
 			console.dir(jobj);
 			
 			str+="<input type='hidden' name='attachList["+i+"].fileName'"
-				+" value='"+jobj.data("fileName")+"'>";
+				+" value='"+jobj.data("filename")+"'>";
 			str+="<input type='hidden' name='attachList["+i+"].uuid'"
 				+" value='"+jobj.data("uuid")+"'>";
 			str+="<input type='hidden' name='attachList["+i+"].uploadPath'"
@@ -157,7 +157,7 @@ $(document).ready(function(e){
 	
 	
 	//파일 크기, 확장자 체크
-	var regex = new RegExp("(.*?)\.(gif|jpeg|jpg|png)$");
+	var regex = new RegExp("(.*?)\.(jpeg|jpg|png)$");
 	var maxSize = 5242880;	//5MB 제한
 	
 	function checkExtension(fileName, fileSize){
@@ -167,7 +167,7 @@ $(document).ready(function(e){
 		}
 		
 		if(!regex.test(fileName)){
-			alert("이미지 파일만 업로드 할 수 있습니다.");
+			alert("이미지 파일만 업로드 할 수 있습니다.(jpeg,jpg,png)");
 			return false;
 		}
 		return true;
@@ -224,20 +224,7 @@ $(document).ready(function(e){
 						+"<img src='/display?fileName="+fileCallPath+"'>"
 						+"</div></li>";
 					
-			}else{
-				var fileCallPath=encodeURIComponent(
-						obj.uploadPath+"/"+obj.uuid+"_"+obj.fileName);
-				var fileLink=fileCallPath.replace(new RegExp(/\\/g),"/");
-				
-				str+="<li data-path='"+obj.uploadPath+"' data-uuid='"
-							+obj.uuid+"' data-filename='"+obj.fileName
-							+"' data-type='"+obj.image+"'><div>"
-						+"<span>"+obj.fileName+" </span>"
-						+"<button type='button' data-file=\'"+fileCallPath+"\' data-type='file' class='btn btn-warning btn-circle'>"
-						+"<i class='fa fa-times'></i></button><br>"
-						+"<img src='/resources/img/attach.png'>"
-						+"</div></li>";
-			}			
+			}
 		});
 		
 		uploadUL.append(str);

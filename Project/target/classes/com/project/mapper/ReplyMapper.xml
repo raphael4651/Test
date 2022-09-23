@@ -20,6 +20,10 @@
     		delete from trade_reply where rno = #{rno}
     	</delete>
     	
+    	<delete id="deleteAll">
+    		delete from trade_reply where bno = #{tradeBno}
+    	</delete>
+    	
     	<!-- 댓글 수정 -->
     	<update id="update">
     		update trade_reply set reply = #{reply}, updateDate = now() where rno = #{rno}

@@ -1,5 +1,8 @@
 package com.project.controller;
 
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -101,16 +105,6 @@ public class BoardController {
 		
 	}
 	
-	/* 페이지 삭제 */
-	@PostMapping("/delete")
-	public String boardDeletePOST(int tradeBno, RedirectAttributes rttr) {
-		
-		boardService.delete(tradeBno);
-		
-		rttr.addFlashAttribute("result", "삭제 성공");
-		
-		return "redirect:/board/list";
-	}	
 	
 	/* 첨부파일 조회 */
 	@GetMapping(value = "/getAttachList", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
@@ -118,6 +112,49 @@ public class BoardController {
 	public ResponseEntity<List<BoardAttachVO>> getAttachList(Long bno){
 		System.out.println("get attachList" + bno);
 		return new ResponseEntity<>(boardService.getAttachList(bno), HttpStatus.OK);
+	}
+	
+	/* 첨부파일 삭제 */
+	@PostMapping("/remove")
+	public String remove(@RequestParam("tradeBno") Long tradeBno, Criteria cri, RedirectAttributes rttr) {
+		System.out.println("remove....." + tradeBno);
+		List<BoardAttachVO> attachList = boardService.getAttachList(tradeBno);
+		
+		if(boardService.remove(tradeBno)) {
+			deleteFiles(attachList);
+			
+			rttr.addFlashAttribute("result", "success");
+		}
+		return "redirect:/board/list" + cri.getListLink();
+	}
+	
+	/* 첨부파일 삭제 */
+	private void deleteFiles(List<BoardAttachVO> attachList) {
+		
+		if(attachList==null || attachList.size()==0) {
+			return;
+		}
+		
+		System.out.println("첨부 파일 삭제.....");
+		System.out.println(attachList);
+		
+		attachList.forEach(attach->{
+			try {
+				Path file=Paths.get("c:\\upload\\"+attach.getUploadPath()+"\\"
+					+attach.getUuid()+"_"+attach.getFileName());
+				
+				Files.deleteIfExists(file);
+				
+				if(Files.probeContentType(file).startsWith("image")) {
+					Path thumbNail=Paths.get("c:\\upload\\"+attach.getUploadPath()+"\\s_"
+							+attach.getUuid()+"_"+attach.getFileName());
+					
+					Files.delete(thumbNail);
+				}				
+			}catch(Exception e) {
+				System.out.println("파일 삭제 에러:"+e.getMessage());
+			}
+		});
 	}
 }
 

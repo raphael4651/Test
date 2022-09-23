@@ -7,7 +7,57 @@
 	#reply{
 		margin-top: 20px;
 	}
+	
+	<style>
+	.uploadResult{
+		width:100%;
+		background:gray;
+	}
+	.uploadResult ul{
+		display:flex;
+		flex-flow:row;
+		justify-content:center;
+		align-items:center;
+	}
+	.uploadResult ul li{
+		list-style:none;
+		padding:10px;
+		align-content:center;
+		text-align:center;
+	}
+	.uploadResult ul li img{
+		width:100px;
+	}
+	.uploadResult ul li span{
+		color:white;
+	}
+	.bigPictureWrapper{
+		position:absolute;
+		display:none;
+		justify-content:center;
+		align-items:center;
+		top:0%;
+		width:100%;
+		height:100%;
+		/* background-color:gray; */
+		z-index:100;
+		background:rgba(255,255,255,0.5);
+	}
+	.bigPicture{
+		position:relative;
+		display:flex;
+		justify-content:center;
+		align-items:center;
+	}
+	.bigPicture img{
+		width:600px;
+	}
 </style>
+
+<div class="bigPictureWrapper card">
+	<div class="bigPicture card-body">
+	</div>
+</div>
 
 <div class="container-lg">
     <div class="col-lg-12">
@@ -56,10 +106,26 @@
 </div>
 </div>    
 
+<!-- 첨부파일 -->
+<div class="container-lg">
+<div class="card">
+	<div class="card-body">
+		<div class="card-title">
+			<div>첨부파일</div>
+		</div>
+		
+		<div class="uploadResult">
+			<ul>
+			</ul>
+		</div>
+		<div></div>
+	</div>
+</div>
+</div>
+
 <!-- 댓글 -->
 <div class="container-lg" id="reply">
-<div class="row">
-	<div class="col">		
+	<div class="row">		
 		<div class="card">
 			<div class="card-header">
 				<i class="fa fa-comments fa-fw"></i> Reply
@@ -81,14 +147,12 @@
 			</div>
 			
 			<!-- 페이지 번호 -->
-			<div class="panel-footer">		
-									
+			<div class="panel-footer">						
 			</div>
-		
 		</div>
 	</div>
 </div>
-</div>
+
 <!-- Modal 추가 -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-dialog">
@@ -329,13 +393,79 @@ $(document).ready(function(){
 
 </script>
 
-<!-- 첨부파일 목록 조회 -->
+<!-- 첨부파일 처리 -->
 <script>
 $(document).ready(function(){
 	var bno = ${pageInfo.tradeBno};
-	$.getJSON("/board/getAttachList", {tradeBno: tradeBno}, function(arr){
+	
+	$.getJSON("/board/getAttachList",{bno:bno},function(arr){
 		console.log(arr);
-	})
+		
+		var uploadUL=$(".uploadResult ul");
+		var str="";
+		
+		$(arr).each(function(i,obj){
+			console.log(obj.uuid)
+			console.log(obj.filetype)
+			console.log(obj.fileName)
+			console.log(obj.uploadPath)
+			
+			if(obj.filetype){
+				var fileCallPath = encodeURIComponent(obj.uploadPath+"/s_"+obj.uuid +"_"+obj.fileName);
+				console.log(encodeURIComponent(obj.uploadPath+"/s_"+obj.uuid +"_"+obj.fileName))
+				console.log(fileCallPath)
+				
+				str+="<li data-path='"+obj.uploadPath+"' data-uuid='"
+							+obj.uuid+"' data-filename='"+obj.fileName
+							+"' data-type='"+obj.filetype+"'><div>";
+							
+				str+="<img src='/display?fileName="+fileCallPath+"'>";
+				str+="</div></li>";
+			}else{
+				var fileCallPath = encodeURIComponent(obj.uploadPath+"/s_"+obj.uuid +"_"+obj.fileName);
+				console.log(encodeURIComponent(obj.uploadPath+"/s_"+obj.uuid +"_"+obj.fileName))
+				console.log(fileCallPath)
+				
+				str+="<li data-path='"+obj.uploadPath+"' data-uuid='"
+							+obj.uuid+"' data-filename='"+obj.fileName
+							+"' data-type='"+obj.filetype+"'><div>";
+							
+				str+="<img src='/display?fileName="+fileCallPath+"'>";
+				str+="</div></li>";
+			}
+		});
+		
+		uploadUL.append(str);
+	});
+	
+	//이미지 클릭시 확대
+	$(".uploadResult").on("click","li",function(e){
+		console.log("이미지 보기");
+		
+		var liObj=$(this);
+		
+		var path=encodeURIComponent(liObj.data("path")+"/"+liObj.data("uuid")+"_"+liObj.data("filename"));
+		
+		if(liObj.data("type")){
+			showImage(path.replace(new RegExp(/\\/g),"/"));
+		}
+	});
+	
+	function showImage(fileCallPath){		
+		
+		$(".bigPictureWrapper").css("display","flex").show();
+		
+		$(".bigPicture")
+		.html("<img src='/display?fileName="+fileCallPath+"'>")
+		.animate({width:'100%', height: '100%'}, 1000);
+		
+		$(".bigPictureWrapper").on("click",function(e){
+			$(".bigPicture").animate({width:'0%',height:'0%'},1000);
+			setTimeout(()=>{
+				$(this).hide();
+			},1000);
+		});
+	}
 })
 
 </script>

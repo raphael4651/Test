@@ -24,11 +24,14 @@ public interface BoardService {
 	public BoardVO getPage(int tradeBno);
 	
 	//게시판 수정
-	public int modify(BoardVO board);
+	public boolean modify(BoardVO board);
 	
 	//게시판 삭제
 	public int delete(int tradeBno);
 	
 	//게시판 총 갯수
 	public int getTotal(Criteria cri);
+
+	public boolean remove(Long bno);
+	
 }
