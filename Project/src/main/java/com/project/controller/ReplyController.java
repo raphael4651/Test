@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.project.model.Criteria;
 import com.project.model.ReplyPageDTO;
+import com.project.model.ReplyPageDTO2;
 import com.project.model.ReplyVO;
 import com.project.service.ReplyService;
 
@@ -26,7 +27,8 @@ import lombok.AllArgsConstructor;
 public class ReplyController {
 	@Autowired
 	private ReplyService service;
-	
+
+//판매 게시판
 	//댓글 등록
 	@PostMapping(value="/new",
 	consumes="application/json",
@@ -79,6 +81,60 @@ public class ReplyController {
 			? new ResponseEntity<>("success", HttpStatus.OK)
 			: new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 	}
+	
+//구매 게시판
+	//댓글 등록
+	@PostMapping(value="/new2",
+	consumes="application/json",
+	produces= {MediaType.TEXT_PLAIN_VALUE})
+	public ResponseEntity<String> create2(@RequestBody ReplyVO vo){
+	System.out.println("ReplyVO:"+vo);
+	
+	int insertCount=service.register2(vo);
+	
+	System.out.println("Reply 추가 갯수:"+insertCount);
+	
+	return insertCount==1
+		?new ResponseEntity<>("success",HttpStatus.OK)
+		:new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+	}
+	
+	
+	//특정 게시물의 댓글 목록 확인
+	@GetMapping(value = "/pages/{bno2}/{page2}", produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_UTF8_VALUE})
+	public ResponseEntity<ReplyPageDTO2> getList2(@PathVariable("page") int page, @PathVariable("bno2") Long bno2){
+		System.out.println("getList2................");
+		Criteria cri = new Criteria(page, 10);
+		System.out.println(bno2);
+		System.out.println("controller cri" + cri);
+		return new ResponseEntity<>(service.getListPage2(cri, bno2),HttpStatus.OK);	
+	}
+	
+	@GetMapping(value = "/{rno2}", produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_UTF8_VALUE})
+	public ResponseEntity<ReplyVO> get2(@PathVariable("rno2") Long rno2){
+		System.out.println("get : " + rno2);
+		return new ResponseEntity<>(service.get2(rno2), HttpStatus.OK);
+	}
+	
+	//댓글 삭제
+	@DeleteMapping(value = "/{rno2}", produces = {MediaType.TEXT_PLAIN_VALUE})
+	public ResponseEntity<String> remove2(@PathVariable("rno2") Long rno2){
+		System.out.println("remove 2: " + rno2);
+		return service.remove(rno2) == 1
+			? new ResponseEntity<>("success", HttpStatus.OK)
+			: new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+	}
+	
+	//댓글 수정
+	@RequestMapping(method = {RequestMethod.PUT, RequestMethod.PATCH}, value = "/{rno2}", consumes = "application/json", produces = {MediaType.TEXT_PLAIN_VALUE})
+	public ResponseEntity<String> modify2(@RequestBody ReplyVO vo, @PathVariable("rno2") Long rno2){
+		vo.setRno2(rno2);
+		System.out.println("rno2 : " + rno2);
+		System.out.println("modify : " + vo);
+		return service.modify(vo) == 1
+			? new ResponseEntity<>("success", HttpStatus.OK)
+			: new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+	}	
 }
 
 

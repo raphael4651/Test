@@ -7,7 +7,7 @@ import com.project.model.BoardVO;
 import com.project.model.Criteria;
 
 public interface BoardService {
-	
+//판매 게시판	
 	//게시판 등록
 	public void insert(BoardVO board);
 
@@ -33,5 +33,32 @@ public interface BoardService {
 	public int getTotal(Criteria cri);
 
 	public boolean remove(Long bno);
+	
+//구매 게시판
+	//게시판 등록
+	public void insert2(BoardVO board);
+
+	//게시판 목록
+	public List<BoardVO> getList2();
+	
+	//게시판 목록(페이징)
+	public List<BoardVO> getListPaging2(Criteria cri);
+	
+	//첨부파일 목록
+	public List<BoardAttachVO> getAttachList2(Long bno2);
+	
+	//게시판 조회
+	public BoardVO getPage2(int tradeBno2);
+	
+	//게시판 수정
+	public boolean modify2(BoardVO board);
+	
+	//게시판 삭제
+	public int delete2(int tradeBno2);
+	
+	//게시판 총 갯수
+	public int getTotal2(Criteria cri);
+
+	public boolean remove2(Long bno2);
 	
 }

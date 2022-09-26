@@ -31,7 +31,7 @@ public class Criteria {
 				.queryParam("pageNum", this.pageNum)
 				.queryParam("amount",this.amount)
 				.queryParam("type", this.type)
-				.queryParam("keyword", this.keyword);
+				.queryParam("keyword", this.keyword);				
 				
 		return builder.toUriString();
 	}

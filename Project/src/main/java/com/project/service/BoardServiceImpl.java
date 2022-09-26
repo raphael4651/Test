@@ -15,7 +15,6 @@ import com.project.model.Criteria;
 
 @Service
 public class BoardServiceImpl implements BoardService{
-
 	@Autowired
 	private BoardMapper mapper;
 	
@@ -25,6 +24,7 @@ public class BoardServiceImpl implements BoardService{
 	@Autowired
 	private ReplyMapper replyMapper;
 	
+//판매 게시판
 	@Transactional
 	@Override
 	public void insert(BoardVO board) {
@@ -99,6 +99,84 @@ public class BoardServiceImpl implements BoardService{
 		System.out.println("댓글 삭제 ");
 		System.out.println("remove attach");
 		return mapper.delete(tradeBno)==1;
+		
+	}
+	
+//구매 게시판
+	@Transactional
+	@Override
+	public void insert2(BoardVO board) {
+		System.out.println("등록: " + board);
+		mapper.insertSelectKey2(board);
+		
+		if(board.getAttachList2() == null || board.getAttachList2().size() <= 0) {
+			return;
+		}
+		board.getAttachList2().forEach(attach ->{
+			attach.setBno2((long) board.getTradeBno2());
+			attachMapper.insert2(attach);
+		});
+	}
+
+	@Override
+	public List<BoardVO> getList2() {
+		return mapper.getList2();
+	}
+
+	@Override
+	public BoardVO getPage2(int tradeBno2) {
+		return mapper.getPage(tradeBno2);
+	}
+	
+	@Transactional
+	@Override
+	public boolean modify2(BoardVO board) {
+		System.out.println("수정2......" + board);
+		
+		attachMapper.deleteAll2((long) board.getTradeBno2());
+		
+		boolean modifyResult = mapper.modify2(board) == 1;
+		
+		if(modifyResult && board.getAttachList2() != null && board.getAttachList2().size() > 0) {
+			board.getAttachList2().forEach(attach -> {
+				attach.setBno2((long) board.getTradeBno2());
+				attachMapper.insert2(attach);
+			});
+		}
+		return modifyResult;		
+	}
+	
+	@Override
+	public int delete2(int tradeBno2) {
+		return mapper.delete2((long) tradeBno2);
+	}
+
+	@Override
+	public List<BoardVO> getListPaging2(Criteria cri) {
+		return mapper.getListPaging2(cri);
+	}
+
+	@Override
+	public int getTotal2(Criteria cri) {
+		return mapper.getTotal2(cri);
+	}
+
+	@Override
+	public List<BoardAttachVO> getAttachList2(Long bno2) {
+		System.out.println("해당 첨부파일 리스트 가져오기2" + bno2);
+		
+		return attachMapper.findByBno2(bno2);
+	}
+	
+	@Transactional
+	@Override
+	public boolean remove2(Long tradeBno2) {
+		attachMapper.deleteAll(tradeBno2);
+		System.out.println("remove2....." + tradeBno2);		
+		replyMapper.deleteAll(tradeBno2);
+		System.out.println("댓글 삭제2 ");
+		System.out.println("remove attach2");
+		return mapper.delete2(tradeBno2)==1;
 		
 	}
 }
