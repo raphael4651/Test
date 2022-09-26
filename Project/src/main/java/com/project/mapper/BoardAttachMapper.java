@@ -16,4 +16,7 @@ public interface BoardAttachMapper {
 	
 	//게시글과 첨부파일 삭제
 	public void deleteAll(Long tradeBno);
+	
+	//DB확인후 불일치시 파일 삭제
+	public List<BoardAttachVO> getOldFiles();
 }

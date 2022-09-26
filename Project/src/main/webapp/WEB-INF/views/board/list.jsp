@@ -36,6 +36,7 @@
                 <table width="100%" class="table table-striped table-bordered table-hover">
                     <thead>
                     	<th>번호</th>
+                    	<th>사진</th>
                     	<th>제목</th>
                     	<th>작성자</th>
                     	<th>작성일</th>
@@ -45,13 +46,14 @@
                     <c:forEach items="${list}" var="list">
                     <tr>
                     	<td>${list.tradeBno }</td>
+                   		<td>이미지</td>
                     	<td><a class="move" href='<c:out value="${list.tradeBno}"/>'>
                     		${list.tradeTitle } <b>[${list.tradeReplyCnt }]</b></a>                   		                   		
                    		</td>
                     	<td>${list.tradeWriter }</td>
                     	<td><fmt:formatDate pattern="yyyy-MM-dd" value="${list.tradeRegdate }"/></td>
                     	<td><fmt:formatDate pattern="yyyy-MM-dd" value="${list.tradeUpdatedate }"/></td>
-                    </tr>
+                    </tr>                   
                     </c:forEach>                    
                 </table>
                 

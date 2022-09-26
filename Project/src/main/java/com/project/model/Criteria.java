@@ -7,7 +7,7 @@ import lombok.ToString;
 @ToString
 public class Criteria {
 
-	//현제 페이지
+	//현재 페이지
 	private int pageNum;
 	
 	//한 페이지당 보여질 게시물 갯수

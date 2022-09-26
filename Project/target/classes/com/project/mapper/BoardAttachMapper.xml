@@ -25,4 +25,8 @@
     		delete from trade_attach where bno = #{tradeBno}
     	</delete>
     	
+    	<!-- 오래된 파일 DB 불일치시 삭제 -->
+    	<select id="getOldFiles" resultType="com.project.model.BoardAttachVO">
+    		select * from trade_attach where uploadpath = to_char(sysdate -1,'yyyy/mm/dd')
+    	</select>
 </mapper>
