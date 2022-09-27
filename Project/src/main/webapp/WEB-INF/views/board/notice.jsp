@@ -19,7 +19,7 @@
 <div class="jumbotron">
 	<div class="container-lg">
 	    <div class="col-lg-12">
-	        <h1 class="page-header">판매게시판</h1>
+	        <h1 class="page-header">공지사항</h1>
 	    </div>
 	    <!-- /.col-lg-12 -->
 	</div>
@@ -42,45 +42,18 @@
                     	<th>수정일</th>                    	                    
                     </thead>
                     
-                    <c:forEach items="${list}" var="list">
+                    <c:forEach items="${notice}" var="notice">
                     <tr>
-                    	<td>${list.tradeBno }</td>                   		
-                    	<td><a class="move" href='<c:out value="${list.tradeBno}"/>'>
-                    		${list.tradeTitle } <b>[${list.tradeReplyCnt }]</b></a>                   		                   		
+                    	<td>${notice.noticeBno }</td>                   		
+                    	<td><a class="move" href='<c:out value="${notice.noticeBno}"/>'>
+                    		${notice.noticeTitle }</a>                   		                   		
                    		</td>
-                    	<td>${list.tradeWriter }</td>
-                    	<td><fmt:formatDate pattern="yyyy-MM-dd" value="${list.tradeRegdate }"/></td>
-                    	<td><fmt:formatDate pattern="yyyy-MM-dd" value="${list.tradeUpdatedate }"/></td>
+                    	<td>${notice.noticeWriter }</td>
+                    	<td><fmt:formatDate pattern="yyyy-MM-dd" value="${notice.noticeRegdate }"/></td>
+                    	<td><fmt:formatDate pattern="yyyy-MM-dd" value="${notice.noticeUpdatedate }"/></td>
                     </tr>                   
                     </c:forEach>                    
                 </table>
-                
-
-                <!-- 검색처리 -->
-                <div class='row'>
-                	<div class="col">                
-                	<div class="p-3">
-                	<form id='searchForm' action="/board/list" method="get">
-                		<select name='type' class="select">
-                			<option value="" ${pageMaker.cri.type==null?'selected':'' }>--</option>
-                			<option value="T" ${pageMaker.cri.type eq 'T'?'selected':'' }>제목</option>
-                			<option value="C" ${pageMaker.cri.type eq 'C'?'selected':'' }>내용</option>
-                			<option value="W" ${pageMaker.cri.type eq 'W'?'selected':'' }>작성자</option>
-                			<option value="TC" ${pageMaker.cri.type eq 'TC'?'selected':'' }>제목 or 내용</option>
-                			<option value="TW" ${pageMaker.cri.type eq 'TW'?'selected':'' }>제목 or 작성자</option>
-                			<option value="TWC" ${pageMaker.cri.type eq 'TWC'?'selected':'' }>제목 or 내용 or 작성자</option>
-                		</select>
-                	            
-                		<input type='text' name='keyword' value="${pageMaker.cri.keyword }">
-                		<input type='hidden' name='pageNum' value='${pageMaker.cri.pageNum }'>
-                		<input type='hidden' name='amount' value='${pageMaker.cri.amount }'>
-                		<input type='hidden' name='type' value='${pageMaker.cri.type }'>
-                		<button class='btn btn-primary'>검색</button>
-                	</form>
-                	 </div>
-                	</div>
-              	</div>
-
                 
                 <!-- 페이징 처리 -->
                 <div class="position-relative" id="paging">
@@ -88,16 +61,16 @@
                 	
 		                <nav aria-label="Page navigation">               	                	
 		                	<ul class="pagination">
-		                		<c:if test="${pageMaker.prev }">
-		                			<li class="page-item previous"><a class="page-link" href="${pageMaker.startPage-1 }">이전</a></li>
+		                		<c:if test="${pageMaker3.prev }">
+		                			<li class="page-item previous"><a class="page-link" href="${pageMaker3.startPage-1 }">이전</a></li>
 		                		</c:if>
 		                		
-			                	<c:forEach var="num" begin="${pageMaker.startPage }" end="${pageMaker.endPage }">
-			                		<li class="page-item ${pageMaker.cri.pageNum==num?'active':'' }"><a class="page-link" href="${num }">${num }</a></li>
+			                	<c:forEach var="num" begin="${pageMaker3.startPage }" end="${pageMaker3.endPage }">
+			                		<li class="page-item ${pageMaker3.cri.pageNum==num?'active':'' }"><a class="page-link" href="${num }">${num }</a></li>
 			                	</c:forEach>
 			                		                	
-			               		<c:if test="${pageMaker.next }">
-			               			<li class="page-item next"><a class="page-link" href="${pageMaker.endPage+1 }">다음</a></li>
+			               		<c:if test="${pageMaker3.next }">
+			               			<li class="page-item next"><a class="page-link" href="${pageMaker3.endPage+1 }">다음</a></li>
 			               		</c:if>
 		               		</ul>    
 		               	</nav>               
@@ -105,10 +78,8 @@
                 </div>
                            
                 <form id="moveForm" method="get">
-                	<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum }">
-                	<input type="hidden" name="amount" value="${pageMaker.cri.amount }">
-                	<input type="hidden" name="keyword" value="${pageMaker.cri.keyword }">
-                	<input type='hidden' name='type' value='${pageMaker.cri.type }'>
+                	<input type="hidden" name="pageNum" value="${pageMaker3.cri.pageNum }">
+                	<input type="hidden" name="amount" value="${pageMaker3.cri.amount }">
                 </form>      
             <!-- /.panel-body -->
             
@@ -153,52 +124,32 @@ $(document).ready(function(){
 			}
 			
 			if(parseInt(result)>0){
-				$(".modal-body").html("게시글 "+parseInt(result)+" 번이 등록되었습니다.");
+				$(".modal-body").html("공지사항"+parseInt(result)+" 번이 등록되었습니다.");
 			}
 			
 			$("#myModal").modal("show");
 	}
 	
 	$('#regBtn').on('click',function(){		
-		self.location='/board/insert';		
+		self.location='/board/insertNotice';		
 	});
 });
 	var moveForm = $("#moveForm");
 	$(".move").on("click", function(e){
 		e.preventDefault();
 		
-		moveForm.append("<input type='hidden' name='tradeBno' value='"+ $(this).attr("href")+ "'>");
-		moveForm.attr("action", "/board/get");
+		moveForm.append("<input type='hidden' name='noticeBno' value='"+ $(this).attr("href")+ "'>");
+		moveForm.attr("action", "/board/getNotice");
 		moveForm.submit();
 	});
 	
     $(".page-item a").on("click", function(e){
 		e.preventDefault();
 		moveForm.find("input[name='pageNum']").val($(this).attr("href"));
-		moveForm.attr("action", "/board/list");
+		moveForm.attr("action", "/board/notice");
 		moveForm.submit();
 		
 	});	 
-	
-	
-  //검색
-	var searchForm=$('#searchForm');
-	
-	$('#searchForm button').on('click',function(e){
-		e.preventDefault();
-		
-		if(!searchForm.find('option:selected').val()){
-			alert('검색종류를 선택하세요');
-			return false;
-		}
-		if(!searchForm.find("input[name='keyword']").val()){
-			alert('키워드를 입력하세요');
-			return false;
-		}
-		
-		searchForm.find("input[name='pageNum']").val("1");		
-		searchForm.submit();
-	});
 	
 	
 </script>

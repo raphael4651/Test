@@ -142,13 +142,13 @@ $(document).ready(function(e){
 			console.dir(jobj);
 			
 			str+="<input type='hidden' name='attachList2["+i+"].fileName2'"
-				+" value='"+jobj.data("filename2")+"'>";
+				+" value='"+jobj.data("filename")+"'>";
 			str+="<input type='hidden' name='attachList2["+i+"].uuid2'"
-				+" value='"+jobj.data("uuid2")+"'>";
+				+" value='"+jobj.data("uuid")+"'>";
 			str+="<input type='hidden' name='attachList2["+i+"].uploadPath2'"
-				+" value='"+jobj.data("path2")+"'>";
+				+" value='"+jobj.data("path")+"'>";
 			str+="<input type='hidden' name='attachList2["+i+"].filetype2'"
-				+" value='"+jobj.data("type2")+"'>";				
+				+" value='"+jobj.data("type")+"'>";				
 		});
 		console.log("1");
 		formObj.append(str).submit();
@@ -195,6 +195,7 @@ $(document).ready(function(e){
 			dataType:'json',
 			success: function(result){
 				console.log(result);
+				console.log("ddddd")
 				showUploadResult(result);
 			}				
 		});
@@ -211,7 +212,22 @@ $(document).ready(function(e){
 		
 		$(uploadResultArr).each(function(i,obj){
 			
-			if(obj.image){
+			if(obj.image2){
+				var fileCallPath=encodeURIComponent(
+						obj.uploadPath2+"/s_"+obj.uuid2+"_"+obj.fileName2);
+				console.log(obj.fileName2);
+				console.log(obj.uploadPath2);
+				console.log(obj.uuid2);
+				str+="<li data-path='"+obj.uploadPath2+"' data-uuid='"
+							+obj.uuid2+"' data-filename='"+obj.fileName2
+							+"' data-type='"+obj.image2+"'><div>"
+						+"<span>"+obj.fileName2+" </span>"
+						+"<button type='button' data-file=\'"+fileCallPath+"\' data-type='image' class='btn btn-warning btn-circle'>"
+						+"<i class='fa fa-times'></i></button><br>"
+						+"<img src='/display2?fileName2="+fileCallPath+"'>"
+						+"</div></li>";
+					console.log(fileCallPath);
+			}else{
 				var fileCallPath=encodeURIComponent(
 						obj.uploadPath2+"/s_"+obj.uuid2+"_"+obj.fileName2);
 				
@@ -221,9 +237,8 @@ $(document).ready(function(e){
 						+"<span>"+obj.fileName2+" </span>"
 						+"<button type='button' data-file=\'"+fileCallPath+"\' data-type='image' class='btn btn-warning btn-circle'>"
 						+"<i class='fa fa-times'></i></button><br>"
-						+"<img src='/display?fileName="+fileCallPath+"'>"
+						+"<img src='/display2?fileName2="+fileCallPath+"'>"
 						+"</div></li>";
-					
 			}
 		});
 		

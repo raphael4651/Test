@@ -61,4 +61,25 @@ public interface BoardService {
 
 	public boolean remove2(Long bno2);
 	
+//공지사항	
+	//공지사항 등록
+	public void insertNotice(BoardVO board);
+
+	//공지사항 목록
+	public List<BoardVO> getListNotice();
+	
+	//공지사항 목록(페이징)
+	public List<BoardVO> getListPagingNotice(Criteria cri);
+	
+	//공지사항 조회
+	public BoardVO getPageNotice(int noticeBno);
+	
+	//공지사항 수정
+	public boolean modifyNotice(BoardVO board);
+	
+	//공지사항 삭제
+	public int deleteNotice(int noticeBno);
+	
+	//공지사항 총 갯수
+	public int getTotalNotice(Criteria cri);
 }

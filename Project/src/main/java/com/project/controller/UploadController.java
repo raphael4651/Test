@@ -301,15 +301,14 @@ public class UploadController {
 			System.out.println("Upload 파일 이름2:"+multipartFile.getOriginalFilename());
 			System.out.println("Upload 파일 크기2:"+multipartFile.getSize());
 						
-			UUID uuid=UUID.randomUUID();
+			UUID uuid2=UUID.randomUUID();
 			String uploadFileName=multipartFile.getOriginalFilename();
 			
-			AttachFileDTO attachDTO=new AttachFileDTO();
+			AttachFileDTO attachDTO=new AttachFileDTO();			
 			attachDTO.setFileName2(uploadFileName);
-			attachDTO.setUuid2(uuid.toString());
+			attachDTO.setUuid2(uuid2.toString());			
 			attachDTO.setUploadPath2(uploadFolderPath);
-			
-			uploadFileName=uuid.toString()+"_"+uploadFileName;
+			uploadFileName=uuid2.toString()+"_"+uploadFileName;
 			
 			File saveFile=new File(uploadPath,uploadFileName);
 			
@@ -326,15 +325,14 @@ public class UploadController {
 					Thumbnailator.createThumbnail(
 							multipartFile.getInputStream(),thumbnail,100,100);
 					thumbnail.close();
-				}
-				
+				}				
 				list.add(attachDTO);
 				
 			}catch(Exception e) {
 				System.out.println(e.getMessage());
 			}
 		}//end for
-		
+		System.out.println(list);
 		return new ResponseEntity<>(list,HttpStatus.OK);
 	}
 	

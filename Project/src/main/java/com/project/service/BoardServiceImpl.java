@@ -106,7 +106,7 @@ public class BoardServiceImpl implements BoardService{
 	@Transactional
 	@Override
 	public void insert2(BoardVO board) {
-		System.out.println("등록: " + board);
+		System.out.println("등록2: " + board);
 		mapper.insertSelectKey2(board);
 		
 		if(board.getAttachList2() == null || board.getAttachList2().size() <= 0) {
@@ -125,7 +125,7 @@ public class BoardServiceImpl implements BoardService{
 
 	@Override
 	public BoardVO getPage2(int tradeBno2) {
-		return mapper.getPage(tradeBno2);
+		return mapper.getPage2(tradeBno2);
 	}
 	
 	@Transactional
@@ -178,5 +178,49 @@ public class BoardServiceImpl implements BoardService{
 		System.out.println("remove attach2");
 		return mapper.delete2(tradeBno2)==1;
 		
+	}
+
+	
+//공지사항
+	@Override
+	public void insertNotice(BoardVO board) {
+		System.out.println("공지사항 등록");
+		mapper.insertNotice(board);
+	}
+
+
+	@Override
+	public List<BoardVO> getListPagingNotice(Criteria cri) {
+		System.out.println("공지사항 페이징 조회");
+		return mapper.getListPagingNotice(cri);
+	}
+
+	@Override
+	public BoardVO getPageNotice(int noticeBno) {
+		return mapper.getPageNotice(noticeBno);
+	}
+
+	@Override
+	public boolean modifyNotice(BoardVO board) {
+		System.out.println("공지사항 수정......" + board);
+		
+		boolean modifyResult = mapper.modifyNotice(board);
+		
+		return modifyResult;
+	}
+
+	@Override
+	public int deleteNotice(int noticeBno) {		
+		return mapper.deleteNotice(noticeBno);
+	}
+
+	@Override
+	public int getTotalNotice(Criteria cri) {
+		return mapper.getTotalNotice(cri);
+	}
+
+	@Override
+	public List<BoardVO> getListNotice() {
+		return mapper.getListNotice();
 	}
 }

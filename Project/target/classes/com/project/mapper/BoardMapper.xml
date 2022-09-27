@@ -22,10 +22,46 @@
 					</choose>
 				</trim>
 			</foreach>
-		</trim>
-	
+		</trim>		
 	</sql>
-
+	<sql id="criteria2">
+	<trim prefix="where (" suffix=")" prefixOverrides="OR">
+			<foreach collection="typeArr" item="type">
+				<trim prefix="OR">
+					<choose>
+						<when test="type == 'T'.toString()">
+							tradeTitle2 like concat('%',#{keyword},'%') 
+						</when>
+						<when test="type == 'C'.toString()">
+							tradeContent2 like concat('%',#{keyword},'%') 
+						</when>
+						<when test="type == 'W'.toString()">
+							tradeWriter2 like concat('%',#{keyword},'%' )
+						</when>
+					</choose>
+				</trim>
+			</foreach>
+		</trim>	
+	</sql>
+	<sql id="criteria3">
+	<trim prefix="where (" suffix=")" prefixOverrides="OR">
+			<foreach collection="typeArr" item="type">
+				<trim prefix="OR">
+					<choose>
+						<when test="type == 'T'.toString()">
+							noticeTitle like concat('%',#{keyword},'%') 
+						</when>
+						<when test="type == 'C'.toString()">
+							noticeContent like concat('%',#{keyword},'%') 
+						</when>
+						<when test="type == 'W'.toString()">
+							noticeWriter like concat('%',#{keyword},'%' )
+						</when>
+					</choose>
+				</trim>
+			</foreach>
+		</trim>	
+	</sql>
 <!-- 판매 게시판 -->	
 	<!-- 게시판 등록 -->
 	<insert id="insert">
@@ -124,7 +160,7 @@
                 select tradeBno2, tradeTitle2, tradeWriter2, tradeRegdate2, tradeUpdatedate2, tradeReplyCnt2  
                 from trade_board2 
                 <if test="keyword != null">
-                    <include refid="criteria"></include>
+                    <include refid="criteria2"></include>
                 </if>
                 order by tradeBno2 desc) as T2
         limit #{skip},#{amount}    
@@ -145,7 +181,7 @@
         select count(*) from trade_board2
         
         <if test="keyword != null">
-            <include refid="criteria"></include>
+            <include refid="criteria2"></include>
         </if>        
     </select> 
     
@@ -153,6 +189,55 @@
     <select id="updateReplyCnt2">
     	update trade_board2 set tradeReplyCnt2 = tradeReplyCnt2 + #{amount} where tradeBno2 = #{tradeBno2}
     </select>
+ 
+<!-- 공지사항 -->
+
+	<insert id="insertNotice">
+		insert into notice_board(noticeTitle, noticeContent, noticeWriter)
+		values (#{noticeTitle}, #{noticeContent}, #{noticeWriter}) 
+	</insert>
+	
+	<!-- 공지사항 목록 -->
+	<select id="getListNotice" resultType="com.project.model.BoardVO">
+		select * from notice_board
+	</select>
+	
+	<!-- 공지사항 조회 -->
+	<select id="getPageNotice" resultType="com.project.model.BoardVO">
+		select * from notice_board where noticeBno = #{noticeBno}
+	</select>
+	
+	<!-- 공지사항 목록(페이징) -->
+	<select id="getListPagingNotice" resultType="com.project.model.BoardVO">
     
+        select * from (
+                select noticeBno, noticeTitle, noticeWriter, noticeRegdate, noticeUpdatedate 
+                from notice_board 
+                <if test="keyword != null">
+                    <include refid="criteria3"></include>
+                </if>
+                order by noticeBno desc) as T1
+        limit #{skip},#{amount}    
+    </select>
+	
+	<!-- 공지사항 수정 -->
+	<update id="modifyNotice">
+		update notice_board set noticeTitle = #{noticeTitle}, noticeContent = #{noticeContent}, noticeUpdatedate = now() where noticeBno = #{noticeBno}
+	</update>
+	
+	<!-- 공지사항 삭제 -->
+	<delete id="deleteNotice">
+		delete from notice_board where noticeBno = #{noticeBno}
+	</delete>
+	
+	<!-- 공지사항 총 갯수 -->
+	<select id="getTotalNotice" resultType="int">    
+        select count(*) from notice_board
+        
+        <if test="keyword != null">
+            <include refid="criteria3"></include>
+        </if>        
+    </select> 
+
     
 </mapper>

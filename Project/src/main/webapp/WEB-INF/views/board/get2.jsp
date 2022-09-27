@@ -3,6 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <%@ include file="../includes/header.jsp" %>
+
 <style>
 	#reply{
 		margin-top: 20px;
@@ -95,10 +96,10 @@
             	 
             	 <form id="infoForm" action="/board/modify2" method="get">
             	 	<input type="hidden" id="tradeBno2" name="tradeBno2" value="${pageInfo2.tradeBno2}">
-            	 	<input type="hidden" name="pageNum" value='<c:out value="${cri.pageNum }"/>' >
-            	 	<input type="hidden" name="amount" value='<c:out value="${cri.amount }"/>' >
-            	 	<input type="hidden" name="keyword" value="${pageMaker.cri.keyword }">
-            	 	<input type="hidden" name="type" value="${pageMaker.cri.type }">
+               	 	<input type='hidden' name='pageNum' value='${cri.pageNum }'>
+                	<input type='hidden' name='amount' value='${cri.amount }'>
+                	<input type='hidden' name='type' value='${cri.type }'>
+                	<input type='hidden' name='keyword' value='${cri.keyword }'>
             	 </form>                             
       		 </div>                     
 		</div>
@@ -201,8 +202,8 @@ $(document).ready(function(){
 	//댓글 전체 조회
 	function showList(page){		
 		replyService.getList2({tradeBno2:bnoValue, page:page || 1},				
-		function(replyCnt2, list){			
-			console.log("댓글 목록2:"+list);
+		function(replyCnt2, list2){			
+			console.log("댓글 목록2:"+list2);
 			console.log("댓글 수2:" + replyCnt2)
 
 			if(page == -1){
@@ -211,29 +212,29 @@ $(document).ready(function(){
 				return;
 			}
 			
-			if(list==null || list.length==0){	
+			if(list2==null || list2.length==0){	
 				replyUL.html("");
 				return;
 			}
 			
 			var str="";			
 			
-			for(var i=0, len = list.length || 0; i<len; i++){
+			for(var i=0, len = list2.length || 0; i<len; i++){
 				
-				str+="<li class='list-group-item' data-rno='"+list[i].rno2+"'>";
+				str+="<li class='list-group-item' data-rno2='"+list2[i].rno2+"'>";
 				str+="	<div>";
 				str+="		<div class='header'>";
-				str+="			<strong class='primary-font'>["+list[i].rno2+"] "+list[i].replyer2+"</strong>";
-				str+="			<small class='pull-right text-muted'>"+replyService.displayTime(list[i].replyDate)+"</small>";
+				str+="			<strong class='primary-font'>["+list2[i].rno2+"] "+list2[i].replyer2+"</strong>";
+				str+="			<small class='pull-right text-muted'>"+replyService.displayTime(list2[i].replyDate2)+"</small>";
 				str+="		</div>";
-				str+="		<p>"+list[i].reply2+"</p>";
+				str+="		<p>"+list2[i].reply2+"</p>";
 				str+="	</div>";
 				str+="</li>";
 				
 			}
 			replyUL.html(str);	//기존 내용 덮어쉬우기
 			
-			showReplyPage(replyCnt);
+			showReplyPage(replyCnt2);
 					
 		});  			
 	}
@@ -243,7 +244,7 @@ $(document).ready(function(){
 	var pageNum=1;
 	var replyPageFooter=$(".panel-footer");
 	
-	function showReplyPage(replyCnt){
+	function showReplyPage(replyCnt2){
 		var endNum=Math.ceil(pageNum/10.0)*10;
 		var startNum=endNum-9;
 		
@@ -307,7 +308,7 @@ $(document).ready(function(){
 				replyer2: modalInputReplyer.val(),
 				bno2: bnoValue
 		};
-		replyService.add(reply2, function(result){
+		replyService.add2(reply2, function(result){
 			alert(result);
 			modal.find("input").val("");
 			modal.modal("hide");
@@ -323,7 +324,7 @@ $(document).ready(function(){
 			modalInputReply.val(reply2.reply2);
 			modalInputReplyer.val(reply2.replyer2);
 			modalInputReplyDate.val(
-					replyService.displayTime(reply.replyDate)).attr("readonly","readonly");
+					replyService.displayTime(reply2.replyDate2)).attr("readonly","readonly");
 			
 			modal.data("rno2",reply2.rno2);
 			
@@ -357,7 +358,7 @@ $(document).ready(function(){
 	
 	//댓글 삭제
 	modalRemoveBtn.on("click",function(e){
-		var rno=modal.data("rno2");
+		var rno2=modal.data("rno2");
 		
 		replyService.remove2(rno2,function(result){
 			alert("삭제 완료2..."+result);		
@@ -381,7 +382,7 @@ $(document).ready(function(){
 	})
 	
 	$("#modify_btn").on("click", function(e){	
-		form.attr("action", "/board/modify2");
+		form.attr("action", "/board/modify2");		
 		form.submit();
 	})
 
@@ -391,7 +392,7 @@ $(document).ready(function(){
 <script>
 $(document).ready(function(){
 	var bno2 = ${pageInfo2.tradeBno2};
-	
+	console.log(bno2);
 	$.getJSON("/board/getAttachList2",{bno2:bno2},function(arr){
 		console.log(arr);
 		
@@ -413,7 +414,7 @@ $(document).ready(function(){
 							+obj.uuid2+"' data-filename='"+obj.fileName2
 							+"' data-type='"+obj.filetype2+"'><div>";
 							
-				str+="<img src='/display2?fileName="+fileCallPath+"'>";
+				str+="<img src='/display2?fileName2="+fileCallPath+"'>";
 				str+="</div></li>";
 			}else{
 				var fileCallPath = encodeURIComponent(obj.uploadPath2+"/s_"+obj.uuid2 +"_"+obj.fileName2);
@@ -424,7 +425,7 @@ $(document).ready(function(){
 							+obj.uuid2+"' data-filename='"+obj.fileName2
 							+"' data-type='"+obj.filetype2+"'><div>";
 							
-				str+="<img src='/display2?fileName="+fileCallPath+"'>";
+				str+="<img src='/display2?fileName2="+fileCallPath+"'>";
 				str+="</div></li>";
 			}
 		});

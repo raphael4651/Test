@@ -77,7 +77,7 @@ public class ReplyServiceImpl implements ReplyService{
 
 	@Override
 	public ReplyVO get2(Long rno2) {
-		System.out.println("get...." + rno2);
+		System.out.println("get2...." + rno2);
 		return mapper.read2(rno2);
 	}
 

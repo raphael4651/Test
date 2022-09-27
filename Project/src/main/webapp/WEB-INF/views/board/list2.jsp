@@ -62,19 +62,19 @@
                 	<div class="p-3">
                 	<form id='searchForm' action="/board/list2" method="get">
                 		<select name='type' class="select">
-                			<option value="" ${pageMaker.cri.type==null?'selected':'' }>--</option>
-                			<option value="T" ${pageMaker.cri.type eq 'T'?'selected':'' }>제목</option>
-                			<option value="C" ${pageMaker.cri.type eq 'C'?'selected':'' }>내용</option>
-                			<option value="W" ${pageMaker.cri.type eq 'W'?'selected':'' }>작성자</option>
-                			<option value="TC" ${pageMaker.cri.type eq 'TC'?'selected':'' }>제목 or 내용</option>
-                			<option value="TW" ${pageMaker.cri.type eq 'TW'?'selected':'' }>제목 or 작성자</option>
-                			<option value="TWC" ${pageMaker.cri.type eq 'TWC'?'selected':'' }>제목 or 내용 or 작성자</option>
+                			<option value="" ${pageMaker2.cri.type==null?'selected':'' }>--</option>
+                			<option value="T" ${pageMaker2.cri.type eq 'T'?'selected':'' }>제목</option>
+                			<option value="C" ${pageMaker2.cri.type eq 'C'?'selected':'' }>내용</option>
+                			<option value="W" ${pageMaker2.cri.type eq 'W'?'selected':'' }>작성자</option>
+                			<option value="TC" ${pageMaker2.cri.type eq 'TC'?'selected':'' }>제목 or 내용</option>
+                			<option value="TW" ${pageMaker2.cri.type eq 'TW'?'selected':'' }>제목 or 작성자</option>
+                			<option value="TWC" ${pageMaker2.cri.type eq 'TWC'?'selected':'' }>제목 or 내용 or 작성자</option>
                 		</select>
                 	            
-                		<input type='text' name='keyword' value="${pageMaker.cri.keyword }">
-                		<input type='hidden' name='pageNum' value='${pageMaker.cri.pageNum }'>
-                		<input type='hidden' name='amount' value='${pageMaker.cri.amount }'>
-                		<input type='hidden' name='type' value='${pageMaker.cri.type }'>
+                		<input type='text' name='keyword' value="${pageMaker2.cri.keyword }">
+                		<input type='hidden' name='pageNum' value='${pageMaker2.cri.pageNum }'>
+                		<input type='hidden' name='amount' value='${pageMaker2.cri.amount }'>
+                		<input type='hidden' name='type' value='${pageMaker2.cri.type }'>
                 		<button class='btn btn-primary'>검색</button>
                 	</form>
                 	 </div>
@@ -88,16 +88,16 @@
                 	
 		                <nav aria-label="Page navigation">               	                	
 		                	<ul class="pagination">
-		                		<c:if test="${pageMaker.prev }">
-		                			<li class="page-item previous"><a class="page-link" href="${pageMaker.startPage-1 }">이전</a></li>
+		                		<c:if test="${pageMaker2.prev }">
+		                			<li class="page-item previous"><a class="page-link" href="${pageMaker2.startPage-1 }">이전</a></li>
 		                		</c:if>
 		                		
-			                	<c:forEach var="num" begin="${pageMaker.startPage }" end="${pageMaker.endPage }">
-			                		<li class="page-item ${pageMaker.cri.pageNum==num?'active':'' }"><a class="page-link" href="${num }">${num }</a></li>
+			                	<c:forEach var="num" begin="${pageMaker2.startPage }" end="${pageMaker2.endPage }">
+			                		<li class="page-item ${pageMaker2.cri.pageNum==num?'active':'' }"><a class="page-link" href="${num }">${num }</a></li>
 			                	</c:forEach>
 			                		                	
-			               		<c:if test="${pageMaker.next }">
-			               			<li class="page-item next"><a class="page-link" href="${pageMaker.endPage+1 }">다음</a></li>
+			               		<c:if test="${pageMaker2.next }">
+			               			<li class="page-item next"><a class="page-link" href="${pageMaker2.endPage+1 }">다음</a></li>
 			               		</c:if>
 		               		</ul>    
 		               	</nav>               
@@ -105,10 +105,10 @@
                 </div>
                            
                 <form id="moveForm" method="get">
-                	<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum }">
-                	<input type="hidden" name="amount" value="${pageMaker.cri.amount }">
-                	<input type="hidden" name="keyword" value="${pageMaker.cri.keyword }">
-                	<input type='hidden' name='type' value='${pageMaker.cri.type }'>
+                	<input type="hidden" name="pageNum" value="${pageMaker2.cri.pageNum }">
+                	<input type="hidden" name="amount" value="${pageMaker2.cri.amount }">
+                	<input type="hidden" name="keyword" value="${pageMaker2.cri.keyword }">
+                	<input type='hidden' name='type' value='${pageMaker2.cri.type }'>
                 </form>      
             <!-- /.panel-body -->
             

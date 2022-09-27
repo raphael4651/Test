@@ -70,9 +70,9 @@
             <div class="panel-body">                
                 <form role="form" action="/board/modify2" method="post">
                 <input type="hidden" id="tradeBno" name="tradeBno2" value="${pageInfo2.tradeBno2}">
-               	 	<input type="hidden" name="pageNum" value='<c:out value="${cri.pageNum }"/>' >
-               	 	<input type="hidden" name="amount" value='<c:out value="${cri.amount }"/>' >
-               	 	<input type="hidden" name="keyword" value="${pageMaker.cri.keyword }">               	 	
+               	 	<input type="hidden" name="pageNum" value='<c:out value="${pageMaker2.cri.pageNum }"/>' >
+               	 	<input type="hidden" name="amount" value='<c:out value="${pageMaker2.cri.amount }"/>' >
+               	 	<input type="hidden" name="keyword" value="${pageMaker2.cri.keyword }">               	 	
                	 	
                 <div class="form-group">
                		<label>번호</label>
@@ -147,13 +147,13 @@ $(document).ready(function(){
 			console.log(jobj.data("type2"));
 									
 			str+="<input type='hidden' name='attachList2["+i+"].fileName2'"
-				+" value='"+jobj.data("filename2")+"'>";
+				+" value='"+jobj.data("filename")+"'>";
 			str+="<input type='hidden' name='attachList2["+i+"].uuid2'"
-				+" value='"+jobj.data("uuid2")+"'>";
+				+" value='"+jobj.data("uuid")+"'>";
 			str+="<input type='hidden' name='attachList2["+i+"].uploadPath2'"
-				+" value='"+jobj.data("path2")+"'>";
+				+" value='"+jobj.data("path")+"'>";
 			str+="<input type='hidden' name='attachList2["+i+"].fileType2'"
-				+" value='"+jobj.data("type2")+"'>";
+				+" value='"+jobj.data("type")+"'>";
 		});
 		
 		formObj.append(str).submit();		
@@ -215,7 +215,7 @@ $(document).ready(function(){
 				str+="<span> "+obj.fileName2+"</span>";
 				str+="<button type='button' data-file=\'"+fileCallPath+"\'data-type='image' ";
 				str+="class='btn btn-warning btn-circle'><i class='fa fa-times'></i></button><br>";
-				str+="<img src='/display?fileName="+fileCallPath+"'>";
+				str+="<img src='/display2?fileName2="+fileCallPath+"'>";
 				str+="</div></li>";
 			}else{
 				var fileCallPath = encodeURIComponent(obj.uploadPath2+"/s_"+obj.uuid2 +"_"+obj.fileName2);
@@ -226,7 +226,7 @@ $(document).ready(function(){
 				str+="<span> "+obj.fileName2+"</span>";
 				str+="<button type='button' data-file=\'"+fileCallPath+"\'data-type='image' ";
 				str+="class='btn btn-warning btn-circle'><i class='fa fa-times'></i></button><br>";
-				str+="<img src='/display?fileName="+fileCallPath+"'>";
+				str+="<img src='/display2?fileName2="+fileCallPath+"'>";
 				str+="</div></li>";
 			}
 		});

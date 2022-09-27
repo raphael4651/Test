@@ -198,12 +198,6 @@ $(document).ready(function(){
 	
 	showList(1);
 	
-	/* replyService.getList({tradeBno:bnoValue, page:1}, function(list){
-		for(var i=0, len=list.length||0; i<len; i++){
-			console.log(list[i]);
-		}
-	}) */
-	
 	//댓글 전체 조회
 	function showList(page){		
 		replyService.getList({tradeBno:bnoValue, page:page || 1},				

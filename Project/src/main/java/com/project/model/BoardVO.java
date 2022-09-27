@@ -42,5 +42,18 @@ public class BoardVO {
 	private int tradeReplyCnt2;
 	//파일업로드
 	private List<BoardAttachVO> attachList2;
-	
+
+//공지사항
+	//게시글 번호
+	private int noticeBno;
+	//게시글 제목
+	private String noticeTitle;
+	//게시글 내용
+	private String noticeContent;
+	//게시글 작성자
+	private String noticeWriter;
+	//게시글 작성일자
+	private Date noticeRegdate;
+	//게시글 수정일자
+	private Date noticeUpdatedate;
 }

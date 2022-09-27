@@ -157,13 +157,11 @@ public class BoardController {
 	@GetMapping("/list2")
 	public void boardListGET2(Model model, Criteria cri) {
 		System.out.println("게시판 목록2");
-		
 		model.addAttribute("list2", boardService.getListPaging2(cri));
-		
 		int total = boardService.getTotal2(cri);
-		
+		System.out.println("22");
 		PageMakerDTO pageMake = new PageMakerDTO(cri, total);
-		
+		System.out.println("33");
 		model.addAttribute("pageMaker2", pageMake);
 	}
 	
@@ -193,18 +191,18 @@ public class BoardController {
 	//게시판 조회
 	@GetMapping("/get2")
 	public void boardGetPageGET2(int tradeBno2, Model model, Criteria cri) {
-		System.out.println("111");
+		System.out.println("1");
 		model.addAttribute("pageInfo2", boardService.getPage2(tradeBno2));
-		
-		System.out.println("22222");
+		System.out.println("2");
 		model.addAttribute("cri", cri);
 	}
 	 
 	//수정 페이지 이동
 	@GetMapping("/modify2")
 	public void boardModifyGET2(int tradeBno2, Model model, Criteria cri) {
+		System.out.println("modify2");
 		model.addAttribute("pageInfo2", boardService.getPage2(tradeBno2));
-		
+		System.out.println(boardService.getPage2(tradeBno2));
 		model.addAttribute("cri", cri);
 	}
 	
@@ -226,11 +224,11 @@ public class BoardController {
 	@GetMapping(value = "/getAttachList2", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	@ResponseBody
 	public ResponseEntity<List<BoardAttachVO>> getAttachList2(Long bno2){
-		System.out.println("get attachList2" + bno2);
+		System.out.println("get attachList2" + bno2);		
 		return new ResponseEntity<>(boardService.getAttachList2(bno2), HttpStatus.OK);
 	}
 	
-	/* 첨부파일 삭제 */
+	/* 게시글 삭제 */
 	@PostMapping("/remove2")
 	public String remove2(@RequestParam("tradeBno2") Long tradeBno2, Criteria cri, RedirectAttributes rttr) {
 		System.out.println("remove....." + tradeBno2);
@@ -273,7 +271,82 @@ public class BoardController {
 			}
 		});
 	}
-//판매 페이지 끝-----------------
+//구매 페이지 끝-----------------
+	
+//공지사항
+	//게시판 목록 페이지 접속(페이징 적용)
+	@GetMapping("/notice")
+	public void noticeListGET(Model model, Criteria cri) {
+		System.out.println("공지사항 목록");
+		
+		model.addAttribute("notice", boardService.getListPagingNotice(cri));
+		
+		int total = boardService.getTotalNotice(cri);
+		
+		PageMakerDTO pageMake = new PageMakerDTO(cri, total);
+		System.out.println(pageMake);
+		model.addAttribute("pageMaker3", pageMake);
+	}
+	
+	
+	//게시판등록 페이지 접속
+	@GetMapping("/insertNotice") 
+	public void noticeInsertGet() {
+		System.out.println("공지사항 등록"); 
+	}
+		
+	//게시판등록
+	@PostMapping("/insertNotice")
+	public String noticeInsertPost(BoardVO board, RedirectAttributes rttr) {
+		System.out.println("공지사항 등록 : " + board); 		
+		
+		boardService.insertNotice(board);
+		
+		rttr.addFlashAttribute("result",board.getNoticeBno());
+		
+		return "redirect:/board/notice";
+	}
+	
+	//게시판 조회
+	@GetMapping("/getNotice")
+	public void noticeGetPageGET(int noticeBno, Model model, Criteria cri) {
+		model.addAttribute("pageInfo3", boardService.getPageNotice(noticeBno));
+		System.out.println("getnotice controller" + boardService.getPageNotice(noticeBno));
+		model.addAttribute("cri", cri);
+		System.out.println(cri);
+	}
+	 
+	//수정 페이지 이동
+	@GetMapping("/modifyNotice")
+	public void noticeModifyGET(int noticeBno, Model model, Criteria cri) {
+		model.addAttribute("pageInfo3", boardService.getPageNotice(noticeBno));
+		System.out.println("modifynotice controller" + boardService.getPageNotice(noticeBno));
+		model.addAttribute("cri", cri);
+	}
+	
+
+	/* 페이지 수정 */
+	@PostMapping("/modifyNotice")
+	public String noticeModifyPOST(BoardVO board, RedirectAttributes rttr) {
+		
+		boardService.modifyNotice(board);
+		
+		rttr.addFlashAttribute("result", "수정 성공");
+		
+		return "redirect:/board/notice";
+		
+	}
+	
+	//공지사항 삭제
+	@PostMapping("/removeNotice")
+	public String removeNotice(@RequestParam("noticeBno") int noticeBno, Criteria cri, RedirectAttributes rttr) {
+		System.out.println("remove....." + noticeBno);
+		
+		boardService.deleteNotice(noticeBno);
+		rttr.addFlashAttribute("result", "success");
+		return "redirect:/board/notice" + cri.getListLink();
+	}
+			
 }
 
 

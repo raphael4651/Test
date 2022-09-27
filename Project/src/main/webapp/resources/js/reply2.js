@@ -5,7 +5,7 @@ var replyService={};
 var replyService = (function(){
 	
 	//댓글 등록
-	function add(reply2, callback, error){
+	function add2(reply2, callback, error){
 		console.log("add 댓글........");
 		console.log("reply2:"+reply2.reply2);
 		console.log("replyer2:"+reply2.replyer2);
@@ -14,7 +14,7 @@ var replyService = (function(){
 		$.ajax({
 			type:'post',
 			url:'/replies/new2',
-			data:JSON.stringify(reply),
+			data:JSON.stringify(reply2),
 			contentType:"application/json;charset=utf-8",
 			success:function(result,status,xhr){
 				if(callback){
@@ -30,15 +30,15 @@ var replyService = (function(){
 	}
 	
 	//댓글 목록
-	function getList(param, callback, error){
+	function getList2(param, callback, error){
 		
 		var tradeBno2 = param.tradeBno2;
 		var page = param.page || 1;
 		
-		$.getJSON("/replies/pages/"+tradeBno2+"/"+page+".json",
+		$.getJSON("/replies/pages2/"+tradeBno2+"/"+page+".json",
 			function(data){
 				if(callback){
-					callback(data.replyCnt2, data.list);
+					callback(data.replyCnt2, data.list2);
 				}
 			}).fail(function(xhr, status, err){
 				if(error){
@@ -48,10 +48,10 @@ var replyService = (function(){
 	}
 	
 	//댓글 삭제
-	function remove(rno2, callback, error){
+	function remove2(rno2, callback, error){
 		$.ajax({
 			type : 'delete',
-			url : '/replies/' + rno2,
+			url : '/replies/delete/' + rno2,
 			success : function(deleteResult, status, xhr){
 				if(callback){
 					callback(deleteResult);
@@ -66,12 +66,12 @@ var replyService = (function(){
 	}
 	
 	//댓글 수정
-	function update(reply2, callback, error){
+	function update2(reply2, callback, error){
 		console.log("RNO2: " + reply2.rno2)
 		
 		$.ajax({
 			type : 'put',
-			url : '/replies/' + reply.rno2,
+			url : '/replies/update2/' + reply2.rno2,
 			data : JSON.stringify(reply2),
 			contentType : "application/json; charset=utf-8",
 			success : function(result, status, xhr){
@@ -88,8 +88,8 @@ var replyService = (function(){
 	}
 	
 	//댓글 조회
-	function get(rno2, callback, error){
-		$.get("/replies/"+rno2+".json",function(result){
+	function get2(rno2, callback, error){
+		$.get("/replies/pages2/"+rno2+".json",function(result){
 			if(callback){
 				callback(result);
 			}
@@ -131,11 +131,11 @@ var replyService = (function(){
 	}
 	
 	return{
-		add : add,
-		getList : getList,
-		remove : remove,
-		update : update,
-		get : get,
+		add2 : add2,
+		getList2 : getList2,
+		remove2 : remove2,
+		update2 : update2,
+		get2 : get2,
 		displayTime : displayTime
 	};
 })();
