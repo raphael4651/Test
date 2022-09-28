@@ -54,13 +54,13 @@
 </head>
 <body>
 <div class="jumbotron">
-	<div class="card">
-	    <div class="card-header">
-	        <h1 class="card-title">게시판 글쓰기</h1>
+	<div class="container-lg">
+	    <div class="col-lg-12">
+	        <h1 class="page-header">게시판 글쓰기</h1>
 	    </div>	    
 	</div>
 	
-	<div class="card">
+<div class="container">
     <div class="col-lg-12">
         <div class="card-body">
             <!-- /.panel-heading -->            
@@ -93,31 +93,27 @@
 	</div>
 
 	<!-- 첨부파일 업로드 -->
+	<div class="container">
 	<div class="card">
 		<div class="card">		
 			<div class="card-body ">
 				<div class="card-title">이미지 등록</div>
-			</div>	
+			</div>			
+		</div>
+		<div class="card-body">
+		<div class="form-group uploadDiv">
+			<input type="file" name="uploadFile" multiple="multiple">
 		</div>
 		
-		<div class="card">
-			<div class="card-body">
-				<div class="form-group uploadDiv">
-					<input type="file" name="uploadFile" multiple="multiple">
-				</div>
-				
-				<div class="uploadResult">
-					<ul>
-					
-					</ul>
-				</div>
-			</div>
+		<div class="uploadResult">
+			<ul>
+			
+			</ul>
 		</div>
-
+		</div>			
 	</div>
-	
-</div>
-            
+	</div>
+</div>            
 </body>
 
 <script>

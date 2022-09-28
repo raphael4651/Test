@@ -394,8 +394,7 @@ $(document).ready(function(){
 		console.log(arr);
 		
 		var uploadUL=$(".uploadResult ul");
-		var str="";
-		
+		var str="";		
 		$(arr).each(function(i,obj){
 			console.log(obj.uuid)
 			console.log(obj.filetype)

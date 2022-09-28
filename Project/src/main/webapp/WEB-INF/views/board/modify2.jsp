@@ -311,9 +311,22 @@ $(document).ready(function(){
 						+"<span>"+obj.fileName2+" </span>"
 						+"<button type='button' data-file=\'"+fileCallPath+"\' data-type='image' class='btn btn-warning btn-circle'>"
 						+"<i class='fa fa-times'></i></button><br>"
-						+"<img src='/display?fileName="+fileCallPath+"'>"
+						+"<img src='/display2?fileName2="+fileCallPath+"'>"
 						+"</div></li>";
 					
+			}else{
+				var fileCallPath=encodeURIComponent(
+						obj.uploadPath2+"/s_"+obj.uuid2+"_"+obj.fileName2);
+				
+				str+="<li data-path='"+obj.uploadPath2+"' data-uuid='"
+							+obj.uuid2+"' data-filename='"+obj.fileName2
+							+"' data-type='"+obj.image2+"'><div>"
+						+"<span>"+obj.fileName2+" </span>"
+						+"<button type='button' data-file=\'"+fileCallPath+"\' data-type='image' class='btn btn-warning btn-circle'>"
+						+"<i class='fa fa-times'></i></button><br>"
+						+"<img src='/display2?fileName2="+fileCallPath+"'>"
+						+"</div></li>";
+				
 			}	
 		});
 		

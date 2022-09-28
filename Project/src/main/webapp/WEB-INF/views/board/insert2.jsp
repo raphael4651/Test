@@ -54,15 +54,13 @@
 </head>
 <body>
 <div class="jumbotron">
-
-	<div class="row card">
-	    <div class="col-lg-12 card-body">
-	        <h1 class="card-title">게시판 글쓰기</h1>
+	<div class="container-lg">
+	    <div class="col-lg-12">
+	        <h1 class="page-header">게시판 글쓰기</h1>
 	    </div>
-	    <!-- /.col-lg-12 -->
 	</div>
 	
-	<div class="row card">
+<div class="container">
     <div class="col-lg-12">
         <div class="card-body">
             <!-- /.panel-heading -->            
@@ -95,6 +93,7 @@
 	</div>
 
 	<!-- 첨부파일 업로드 -->
+	<div class="container">
 	<div class="card">
 		<div class="card">		
 			<div class="card-body ">
@@ -102,20 +101,18 @@
 			</div>	
 		</div>
 		
-		<div class="card">
-			<div class="card-body">
-				<div class="form-group uploadDiv">
-					<input type="file" name="uploadFile" multiple="multiple">
-				</div>
+		<div class="card-body">
+			<div class="form-group uploadDiv">
+				<input type="file" name="uploadFile" multiple="multiple">
+			</div>
+			
+			<div class="uploadResult">
+				<ul>
 				
-				<div class="uploadResult">
-					<ul>
-					
-					</ul>
-				</div>
+				</ul>
 			</div>
 		</div>
-
+	</div>
 	</div>
 	
 </div>

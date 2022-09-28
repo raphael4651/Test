@@ -125,8 +125,6 @@
     	update trade_board set tradeReplyCnt = tradeReplyCnt + #{amount} where tradeBno = #{tradeBno}
     </select>
     
-    
-    
 <!-- 구매 게시판 -->	
 	<!-- 게시판 등록 -->
 	<insert id="insert2">

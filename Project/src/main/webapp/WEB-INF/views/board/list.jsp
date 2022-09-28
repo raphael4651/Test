@@ -35,16 +35,21 @@
             <div class="panel-body">
                 <table width="100%" class="table table-striped table-bordered table-hover">
                     <thead>
-                    	<th>번호</th>                    	
+                    	<th>번호</th>     
+                    	<th>이미지</th>               	
                     	<th>제목</th>
                     	<th>작성자</th>
                     	<th>작성일</th>
                     	<th>수정일</th>                    	                    
                     </thead>
                     
-                    <c:forEach items="${list}" var="list">
+                    <c:forEach items="${list}" var="list">                    
                     <tr>
-                    	<td>${list.tradeBno }</td>                   		
+                    	<td>${list.tradeBno }</td>             
+                    	<td><div class="uploadResult">
+							<ul>						
+							</ul>
+						</div></td>      		
                     	<td><a class="move" href='<c:out value="${list.tradeBno}"/>'>
                     		${list.tradeTitle } <b>[${list.tradeReplyCnt }]</b></a>                   		                   		
                    		</td>

@@ -109,7 +109,7 @@
 	<div class="card">
 		<div class="card-body">
 			<div class="card-title">
-				<div>첨부파일</div>
+				<div>이미지 파일</div>
 			</div>
 			
 			<div class='form-group uploadDiv'>
@@ -121,7 +121,6 @@
 				
 				</ul>
 			</div>
-			<div></div>
 		</div>
 	</div>
 </div>

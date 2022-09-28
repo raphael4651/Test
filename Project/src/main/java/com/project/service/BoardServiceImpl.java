@@ -226,4 +226,5 @@ public class BoardServiceImpl implements BoardService{
 	public List<BoardVO> getListNotice() {
 		return mapper.getListNotice();
 	}
+
 }

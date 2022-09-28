@@ -34,6 +34,7 @@ public interface BoardService {
 
 	public boolean remove(Long bno);
 	
+	
 //구매 게시판
 	//게시판 등록
 	public void insert2(BoardVO board);

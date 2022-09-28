@@ -37,7 +37,7 @@ public class BoardController {
 	public void boardListGET(Model model, Criteria cri) {
 		System.out.println("게시판 목록");
 		
-		model.addAttribute("list", boardService.getListPaging(cri));
+		model.addAttribute("list", boardService.getListPaging(cri));		
 		System.out.println("1111111");
 		int total = boardService.getTotal(cri);
 		System.out.println("2222222");
