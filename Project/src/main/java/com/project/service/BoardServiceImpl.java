@@ -75,6 +75,7 @@ public class BoardServiceImpl implements BoardService{
 
 	@Override
 	public List<BoardVO> getListPaging(Criteria cri) {
+		System.out.println("list1 getListPaging");
 		return mapper.getListPaging(cri);
 	}
 
@@ -153,7 +154,9 @@ public class BoardServiceImpl implements BoardService{
 
 	@Override
 	public List<BoardVO> getListPaging2(Criteria cri) {
+		System.out.println("list2 getListPaging2");		
 		return mapper.getListPaging2(cri);
+		
 	}
 
 	@Override
@@ -171,12 +174,12 @@ public class BoardServiceImpl implements BoardService{
 	@Transactional
 	@Override
 	public boolean remove2(Long tradeBno2) {
-		attachMapper.deleteAll(tradeBno2);
+		attachMapper.deleteAll2(tradeBno2);
 		System.out.println("remove2....." + tradeBno2);		
-		replyMapper.deleteAll(tradeBno2);
+		replyMapper.deleteAll2(tradeBno2);
 		System.out.println("댓글 삭제2 ");
 		System.out.println("remove attach2");
-		return mapper.delete2(tradeBno2)==1;
+		return mapper.delete2(tradeBno2)==1;		
 		
 	}
 

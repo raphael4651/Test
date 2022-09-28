@@ -45,16 +45,16 @@
 	</sql>
 	<sql id="criteria3">
 	<trim prefix="where (" suffix=")" prefixOverrides="OR">
-			<foreach collection="typeArr" item="type">
+			<foreach collection="typeArr" item="type3">
 				<trim prefix="OR">
 					<choose>
-						<when test="type == 'T'.toString()">
+						<when test="type3 == 'T'.toString()">
 							noticeTitle like concat('%',#{keyword},'%') 
 						</when>
-						<when test="type == 'C'.toString()">
+						<when test="type3 == 'C'.toString()">
 							noticeContent like concat('%',#{keyword},'%') 
 						</when>
-						<when test="type == 'W'.toString()">
+						<when test="type3 == 'W'.toString()">
 							noticeWriter like concat('%',#{keyword},'%' )
 						</when>
 					</choose>

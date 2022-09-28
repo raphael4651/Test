@@ -19,9 +19,6 @@ public class Criteria {
 	//검색 타입
 	private String type;
 	
-	//검색 타입 배열
-	private String[] typeArr;
-	
 	//스킵할 게시물 수( (pageNum-1)*amount)
 	private int skip;
 	
@@ -92,15 +89,11 @@ public class Criteria {
 
 	public void setType(String type) {
 		this.type = type;
-		this.typeArr = type.split("");
 	}
 
 	public String[] getTypeArr() {
-		return typeArr;
+		return type==null?new String[] {}:type.split("");
 	}
-
-	public void setTypeArr(String[] typeArr) {
-		this.typeArr = typeArr;
-	}
+	
 
 }

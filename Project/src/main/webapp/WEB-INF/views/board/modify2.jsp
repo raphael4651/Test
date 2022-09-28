@@ -70,9 +70,9 @@
             <div class="panel-body">                
                 <form role="form" action="/board/modify2" method="post">
                 <input type="hidden" id="tradeBno" name="tradeBno2" value="${pageInfo2.tradeBno2}">
-               	 	<input type="hidden" name="pageNum" value='<c:out value="${pageMaker2.cri.pageNum }"/>' >
-               	 	<input type="hidden" name="amount" value='<c:out value="${pageMaker2.cri.amount }"/>' >
-               	 	<input type="hidden" name="keyword" value="${pageMaker2.cri.keyword }">               	 	
+               	 	<input type="hidden" name="pageNum" value='<c:out value="${cri.pageNum }"/>' >
+               	 	<input type="hidden" name="amount" value='<c:out value="${cri.amount }"/>' >
+               	 	<input type="hidden" name="keyword" value="${cri.keyword }">               	 	
                	 	
                 <div class="form-group">
                		<label>번호</label>

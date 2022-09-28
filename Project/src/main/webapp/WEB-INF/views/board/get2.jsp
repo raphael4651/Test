@@ -96,10 +96,10 @@
             	 
             	 <form id="infoForm" action="/board/modify2" method="get">
             	 	<input type="hidden" id="tradeBno2" name="tradeBno2" value="${pageInfo2.tradeBno2}">
-               	 	<input type='hidden' name='pageNum' value='${cri.pageNum }'>
-                	<input type='hidden' name='amount' value='${cri.amount }'>
-                	<input type='hidden' name='type' value='${cri.type }'>
-                	<input type='hidden' name='keyword' value='${cri.keyword }'>
+               	 	<input type="hidden" name="pageNum" value="${cri.pageNum }">
+            	 	<input type="hidden" name="amount" value="${cri.amount }"> 
+            	 	<input type="hidden" name="keyword" value="${cri.keyword }">
+            	 	<input type="hidden" name="type" value="${cri.type }">
             	 </form>                             
       		 </div>                     
 		</div>
@@ -125,15 +125,14 @@
 </div>
 
 <!-- 댓글 -->
-<div class="container-lg" id="reply">
-	<div class="row">		
+<div class="container-lg" id="reply">	
 		<div class="card">
 			<div class="card-header">
 				<i class="fa fa-comments fa-fw"></i> Reply
 				<button id="addReplyBtn" class="btn btn-primary btn-sm pull-right">새 댓글</button>				
 			</div>
 		
-			<div>
+			<div class="card-body">
 				<ul class="chat list-group list-group-flush">
 					<li class="list-group-item" data-rno='12'>
 						<div>
@@ -151,7 +150,6 @@
 			<div class="panel-footer">						
 			</div>
 		</div>
-	</div>
 </div>
 
 <!-- Modal 추가 -->

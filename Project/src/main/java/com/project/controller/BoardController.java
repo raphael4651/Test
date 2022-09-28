@@ -38,10 +38,18 @@ public class BoardController {
 		System.out.println("게시판 목록");
 		
 		model.addAttribute("list", boardService.getListPaging(cri));
-		
+		System.out.println("1111111");
 		int total = boardService.getTotal(cri);
-		
+		System.out.println("2222222");
 		PageMakerDTO pageMake = new PageMakerDTO(cri, total);
+		
+		System.out.println("pageNum:"+cri.getPageNum());
+		System.out.println("amount:"+cri.getAmount());
+		System.out.println("type:"+cri.getType());
+		System.out.println("keyword:"+cri.getKeyword());
+		
+		System.out.println("startPage:"+pageMake.getStartPage());
+		System.out.println("endPage:"+pageMake.getEndPage());
 		
 		model.addAttribute("pageMaker", pageMake);
 	}
@@ -88,13 +96,13 @@ public class BoardController {
 
 	/* 페이지 수정 */
 	@PostMapping("/modify")
-	public String boardModifyPOST(BoardVO board, RedirectAttributes rttr) {
+	public String boardModifyPOST(BoardVO board, Criteria cri, RedirectAttributes rttr) {
 		
 		boardService.modify(board);
 		
 		rttr.addFlashAttribute("result", "수정 성공");
 		
-		return "redirect:/board/list";
+		return "redirect:/board/list" + cri.getListLink();
 		
 	}
 	
@@ -158,6 +166,7 @@ public class BoardController {
 	public void boardListGET2(Model model, Criteria cri) {
 		System.out.println("게시판 목록2");
 		model.addAttribute("list2", boardService.getListPaging2(cri));
+		System.out.println("게시판 목록 22");
 		int total = boardService.getTotal2(cri);
 		System.out.println("22");
 		PageMakerDTO pageMake = new PageMakerDTO(cri, total);
@@ -209,13 +218,13 @@ public class BoardController {
 
 	/* 페이지 수정 */
 	@PostMapping("/modify2")
-	public String boardModifyPOST2(BoardVO board, RedirectAttributes rttr) {
+	public String boardModifyPOST2(BoardVO board, RedirectAttributes rttr, Criteria cri) {
 		
 		boardService.modify2(board);
 		
 		rttr.addFlashAttribute("result", "수정 성공2");
 		
-		return "redirect:/board/list2";
+		return "redirect:/board/list2" + cri.getListLink();
 		
 	}
 	
