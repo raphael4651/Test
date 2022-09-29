@@ -182,7 +182,6 @@ $(document).ready(function(){
 		moveForm.find("input[name='pageNum']").val($(this).attr("href"));
 		moveForm.attr("action", "/board/list");
 		moveForm.submit();
-		
 	});	 
 	
 	
