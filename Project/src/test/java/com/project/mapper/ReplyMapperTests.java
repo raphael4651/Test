@@ -9,18 +9,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.project.model.Criteria;
-import com.project.model.ReplyVO;
+import com.project.model.TradeCriteria;
+import com.project.model.TradeReplyVO;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root-context.xml")
-public class ReplyMapperTests {
+public class TradeReplyMapperTests {
 
 	//게시판에 있는 번호
 	Long[] bnoArr= {222L,221L,220L,219L,218L};
 	
 	@Autowired
-	private ReplyMapper mapper;
+	private TradeReplyMapper mapper;
 	
 	//댓글 데이터베이스 연결 테스트
 	@Test
@@ -33,7 +33,7 @@ public class ReplyMapperTests {
 	public void testCreate() {
 		
 		IntStream.rangeClosed(1,10).forEach(i->{
-			ReplyVO vo=new ReplyVO();
+			TradeReplyVO vo=new TradeReplyVO();
 			vo.setBno(bnoArr[i%5]);
 			vo.setReply("댓글 테스트 "+i);
 			vo.setReplyer("replyer"+i);
@@ -46,7 +46,7 @@ public class ReplyMapperTests {
 	@Test
 	public void testRead() {
 		Long targetRno=4L;
-		ReplyVO vo=mapper.read(targetRno);
+		TradeReplyVO vo=mapper.read(targetRno);
 		System.out.println(vo);
 	}
 	
@@ -61,7 +61,7 @@ public class ReplyMapperTests {
 	@Test
 	public void testUpdate() {
 		Long targetRno = 5L;
-		ReplyVO vo = mapper.read(targetRno);
+		TradeReplyVO vo = mapper.read(targetRno);
 		vo.setReply("update reply");
 		int count = mapper.update(vo);
 		System.out.println(count);
@@ -70,8 +70,8 @@ public class ReplyMapperTests {
 	//특정 게시물의 댓글 조회 테스트
 	@Test
 	public void testList() {
-		Criteria cri = new Criteria();
-		List<ReplyVO> replies = mapper.getListWithPaging(cri, bnoArr[0]);
+		TradeCriteria cri = new TradeCriteria();
+		List<TradeReplyVO> replies = mapper.getListWithPaging(cri, bnoArr[0]);
 		
 		replies.forEach(reply -> System.out.println("" + reply));
 		
@@ -80,8 +80,8 @@ public class ReplyMapperTests {
 	//댓글 페이징 처리 테스트
 	@Test
 	public void testList2() {
-		Criteria cri = new Criteria(1, 10);
-		List<ReplyVO> replies = mapper.getListWithPaging(cri, 220L);
+		TradeCriteria cri = new TradeCriteria(1, 10);
+		List<TradeReplyVO> replies = mapper.getListWithPaging(cri, 220L);
 		replies.forEach(reply -> System.out.println(""+ reply));
 	}
 	

@@ -12,14 +12,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
-import com.project.mapper.BoardAttachMapper;
-import com.project.model.BoardAttachVO;
+import com.project.mapper.TradeBoardAttachMapper;
+import com.project.model.TradeBoardAttachVO;
 
 @Component
 public class FileCheckTask {
 	
 	@Autowired
-	private BoardAttachMapper attachMapper;
+	private TradeBoardAttachMapper attachMapper;
 	
 	private String getFolderYesterDay() {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -34,7 +34,7 @@ public class FileCheckTask {
 		System.out.println("파일 체크 작업 시작.....");
 		System.out.println("===================");
 		
-		List<BoardAttachVO> fileList=attachMapper.getOldFiles();
+		List<TradeBoardAttachVO> fileList=attachMapper.getOldFiles();
 		
 		//DB내용을 파일경로명 변경
 		List<Path> fileListPaths=
