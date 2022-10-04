@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>    
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ include file="../includes/header.jsp" %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,8 +30,10 @@
 <div class="container text-center">
     <div class="col-lg-12">
         <div class="panel panel-default">
-            <div class="panel-heading">                
+            <div class="panel-heading">
+            <sec:authorize access="hasRole('ROLE_ADMIN')">                
                 <button id="regBtn" type="button" class="btn btn-primary pull-right">새글 등록</button>
+            </sec:authorize>
             </div>
             <!-- /.panel-heading -->
             <div class="panel-body">

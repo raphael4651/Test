@@ -1,0 +1,180 @@
+/*메인 컬러 : #2C66B1*/
+
+@font-face {
+  font-family: '양진체';
+  src: url('https://cdn.jsdelivr.net/gh/supernovice-lab/font@0.9/yangjin.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+html, body {
+  padding: 0;
+  margin: 0;
+  height: 100%;
+}
+.wrap {
+  width: 100%;
+  background-color: #222222;
+  margin-bottom: 9%;
+  height: 4.5%;
+}
+header {
+  position: fixed;
+  width: 100%;
+  z-index:100;
+}
+
+.header_top {
+  width: 100%;
+  padding: 1% 3%;
+  background-color: #2C66B1;
+  position: relative;
+}
+.header_topMain {
+  width: 20%;
+}
+.header_topMain_imgBox {
+  width: 12rem;
+}
+.header_topMain_imgBox>img {
+  width: 100%;
+}
+.header_topLogin {
+  position: absolute;
+  right: -9%;
+  top: 30%;
+  width:30%;
+  display: flex;	
+  flex-direction: row;
+}
+.header_topLogin>ul{
+  list-style: none;		
+  width: 100%;
+  text-align: center;
+  
+}
+
+.header_topLogin>ul>li{
+	//margin-right: 10px;
+	width: 100px;
+}
+.header_topLogin>.welcome{
+	text-align: center;
+	width: 266px;
+}
+.header_topLogin>button, ul>li>button {
+  font-family: '양진체';
+  background-color: #2C66B1;
+  border: transparent;
+  color: white;
+  padding: 2% 6%;
+  border-radius: 15px;
+  margin-left: 2%;
+}
+.header_topLogin>button:hover, ul>li>button:hover {
+  color: #2C66B1;
+  background-color: white;
+  font-size: 1.1rem;
+  padding-top: 3%;
+}
+.header_bottom{
+  width: 100%;
+  height: 36px;
+  background-color: #2C66B1;
+}
+
+/*dropdown*/
+#main_menu, #sub_menu{
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  background-color: #2C66B1;
+}
+
+#main_menu > li{
+  float: left;
+  background-color: #2C66B1;
+  width: 25%;
+  text-align: center;
+  font-family: '양진체';
+}
+
+#main_menu > li > a{
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  letter-spacing: 0.05em;
+  display: block;
+  padding: 12px 36px;
+}
+
+#main_menu > li:hover #sub_menu{
+  opacity: 1;
+  visibility: visible;
+}
+
+#sub_menu{
+  position: absolute;
+  background-color: #2C66B1;
+  opacity: 0;
+  visibility: hidden;
+  width: 25%;
+}
+
+#sub_menu > li{
+  padding: 16px 28px;
+  border-bottom: 1px solid rgba(0,0,0,0.15);
+  font-family: '양진체';
+}
+
+#sub_menu > li > a{
+  color: white;
+  text-decoration: none;
+}
+
+#regBtn{
+	float: right;
+}
+
+.wrap_body{
+	height: auto%;
+	padding-top: 3%
+	margin-bottom: 100px;
+}
+
+.wrap_body_index{
+	background-color: #A7A9DF;
+	height: 75%;
+}
+
+
+
+.body_content_index{
+	position: absolute;
+	top: 40%;
+	left: 25%;
+	width: 50%;
+	height: 50%;
+	text-align: center;
+}
+
+.body_content_index > span{
+	display: block;
+	padding: 20px;
+}
+
+.body_content_index > h1, span{
+	color: white;
+}
+
+.footer_img{
+	width: 1rem;
+}
+
+.footer{
+	width : 100%;
+	margin-top: 20px;
+}
+

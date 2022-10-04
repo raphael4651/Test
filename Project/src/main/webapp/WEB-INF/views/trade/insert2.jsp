@@ -77,7 +77,8 @@
 					</div>
 					<div class="mb-3">
 						<label class="form-group">작성자</label>
-						<input name="tradeWriter2" class="form-control">
+						<sec:authentication property="principal" var="pinfo"/>						
+						<input name="tradeWriter2" class="form-control" value="${pinfo.username}" readonly="readonly">
 					</div>		
 					<button type="submit" class="btn btn-primary">등록</button>
 					<button type="button" class="btn btn-secondary">취소</button>
@@ -263,11 +264,8 @@ $(document).ready(function(e){
 		});
 	})
 });
-
-
-
-
 </script>
+<%@ include file="../includes/footer.jsp" %>
 </html>
 
 

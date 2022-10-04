@@ -227,4 +227,16 @@ public class TradeBoardServiceImpl implements TradeBoardService{
 		return mapper.getListNotice();
 	}
 
+	@Override
+	public List<TradeBoardVO> getMySell(String id) {
+		// TODO Auto-generated method stub
+		return mapper.getMySell(id);
+	}
+
+	@Override
+	public List<TradeBoardVO> getMyBuy(String id) {
+		// TODO Auto-generated method stub
+		return mapper.getMyBuy(id);
+	}
+
 }

@@ -17,6 +17,9 @@ public interface TradeBoardMapper {
 	//게시판 목록
 	public List<TradeBoardVO> getList();
 	
+	//게시판 목록(나의글)
+	public List<TradeBoardVO> getMySell(String id);
+	
 	//게시판 목록(페이징)
 	public List<TradeBoardVO> getListPaging(TradeCriteria cri);
 	
@@ -43,6 +46,9 @@ public interface TradeBoardMapper {
 	
 	//게시판 목록
 	public List<TradeBoardVO> getList2();
+	
+	//게시판 목록(나의글)
+	public List<TradeBoardVO> getMyBuy(String id);
 	
 	//게시판 목록(페이징)
 	public List<TradeBoardVO> getListPaging2(TradeCriteria cri);

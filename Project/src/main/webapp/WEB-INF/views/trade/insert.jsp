@@ -53,7 +53,7 @@
 </style>
 </head>
 <body>
-<div class="jumbotron">
+<div class="wrap_body">
 	<div class="container-lg">
 	    <div class="col-lg-12">
 	        <h1 class="page-header">게시판 글쓰기</h1>
@@ -77,10 +77,11 @@
 					</div>
 					<div class="mb-3">
 						<label class="form-group">작성자</label>
-						<input name="tradeWriter" class="form-control">
+						<sec:authentication property="principal" var="pinfo"/>						
+						<input name="tradeWriter" class="form-control" value="${pinfo.username}" readonly="readonly">
 					</div>		
 					<button type="submit" class="btn btn-primary">등록</button>
-					<button type="submit" class="btn btn-secondary">취소</button>
+					<button type="button" class="btn btn-secondary">취소</button>
 					
 				</form>	
             <!-- /.panel-body -->
@@ -245,11 +246,8 @@ $(document).ready(function(e){
 		});
 	})
 });
-
-
-
-
 </script>
+<%@ include file="../includes/footer.jsp" %>
 </html>
 
 

@@ -90,8 +90,13 @@
             		<input class="form-control" name="tradeWriter" value="${pageInfo3.noticeWriter}" readonly>
             	</div>
             	               	
-       			<button class="btn btn-primary" id="modify_btn">수정</button>
-            	<button class="btn btn-success" id="list_btn">목록</button> 
+                      <button class="btn btn-success" id="list_btn">목록</button> 
+                      <sec:authentication property="principal" var="pinfo"/>
+                      	<sec:authorize access="isAuthenticated()">
+                      		<c:if test="${pinfo.username eq pageInfo3.noticeWriter }">
+                	  			<button class="btn btn-primary" id="modify_btn">수정</button>
+                	  		</c:if>
+                      </sec:authorize>
             	 
             	 <form id="infoForm" action="/trade/modifyNotice" method="get">
             	 	<input type="hidden" id="noticeBno" name="noticeBno" value="${pageInfo3.noticeBno}">

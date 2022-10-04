@@ -176,7 +176,7 @@ public class TradeUploadController {
 	}
 	
 	//파일 다운로드
-	@GetMapping(value="/download",
+	@GetMapping(value="/download2",
 			produces=MediaType.APPLICATION_OCTET_STREAM_VALUE)
 	@ResponseBody
 	public ResponseEntity<Resource> downloadFile(
@@ -383,7 +383,7 @@ public class TradeUploadController {
 	}
 	
 	//파일 다운로드
-	@GetMapping(value="/download2",
+	@GetMapping(value="/download3",
 			produces=MediaType.APPLICATION_OCTET_STREAM_VALUE)
 	@ResponseBody
 	public ResponseEntity<Resource> downloadFile2(

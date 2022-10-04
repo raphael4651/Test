@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>    
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>    
 <%@ include file="../includes/header.jsp" %>
 <!DOCTYPE html>
 <html>
@@ -28,15 +29,16 @@
 <div class="container text-center">
     <div class="col-lg-12">
         <div class="panel panel-default">
-            <div class="panel-heading">                
+            <div class="panel-heading">
+               <sec:authorize access="isAuthenticated()">       
                 <button id="regBtn" type="button" class="btn btn-primary pull-right">새글 등록</button>
+               </sec:authorize>
             </div>
             <!-- /.panel-heading -->
             <div class="panel-body">
                 <table width="100%" class="table table-striped table-bordered table-hover">
                     <thead>
-                    	<th>번호</th>     
-                    	<th>이미지</th>               	
+                    	<th>번호</th>                    	
                     	<th>제목</th>
                     	<th>작성자</th>
                     	<th>작성일</th>
@@ -45,11 +47,7 @@
                     
                     <c:forEach items="${list}" var="list">                    
                     <tr>
-                    	<td>${list.tradeBno }</td>             
-                    	<td><div class="uploadResult">
-							<ul>						
-							</ul>
-						</div></td>      		
+                    	<td>${list.tradeBno }</td>                   		
                     	<td><a class="move" href='<c:out value="${list.tradeBno}"/>'>
                     		${list.tradeTitle } <b>[${list.tradeReplyCnt }]</b></a>                   		                   		
                    		</td>

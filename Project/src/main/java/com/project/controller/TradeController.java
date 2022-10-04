@@ -214,7 +214,7 @@ public class TradeController {
 		
 		boardService.modify2(board);
 		
-		rttr.addFlashAttribute("result", "수정 성공2");
+		rttr.addFlashAttribute("result2", "수정 성공2");
 		
 		return "redirect:/trade/list2" + cri.getListLink();
 		
@@ -238,7 +238,7 @@ public class TradeController {
 		if(boardService.remove2(tradeBno2)) {
 			deleteFiles2(attachList);
 			
-			rttr.addFlashAttribute("result", "success");
+			rttr.addFlashAttribute("result2", "success");
 		}
 		return "redirect:/trade/list2" + cri.getListLink();
 	}
@@ -303,7 +303,7 @@ public class TradeController {
 		
 		boardService.insertNotice(board);
 		
-		rttr.addFlashAttribute("result",board.getNoticeBno());
+		rttr.addFlashAttribute("result3",board.getNoticeBno());
 		
 		return "redirect:/trade/notice";
 	}
@@ -332,7 +332,7 @@ public class TradeController {
 		
 		boardService.modifyNotice(board);
 		
-		rttr.addFlashAttribute("result", "수정 성공");
+		rttr.addFlashAttribute("result3", "수정 성공");
 		
 		return "redirect:/trade/notice";
 		
@@ -344,7 +344,7 @@ public class TradeController {
 		System.out.println("remove....." + noticeBno);
 		
 		boardService.deleteNotice(noticeBno);
-		rttr.addFlashAttribute("result", "success");
+		rttr.addFlashAttribute("result3", "success");
 		return "redirect:/trade/notice" + cri.getListLink();
 	}
 			
