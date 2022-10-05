@@ -194,6 +194,14 @@
 #mail_check_input_box_true{
     background-color:white;
 } 
+/* 인증번호 입력 박스 일치 여부 색상 */
+.correct{
+	color : green;
+}
+
+.incorrect{
+	color : red;
+}
 
 /* 주소 영역 */
 .address_wrap{
