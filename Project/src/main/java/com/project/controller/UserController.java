@@ -94,8 +94,8 @@ public class UserController {
 	      
 	      String encPassword = passwordEncoder.encode(dto.getUserPwd());
 	      dto.setUserPwd(encPassword);
-	      System.out.println(dto.getAuth());
-	      if(dto.getAuth().equals("기업회원")) {
+	      System.out.println(dto.getGrade());
+	      if(dto.getGrade().equals("기업회원")) {
 	         service.insertCeo(dto);
 	      }else {
 	         service.insertUser(dto);
@@ -132,7 +132,7 @@ public class UserController {
 		int checkNum = random.nextInt(888888)+111111;
 		System.out.println(email);
 		System.out.println(checkNum); 	
-		String setFrom = "slowman1223@naver.com";
+		String setFrom = "tkalqnak0122@naver.com";
         String toMail = email;
         String title = "회원가입 인증 이메일 입니다.";
         String content = 

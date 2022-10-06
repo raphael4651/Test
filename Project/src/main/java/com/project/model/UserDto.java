@@ -15,6 +15,7 @@ public class UserDto {
 	private String userAddr3;
 	private List<AuthDto> authList;
 	private String grade;
+	private String auth;
 	
 	public String getUserId() {
 		return userId;

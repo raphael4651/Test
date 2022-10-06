@@ -9,8 +9,8 @@
 		 where userId = #{userId}
 	</select>
 	<insert id="insert" parameterType="com.project.model.UserDto">
-		insert into user(userId,userpwd,username,useremail,useraddr1,useraddr2,useraddr3,auth)
-		values(#{userId},#{userPwd},#{userName},#{userEmail},#{userAddr1},#{userAddr2},#{userAddr3},#{auth})
+		insert into user(userId,userpwd,username,useremail,useraddr1,useraddr2,useraddr3,grade)
+		values(#{userId},#{userPwd},#{userName},#{userEmail},#{userAddr1},#{userAddr2},#{userAddr3},#{grade})
 	</insert>
 	<insert id="insertUserAuth" parameterType="String">
       insert into Auth(userId,auth)

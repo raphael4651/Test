@@ -376,8 +376,7 @@
      		  $.ajax({
      			type : 'get',
      			url : '/user/mailCheck?email='+email,
-     			success : function(data){
-     				alert(data);
+     			success : function(data){     				
      	            checkBox.attr("disabled",false);
      	         	boxWrap.attr("id", "mail_check_input_box_true");
      	         	code=data;

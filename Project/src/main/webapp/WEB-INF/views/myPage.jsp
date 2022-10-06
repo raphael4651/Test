@@ -389,7 +389,7 @@ function getUserInfo(className){
 			str +='</tr>';
 			str +='<tr>';
 	         str +='<th>회원유형</th>';
-	         str +="<td>"+data.auth+"</td>";
+	         str +="<td>"+data.grade+"</td>";
 	         str +='</tr>';
 			str +='</tbody>';
 			str +='</table';
@@ -486,6 +486,7 @@ $(document).on("click","#myInfo",function() {
 	$("#myBoard").html("");
 	$("#myStore").html("");
 	$("#mySell").html("");
+	$("#myBuy").html("");
 	getUserInfo(1);
 });
 $(document).on("click","#myWrite",function() {
