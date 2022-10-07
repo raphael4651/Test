@@ -1,10 +1,10 @@
-package org.zerock.service;
+package org.project.service;
 
 import java.util.List;
 
-import org.zerock.domain.BoardAttachVO;
-import org.zerock.domain.BoardVO;
-import org.zerock.domain.Criteria;
+import org.project.domain.BoardAttachVO;
+import org.project.domain.BoardVO;
+import org.project.domain.Criteria;
 
 public interface BoardService {
 	

@@ -1,4 +1,4 @@
-package org.zerock.controller;
+package org.project.controller;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -19,11 +19,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import org.zerock.domain.BoardAttachVO;
-import org.zerock.domain.BoardVO;
-import org.zerock.domain.Criteria;
-import org.zerock.domain.PageDTO;
-import org.zerock.service.BoardService;
+import org.project.domain.BoardAttachVO;
+import org.project.domain.BoardVO;
+import org.project.domain.Criteria;
+import org.project.domain.PageDTO;
+import org.project.service.BoardService;
 
 import lombok.extern.log4j.Log4j;
 

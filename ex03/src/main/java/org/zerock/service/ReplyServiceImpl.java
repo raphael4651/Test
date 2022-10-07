@@ -1,13 +1,13 @@
-package org.zerock.service;
+package org.project.service;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.zerock.domain.Criteria;
-import org.zerock.domain.ReplyPageDTO;
-import org.zerock.domain.ReplyVO;
-import org.zerock.mapper.ReplyMapper;
+import org.project.domain.Criteria;
+import org.project.domain.ReplyPageDTO;
+import org.project.domain.ReplyVO;
+import org.project.mapper.ReplyMapper;
 
 import lombok.extern.log4j.Log4j;
 

@@ -1,4 +1,4 @@
-package org.zerock.controller;
+package org.project.controller;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -25,7 +25,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
-import org.zerock.domain.AttachFileDTO;
+import org.project.domain.AttachFileDTO;
 
 import net.coobird.thumbnailator.Thumbnailator;
 

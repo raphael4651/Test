@@ -1,4 +1,4 @@
-package org.zerock.controller;
+package org.project.controller;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -14,9 +14,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import org.zerock.domain.SampleDTO;
-import org.zerock.domain.SampleDTOList;
-import org.zerock.domain.TodoDTO;
+import org.project.domain.SampleDTO;
+import org.project.domain.SampleDTOList;
+import org.project.domain.TodoDTO;
 
 import lombok.extern.log4j.Log4j;
 

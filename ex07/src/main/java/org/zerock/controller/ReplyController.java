@@ -1,4 +1,4 @@
-package org.zerock.controller;
+package org.project.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -13,10 +13,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import org.zerock.domain.Criteria;
-import org.zerock.domain.ReplyPageDTO;
-import org.zerock.domain.ReplyVO;
-import org.zerock.service.ReplyService;
+import org.project.domain.Criteria;
+import org.project.domain.ReplyPageDTO;
+import org.project.domain.ReplyVO;
+import org.project.service.ReplyService;
 
 import lombok.extern.log4j.Log4j;
 

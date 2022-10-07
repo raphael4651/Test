@@ -1,4 +1,4 @@
-package org.zerock.controller;
+package org.project.controller;
 
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.access.prepost.PreAuthorize;

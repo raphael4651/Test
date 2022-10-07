@@ -41,4 +41,21 @@ public class MemberMapperTest {
 		System.out.println(memberMapper.idCheck(id2));
 	}
 	
+	//로그인 쿼리 테스트
+	@Test
+	public void memberLogin() throws Exception{
+		MemberVO member = new MemberVO();
+		
+		//올바른 아이디 비밀번호 입력
+		member.setMemberId("admin");
+		member.setMemberPw("admin");
+		
+		//올바르지 않은 아이디 비밀번호
+		//member.setMemberId("11");
+		//member.setMemberPw("1234");
+		
+		memberMapper.memberLogin(member);
+		System.out.println("결과 값 : " + memberMapper.memberLogin(member));
+	}
+	
 }

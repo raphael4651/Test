@@ -1,4 +1,4 @@
-package org.zerock.sample;
+package org.project.sample;
 
 import static org.junit.Assert.assertNotNull;
 

@@ -1,4 +1,4 @@
-package org.zerock.domain;
+package org.project.domain;
 
 import lombok.Getter;
 import lombok.ToString;

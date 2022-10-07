@@ -1,11 +1,11 @@
-package org.zerock.mapper;
+package org.project.mapper;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.zerock.domain.MemberVO;
+import org.project.domain.MemberVO;
 
 import lombok.extern.log4j.Log4j;
 

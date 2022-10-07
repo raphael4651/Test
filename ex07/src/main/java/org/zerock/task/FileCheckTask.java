@@ -1,4 +1,4 @@
-package org.zerock.task;
+package org.project.task;
 
 import java.io.File;
 import java.nio.file.Path;
@@ -11,8 +11,8 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
-import org.zerock.domain.BoardAttachVO;
-import org.zerock.mapper.BoardAttachMapper;
+import org.project.domain.BoardAttachVO;
+import org.project.mapper.BoardAttachMapper;
 
 import lombok.extern.log4j.Log4j;
 

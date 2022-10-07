@@ -1,6 +1,6 @@
-package org.zerock.mapper;
+package org.project.mapper;
 
-import org.zerock.domain.MemberVO;
+import org.project.domain.MemberVO;
 
 public interface MemberMapper {
 

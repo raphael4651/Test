@@ -1,4 +1,4 @@
-package org.zerock.service;
+package org.project.service;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

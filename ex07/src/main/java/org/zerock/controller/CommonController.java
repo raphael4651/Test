@@ -1,4 +1,4 @@
-package org.zerock.controller;
+package org.project.controller;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;

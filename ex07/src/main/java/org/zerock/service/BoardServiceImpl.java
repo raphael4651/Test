@@ -1,15 +1,15 @@
-package org.zerock.service;
+package org.project.service;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.zerock.domain.BoardAttachVO;
-import org.zerock.domain.BoardVO;
-import org.zerock.domain.Criteria;
-import org.zerock.mapper.BoardAttachMapper;
-import org.zerock.mapper.BoardMapper;
+import org.project.domain.BoardAttachVO;
+import org.project.domain.BoardVO;
+import org.project.domain.Criteria;
+import org.project.mapper.BoardAttachMapper;
+import org.project.mapper.BoardMapper;
 
 import lombok.extern.log4j.Log4j;
 

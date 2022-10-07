@@ -1,4 +1,4 @@
-package org.zerock.security;
+package org.project.security;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
 

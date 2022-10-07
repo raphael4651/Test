@@ -1,4 +1,4 @@
-package org.zerock.mapper;
+package org.project.mapper;
 
 import java.util.List;
 
@@ -7,9 +7,9 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.zerock.domain.BoardVO;
-import org.zerock.domain.Criteria;
-import org.zerock.mapper.BoardMapper;
+import org.project.domain.BoardVO;
+import org.project.domain.Criteria;
+import org.project.mapper.BoardMapper;
 
 import lombok.extern.log4j.Log4j;
 

@@ -1,4 +1,4 @@
-package org.zerock.controller;
+package org.project.controller;
 
 import org.junit.Before;
 import org.junit.Test;

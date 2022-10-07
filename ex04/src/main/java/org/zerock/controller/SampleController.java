@@ -1,4 +1,4 @@
-package org.zerock.controller;
+package org.project.controller;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.zerock.domain.SampleVO;
-import org.zerock.domain.Ticket;
+import org.project.domain.SampleVO;
+import org.project.domain.Ticket;
 
 import lombok.extern.log4j.Log4j;
 

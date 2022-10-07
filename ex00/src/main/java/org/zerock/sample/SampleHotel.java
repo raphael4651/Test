@@ -1,4 +1,4 @@
-package org.zerock.sample;
+package org.project.sample;
 
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Component;

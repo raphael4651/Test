@@ -1,8 +1,8 @@
-package org.zerock.mapper;
+package org.project.mapper;
 
 import java.util.List;
 
-import org.zerock.domain.BoardAttachVO;
+import org.project.domain.BoardAttachVO;
 
 public interface BoardAttachMapper {
 	public void insert(BoardAttachVO vo);

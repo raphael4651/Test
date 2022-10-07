@@ -1,10 +1,10 @@
-package org.zerock.mapper;
+package org.project.mapper;
 
 import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
-import org.zerock.domain.Criteria;
-import org.zerock.domain.ReplyVO;
+import org.project.domain.Criteria;
+import org.project.domain.ReplyVO;
 
 public interface ReplyMapper {
 	

@@ -1,4 +1,4 @@
-package org.zerock.service;
+package org.project.service;
 
 import org.springframework.stereotype.Service;
 

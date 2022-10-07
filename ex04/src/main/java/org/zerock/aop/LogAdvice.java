@@ -1,4 +1,4 @@
-package org.zerock.aop;
+package org.project.aop;
 
 import java.util.Arrays;
 
@@ -16,26 +16,26 @@ import lombok.extern.log4j.Log4j;
 @Component
 public class LogAdvice {
 
-	@Before("execution(* org.zerock.service.SampleService*.*(..))")
+	@Before("execution(* org.project.service.SampleService*.*(..))")
 	public void logBefore() {
 		System.out.println("================");
 	}
 	
-	@Before("execution(* org.zerock.service.SampleService*.*(..)) && args(str1,str2)")
+	@Before("execution(* org.project.service.SampleService*.*(..)) && args(str1,str2)")
 	public void logBeforeWithParam(String str1,String str2) {
 		System.out.println("str1:"+str1);
 		System.out.println("str2:"+str2);
 	}
 	
 	@AfterThrowing(
-			pointcut="execution(* org.zerock.service.SampleService*.*(..))",
+			pointcut="execution(* org.project.service.SampleService*.*(..))",
 			throwing="e")
 	public void logException(Exception e) {
 		System.out.println("Exception.....!!!!!");
 		System.out.println("exception:"+e);
 	}
 	
-	@Around("execution(* org.zerock.service.SampleService*.*(..))")
+	@Around("execution(* org.project.service.SampleService*.*(..))")
 	public Object logTime(ProceedingJoinPoint pjp) {
 		long start=System.currentTimeMillis();
 		

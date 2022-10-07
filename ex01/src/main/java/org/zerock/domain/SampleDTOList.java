@@ -1,4 +1,4 @@
-package org.zerock.domain;
+package org.project.domain;
 
 import java.util.ArrayList;
 import java.util.List;
